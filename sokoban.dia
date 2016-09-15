@@ -991,7 +991,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -4624,7 +4624,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -4647,7 +4647,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -5467,7 +5467,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -5490,7 +5490,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6402,7 +6402,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6425,7 +6425,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6680,7 +6680,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6703,7 +6703,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6726,7 +6726,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="0"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -6964,7 +6964,7 @@
         <dia:point val="13.5967,-40.4604"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-3.11224,-49.7322;14.3467,-39.6604"/>
+        <dia:rectangle val="-3.1122,-49.7322;14.3467,-39.6604"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -6973,7 +6973,7 @@
         <dia:point val="13.5967,-40.4604"/>
         <dia:point val="4.58484,-40.4604"/>
         <dia:point val="4.58484,-48.9322"/>
-        <dia:point val="-3.06224,-48.9322"/>
+        <dia:point val="-3.0622,-48.9322"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="0"/>
@@ -8192,7 +8192,7 @@
         <dia:point val="46.7826,-16.6728"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-1.5755,-17.8728;47.5326,-15.8509"/>
+        <dia:rectangle val="-1.5755,-17.4728;47.5326,-15.8509"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
