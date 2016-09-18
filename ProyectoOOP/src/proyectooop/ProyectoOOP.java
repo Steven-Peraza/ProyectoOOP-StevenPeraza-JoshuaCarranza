@@ -5,10 +5,23 @@
  */
 package proyectooop;
 
+
 /**
  *
  * @author Steven
  */
+import Clases.Administrador;
+import Clases.Cajas;
+import Clases.Estadistica;
+import Clases.Grupo;
+import Clases.Historial;
+import Clases.Juego;
+import Clases.Jugador;
+import Clases.Nivel;
+import Clases.Personaje;
+import Clases.Programa;
+import Clases.Reglas;
+import Clases.Usuario;
 public class ProyectoOOP {
 
     /**
@@ -16,6 +29,7 @@ public class ProyectoOOP {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }
