@@ -29,6 +29,25 @@ public class ProyectoOOP {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Programa nuevo=new Programa();
+        Jugador primero=new Jugador("josua",30,"joshua@gmail.com","23","30 de mayo");
+        nuevo.agregarUsuario(primero);
+        Nivel primer=new Nivel();
+        primer.setNumNivel(3);
+        primer.setCedulaAdministrador(333);
+        
+        nuevo.agregarNivel(primer);
+        
+        Jugador prime=new Jugador("josua",30,"joshua@gmail.com","32","30 de mayo");
+       nuevo.eliminarUsuario(2334);
+       nuevo.agregarUsuario(prime);
+       Nivel segundo=new Nivel();
+       segundo.setNumNivel(1);
+       segundo.setCedulaAdministrador(444);
+       nuevo.agregarNivel(segundo);
+       
+       
+
         
     }
     

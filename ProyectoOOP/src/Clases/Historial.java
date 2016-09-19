@@ -13,7 +13,7 @@ import java.util.Iterator;
  */
 public class Historial {
     
-    public static int partidasGrupo;    //contador de partidas en grupo
+    public static int partidasGrupo;    //contador de partidas en grupales
     
     private int numeroNivel;
     private String estado;

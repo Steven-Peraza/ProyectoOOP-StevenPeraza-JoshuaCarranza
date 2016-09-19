@@ -17,6 +17,7 @@ public class Jugador extends Usuario{
     private int bestMoves;
     private int nivelActual;
     private int masRepetido;
+    private Estadistica estadistica=new Estadistica();
     private ArrayList<Historial> arrayHistorial=new ArrayList(); //historial por nivel
 
     public Jugador(String nombre, int cedula, String correo, String contraseña, String fechaRegistro) {
@@ -53,8 +54,16 @@ public class Jugador extends Usuario{
         return arrayHistorial;
     }
 
-    public void setArrayHistorial(ArrayList arrayHistorial) {
-        this.arrayHistorial = arrayHistorial;
+    public void setArrayHistorial(Historial var) {
+        this.arrayHistorial.add(var);
+    }
+
+    public Estadistica getEstadistica() {
+        return estadistica;
+    }
+
+    public void setEstadistica(Estadistica estadistica) {
+        this.estadistica = estadistica;
     }
 
     
