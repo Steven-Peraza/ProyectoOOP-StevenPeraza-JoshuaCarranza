@@ -31,9 +31,11 @@ public class ProyectoOOP {
         // TODO code application logic here
         Programa nuevo=new Programa();
         Jugador primero=new Jugador("josua",30,"joshua@gmail.com","23","30 de mayo");
+        primero.getEstadistica().setCanGanesOptimizados();
         nuevo.agregarUsuario(primero);
         Nivel primer=new Nivel();
         primer.setNumNivel(3);
+        nuevo.usuariosGaOpt();
         primer.setCedulaAdministrador(333);
         
         nuevo.agregarNivel(primer);

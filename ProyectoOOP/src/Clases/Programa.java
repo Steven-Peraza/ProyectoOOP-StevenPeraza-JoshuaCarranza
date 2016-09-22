@@ -102,16 +102,17 @@ public class Programa {
   }
   public void historialUsuario(int identificacion){
       
-      Jugador player;   //para guardar el jugador al que hay que acceder
+      Jugador player = null;   //para guardar el jugador al que hay que acceder
       for (int i=0;i<users.size();i++){
              if(users.get(i).getCedula()==identificacion){
              
                     player=users.get(i); //se encontro el jugador
-                    
                     break;
              }
                     
       }
+      
+      player.getArrayHistorial(); //se llama al metodo de obtener historial del jugador
         
      
     
@@ -120,22 +121,132 @@ public class Programa {
   
   public void usuariosGaOpt(){
       
+      ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
+      int cantidad;
+      for (int i=0;i<users.size()-1;i++){
+        
+          cantidad=users.get(i).getEstadistica().getCanGanesOptimizados();
+          
+        if (array.size()==0){   //si no hay nada solo se agrega
+           array.add(users.get(i));
+            
+            }
+         
+         else if (array.size()==5){  //si esta lleno   
+             for (int x=0;x<array.size();x++){
+               
+                if (array.get(x).getEstadistica().getCanGanesOptimizados()<cantidad){
+                    
+                    array.add(x, users.get(i)); //se inserta el jugador
+                }
+                
+             
+                 
+             }}
+         
+         else{
+              for (int x=0;x<array.size();x++){     //si hay espacio se inserta ordenado igualmente
+               
+                if (array.get(x).getEstadistica().getCanGanesOptimizados()<cantidad){
+                    
+                    array.add(x, users.get(i)); //se inserta el jugador
+                }
+                
+             
+                 
+             }
+                    }
+             
+         }
+          
+      // return array
       
+      }
   
-  }
+  
   
   public void usuariosReRot(){
+      
+      ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
+      int cantidad;
+      for (int i=0;i<users.size()-1;i++){
+        
+          cantidad=users.get(i).getEstadistica().getRecordRotos();
+          
+        if (array.size()==0){   //si no hay nada solo se agrega
+           array.add(users.get(i));
+            
+            }
+         
+         else if (array.size()==5){  //si esta lleno   
+             for (int x=0;x<array.size();x++){
+               
+                if (array.get(x).getEstadistica().getRecordRotos()<cantidad){
+                    
+                    array.add(x, users.get(i)); //se inserta el jugador
+                }
+                
+             
+                 
+             }}
+         
+         else{
+              for (int x=0;x<array.size();x++){     //si hay espacio se inserta ordenado igualmente
+               
+                if (array.get(x).getEstadistica().getRecordRotos()<cantidad){
+                    
+                    array.add(x, users.get(i)); //se inserta el jugador
+                }
+                
+             
+                 
+             }
+                    }
+             
+         }
   
+      
+      
       
   }
   
   public void usuariosInLevel(int numero){
+      
+      
   
   }
   
   public void usuariosGanaron(int numero){
+      int nivel=0;
+      for (int i=0;i<niveles.size();i++){   //para comprobar que el numero de nivel ingresado está
+      
+            if (niveles.get(i).getNumNivel()==numero){
+                nivel=numero;
+            }
+      }
+      
+      if (nivel==0){        //si el numero de nivel no existe
+          return;
+      }
+      
+      else{
+          for (int z=0;z<users.size();z++){
+              
+              ArrayList temporal= users.get(z).getArrayHistorial(); // se accede temporalmente al array historial
+              for (int x=0;x<temporal.size();x++ ){                 //del jugador
+                  
+                  Historial temp=(Historial) temporal.get(x);   //correccion java
+                  if (temp.getNumeroNivel()==nivel);{       //si ya jugo el nivel
+                  if (("Ganado"==temp.getEstado())||("Optimizado"==temp.getEstado())){ //si lo paso
+                    System.out.println(users.get(z).getNombre());     //se imprime el nombre
+                  }
+                      }
+                  
+              }
+              } 
+          }
+      }
   
-  }
   
   public void infoUsuario(int identificacion){
   
