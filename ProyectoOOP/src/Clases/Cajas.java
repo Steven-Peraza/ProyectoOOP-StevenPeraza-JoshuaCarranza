@@ -11,6 +11,7 @@ package Clases;
  */
 public class Cajas {
     
+    private int id;
     private int numeroCaja;
     private int posicionFila;
     private int posicionColumna;
@@ -46,6 +47,19 @@ public class Cajas {
 
     public void setPosicionColumna(int posicionColumna) {
         this.posicionColumna = posicionColumna;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Cajas{" + "id=" + id + ", numeroCaja=" + numeroCaja + ", posicionFila=" + posicionFila + ", posicionColumna=" + posicionColumna + '}';
     }
     
     

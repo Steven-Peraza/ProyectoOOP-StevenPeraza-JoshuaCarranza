@@ -12,10 +12,13 @@ package Clases;
 public class Reglas {
     private int cajasPorMover;
     private int controlZ;
-    
-    public Reglas(){
-    
+
+    public Reglas(int cajasPorMover, int controlZ) {
+        this.cajasPorMover = cajasPorMover;
+        this.controlZ = controlZ;
     }
+    
+    
 
     public int getCajasPorMover() {
         return cajasPorMover;
@@ -31,6 +34,11 @@ public class Reglas {
 
     public void setControlZ(int habilitar) {
         this.controlZ = habilitar;
+    }
+
+    @Override
+    public String toString() {
+        return "Reglas{" + "cajasPorMover=" + cajasPorMover + ", controlZ=" + controlZ + '}';
     }
     
     

@@ -21,6 +21,10 @@ public class Historial {
     private int tiempo;
     private int vecesJugado=0;
     private  int bestMoves;
+
+    public Historial() {
+    }
+    
     
     
     public int getNumNivel() {
@@ -69,6 +73,11 @@ public class Historial {
 
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
+    }
+
+    @Override
+    public String toString() {
+        return "Historial{" + "numNivel=" + numNivel + ", estado=" + estado + ", cantidadMovimientos=" + cantidadMovimientos + ", tiempo=" + tiempo + ", vecesJugado=" + vecesJugado + ", bestMoves=" + bestMoves + '}';
     }
 
     

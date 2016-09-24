@@ -22,8 +22,8 @@ private String fotografia;
         return fotografia;
     }
 
-    public void setFotografia(String fotografia) {
-        this.fotografia = fotografia;
+    public void setFotografia(String foto) {
+        this.fotografia = foto;
     }
 
 

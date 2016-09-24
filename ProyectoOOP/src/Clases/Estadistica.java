@@ -14,9 +14,9 @@ public class Estadistica {
     private int cantNivelesJugados=0;
     private int recordRotos;
     private int canGanesOptimizados;
-    private int partidasGrupalesJugadas;
+    private int nivelMasRepetido;
     
-
+    
     public int getCantNivelesJugados() {
         return cantNivelesJugados;
     }
@@ -41,13 +41,22 @@ public class Estadistica {
         this.canGanesOptimizados ++;
     }
 
-    public int getPartidasGrupalesJugadas() {
-        return partidasGrupalesJugadas;
+    public int getNivelMasRepetido() {
+        return nivelMasRepetido;
     }
 
-    public void setPartidasGrupalesJugadas() {
-        this.partidasGrupalesJugadas ++;
+    public void setNivelMasRepetido(int nivel) {
+        this.nivelMasRepetido = nivel;
     }
+
+    @Override
+    public String toString() {
+        return "Estadistica{" + "cantNivelesJugados=" + cantNivelesJugados + ", recordRotos=" + recordRotos + ", canGanesOptimizados=" + canGanesOptimizados + ", nivelMasRepetido=" + nivelMasRepetido + '}';
+    }
+
+    
+
+    
     
     
     

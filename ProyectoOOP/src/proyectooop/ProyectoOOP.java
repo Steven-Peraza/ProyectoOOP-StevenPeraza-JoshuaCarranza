@@ -30,7 +30,7 @@ public class ProyectoOOP {
     public static void main(String[] args) {
         // TODO code application logic here
         Programa nuevo=new Programa();
-        Jugador primero=new Jugador("josua",30,"joshua@gmail.com","23","30 de mayo");
+        Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","23","30 de mayo");
         //primero.getEstadistica().setCanGanesOptimizados();
         nuevo.agregarJugador(primero);
         Nivel primer=new Nivel();
@@ -40,7 +40,7 @@ public class ProyectoOOP {
         
         nuevo.agregarNivel(primer);
         
-        Jugador prime=new Jugador("josua",30,"joshua@gmail.com","32","30 de mayo");
+        Jugador prime=new Jugador("alguien",30,"joshua@gmail.com","32","30 de mayo");
        nuevo.eliminarJugador(2334);
        nuevo.agregarJugador(prime);
        Nivel segundo=new Nivel();

@@ -161,6 +161,11 @@ public class Grupo {
         }
            
     }
+
+    @Override
+    public String toString() {
+        return "Grupo{" + "generador=" + generador + "Jugadores: "+getJugadores()+ "Niveles: "+getNiveles()+ ", contMove=" + contMove + ", tiempo=" + tiempo + ", menorTiempo=" + menorTiempo + ", menorMovimientos=" + menorMovimientos + ", mejorEnTiempo=" + mejorEnTiempo + ", mejorEnMovimientos=" + mejorEnMovimientos + '}';
+    }
     
     
     

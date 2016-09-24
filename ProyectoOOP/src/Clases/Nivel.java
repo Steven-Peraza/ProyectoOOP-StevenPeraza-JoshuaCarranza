@@ -25,6 +25,15 @@ public class Nivel {
     private int numNivel;
     private int bestMoves;
 
+    //se recibe el tamaño que tendrá la matriz del nivel y se asigna
+    public Nivel(int columnas, int filas) {
+        this.columnas = columnas;
+        this.filas = filas;
+    }
+
+    
+    
+    
     public int getCantCajas() {
         return cantCajas;
     }
@@ -112,7 +121,65 @@ public class Nivel {
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
     }
-  
- 
+    
+    //se inicialia la matriz con el tamaño especificado
+    public void generarMatriz(){
+    
+    matrizLogica= new int [columnas][filas];    
+    }
+    
+    // se recibe la posicion de la matriz logica en la que se insertará la caja
+    public void hacerCaja (int x,int y){
+    
+        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){    //que no este en ninguno de los extremos de la matriz   
         
-}
+            matrizLogica[x][y]=1;       //el uno representa a las cajas en la matriz logica 
+        }   
+    }
+    
+    public void hacerPunto(int x,int y){
+    
+        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+            
+             matrizLogica[x][y]=2;       //el dos representa a los puntos en la matriz logica 
+             
+        }
+    
+    }
+    
+    public void ubicarPersonaje(int x,int y){
+     if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+            
+             matrizLogica[x][y]=3;       //el tres representa al personaje en la matriz logica 
+             
+        }
+    
+    }
+    
+    public void hacerPared (int x,int y){
+
+        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+            
+             matrizLogica[x][y]=0;       //el cero represen a la pared en la matriz logica 
+             
+        }
+    
+    } 
+    
+    //se revisa si la matriz esta bien hecha
+    // se retorna un uno si sí un dos si no
+    public int validarMatriz(){
+    
+    return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Nivel{" + "cantCajas=" + cantCajas + ", cantPuntos=" + cantPuntos + ", columnas=" + columnas + ", filas=" + filas + ", personajeColumna=" + personajeColumna + ", personajeFila=" + personajeFila + ", nombreAdministrador=" + nombreAdministrador + ", cedulaAdministrador=" + cedulaAdministrador + ", numNivel=" + numNivel + ", bestMoves=" + bestMoves + '}';
+    }
+        
+        
+    }
+
+
+

@@ -19,6 +19,7 @@ public class Programa {
   private ArrayList<Nivel> niveles;
   private Reglas ruler;
 
+  //inicializacion de arrays
     public Programa() {
         users=new ArrayList();
         niveles=new ArrayList();
@@ -427,5 +428,13 @@ public class Programa {
   
   
   }
+
+    @Override
+    public String toString() {
+        return "Programa{" + "users=" + users.size() + ", administradores=" + administradores.size() + ", listaGrupos=" + listaGrupos.size() + ", niveles=" + niveles.size() + ", ruler=" + ruler.toString() + '}';
+    }
+
+   
+  
   
 }

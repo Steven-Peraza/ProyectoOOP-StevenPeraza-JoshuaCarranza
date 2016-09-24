@@ -48,9 +48,12 @@ public class Administrador extends Usuario {
 
     @Override
     public String toString() {
+        
         return super.toString()+
-        "Administrador{" + "nacionalidad=" + nacionalidad + ", nivelesAgregados=" + nivelesAgregados + ", bestmovesSuperados=" + bestmovesSuperados + '}';
+                "Administrador{" + "nacionalidad=" + nacionalidad + ", nivelesAgregados=" + nivelesAgregados + ", bestmovesSuperados=" + bestmovesSuperados + '}';
     }
+
+    
    
     
 }

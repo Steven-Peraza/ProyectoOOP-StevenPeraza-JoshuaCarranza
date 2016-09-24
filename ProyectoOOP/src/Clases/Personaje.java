@@ -13,6 +13,7 @@ public class Personaje {
     
     private int posicionFila;
     private int posicionColumna;
+    private int id;
 
     public Personaje(int posicionFila, int posicionColumna) {   //se asigna la posicion inical del personaje
         this.posicionFila = posicionFila;
@@ -37,8 +38,21 @@ public class Personaje {
     public void setPosicionColumna(int posicionColumna) {
         this.posicionColumna = posicionColumna;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = 3;            //numero que representa al personaje
+    }
+
+    @Override
+    public String toString() {
+        return "Personaje{" + "posicionFila=" + posicionFila + ", posicionColumna=" + posicionColumna + ", id=" + id + '}';
+    }
+
     
-    
-    
+     
     
 }
