@@ -16,6 +16,16 @@ private int cedula;
 private String correo;
 private String contraseña;
 private String fechaRegistro;
+private String fotografia;
+
+    public String getFotografia() {
+        return fotografia;
+    }
+
+    public void setFotografia(String fotografia) {
+        this.fotografia = fotografia;
+    }
+
 
     public Usuario(String nombre, int cedula, String correo, String contraseña, String fechaRegistro) {
         this.nombre = nombre;

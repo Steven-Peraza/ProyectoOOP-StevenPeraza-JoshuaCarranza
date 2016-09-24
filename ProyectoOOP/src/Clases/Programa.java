@@ -14,20 +14,22 @@ import java.util.Iterator;
 public class Programa {
    
   private ArrayList<Jugador> users;
-    private ArrayList<Administrador> administradores; 
-
+  private ArrayList<Administrador> administradores; 
+  private ArrayList<Grupo> listaGrupos;
   private ArrayList<Nivel> niveles;
+  private Reglas ruler;
 
     public Programa() {
         users=new ArrayList();
         niveles=new ArrayList();
         administradores=new ArrayList();
+        listaGrupos=new ArrayList();
         
     }
   
   
   
-  public void agregarUsuario(Jugador nuevo){
+  public void agregarJugador(Jugador nuevo){
       
       
       
@@ -47,7 +49,7 @@ public class Programa {
        
   }
     
-  public void eliminarUsuario(int identificacion){
+  public void eliminarJugador(int identificacion){
   
       for (int i=0;i<users.size();i++){
       
@@ -69,7 +71,8 @@ public class Programa {
           niveles.add(nuevo);
           return;
       }
-       for (int i=0;i<niveles.size();i++){
+                                            
+       for (int i=0;i<niveles.size();i++){  //si el numero de nivel ya se encuentra registrado
       
           if (niveles.get(i).getNumNivel()==nuevo.getNumNivel()){    //se compara el numero de nivel
                niveles.add(i,nuevo);        //se inserta en esa posicion
@@ -100,7 +103,7 @@ public class Programa {
       return 0;
       
   }
-  public void historialUsuario(int identificacion){
+  public Jugador historialJugador(int identificacion){
       
       Jugador player = null;   //para guardar el jugador al que hay que acceder
       for (int i=0;i<users.size();i++){
@@ -112,14 +115,14 @@ public class Programa {
                     
       }
       
-      player.getArrayHistorial(); //se llama al metodo de obtener historial del jugador
+      return player;    //se retorna el jugador
         
      
     
   
   }
   
-  public void usuariosGaOpt(){
+  public String usuariosGaOpt(){
       
       ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
       int cantidad;
@@ -158,14 +161,23 @@ public class Programa {
                     }
              
          }
-          
-      // return array
+      String jugadores;
+      jugadores=array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
+      jugadores+=",";
+      jugadores+=array.get(1).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(2).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(3).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(4).getNombre();
+      return jugadores;
       
       }
   
   
   
-  public void usuariosReRot(){
+  public String usuariosReRot(){
       
       ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
       int cantidad;
@@ -206,18 +218,30 @@ public class Programa {
          }
   
       
-      
+      String jugadores;
+      jugadores=array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
+      jugadores+=",";
+      jugadores+=array.get(1).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(2).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(3).getNombre();
+      jugadores+=",";
+      jugadores+=array.get(4).getNombre();
+      return jugadores;
       
   }
   
-  public void usuariosInLevel(int numero){
+  public String usuariosInsistentesEnNivel(int numero){
       
       
-  
+      return " ";
   }
   
-  public void usuariosGanaron(int numero){
+  public String usuariosGanaron(int numero){
       int nivel=0;
+      String nombres =""; //almacena los nombres de los que pasaron el nivel
+      
       for (int i=0;i<niveles.size();i++){   //para comprobar que el numero de nivel ingresado está
       
             if (niveles.get(i).getNumNivel()==numero){
@@ -226,7 +250,7 @@ public class Programa {
       }
       
       if (nivel==0){        //si el numero de nivel no existe
-          return;
+          return "";
       }
       
       else{
@@ -236,20 +260,27 @@ public class Programa {
               for (int x=0;x<temporal.size();x++ ){                 //del jugador
                   
                   Historial temp=(Historial) temporal.get(x);   //correccion java
-                  if (temp.getNumeroNivel()==nivel);{       //si ya jugo el nivel
+                  if (temp.getNumNivel()==nivel);{       //si ya jugo el nivel
                   if (("Ganado"==temp.getEstado())||("Optimizado"==temp.getEstado())){ //si lo paso
-                    System.out.println(users.get(z).getNombre());     //se imprime el nombre
+                    nombres+=users.get(z).getNombre();     //se concatena el nombre al String 
+                    nombres+=",";                          //se establece este separador
                   }
                       }
                   
               }
               } 
           }
+      
+      return nombres;
+      
       }
   
   
-  public void infoUsuario(int identificacion){
-  
+  public Jugador imprmirEstadisticaJugador (int identificacion){
+      
+      Jugador player=null;
+      
+      return player;
   }
   
   public void agregarAdministrador(Administrador nuevo){
@@ -260,11 +291,140 @@ public class Programa {
   
   }
   
-  public void buscarUsuario(Usuario elemento){
+  public Jugador buscarJugador(int identificacion){
   
+      Jugador player=null;
+      
+      return player;
   } 
   
-  public void buscarAdministrador(Administrador elemento){
+  public Administrador buscarAdministrador(int identificacion){
+  
+      Administrador admin=null;
+      
+      return admin;
+  }
+  
+  public boolean login(String nombre,int id){
+  
+      return true;
+  }
+  
+  public void cambiarOrdenNivel(){
+  
+  
+  }
+  
+  public void cambiarNivelesOptimizados(int numeroNivel){
+  
+  
+  }
+  
+  public void jugarNivel(int numeroNivel){
+  
+  
+  }
+  
+// recibe las listas que contiene el grupo  
+  public void jugarGrupo(ArrayList<Nivel> niveles,ArrayList<Jugador> jugadores){
+  
+  
+  }
+  
+  // recibe el numero de cajas a mover, y un valor numerico que indica si el controlz es permitido
+  public void setReglas(int numeroCajas,int controlZ){
+  
+  
+  }
+  
+  public void cambiarReglas(int numeroCajas,int controlZ){
+      
+     ruler.setCajasPorMover(numeroCajas);
+     ruler.setControlZ(controlZ);
+ 
+  }
+  
+  // retorna el valor de los dos atributos del objeto ruler, en un string con un separador
+  public String getReglas(){
+      
+      String texto="";
+      texto+= String.valueOf(ruler.getCajasPorMover());
+      texto+=",";
+      texto+= String.valueOf(ruler.getControlZ());
+      return texto;
+  }
+  
+  public int calcularDiferenciaEnMovimientos(int numNivel){
+  
+  
+      return 0;
+  }
+  
+  public void actualizarHistorial(int numeroNivel,int movimientos){
+  
+ 
+      
+  }
+  
+  public String repetirNiveles(int cedula){
+  
+  return "";
+  
+  }
+  
+  public int pasarDeNivel(int nivelJugado){
+  
+  
+  return 0;
+  }
+  
+  //recibe toda la informacion del juego recien jugado para colocarlo en el historial del jugador
+  public void generarHistorial(Juego game){
+  
+  
+  }
+  
+  // recibe por parametro el jugador para generar la estadistica
+  public int cantidadNivelesJugados(Jugador usuario){
+  
+  
+   return 0;
+  }
+  
+  public int cantidadRecordRotos(Jugador usuario){
+  
+  
+      return 0;
+  }
+  
+  public int obteenerNivelMasRepetido(Jugador usuario){
+  
+  
+  return 0;
+  
+  }
+  
+  public int jugadorCantidadGanesOpt(Jugador Usuario){
+  
+  
+  return 0;
+  }
+  
+  //recibe la informacion de todo un grupo, se coloca en la lista de grupos general del programa
+  public void agregaraGrupoLista(Grupo group){
+  
+  
+  }
+  
+  // se retorna la lista de grupos general que tiene el programa
+  public ArrayList obtenerListaGrupo(){
+  
+  return listaGrupos;
+  }
+  
+  //recibe el nuevo bestmoves del nivel y el numero de nivel para cambiarle ese valor
+  public void nuevoRecord(int cantMovimientos,int numNivel){
+  
   
   }
   

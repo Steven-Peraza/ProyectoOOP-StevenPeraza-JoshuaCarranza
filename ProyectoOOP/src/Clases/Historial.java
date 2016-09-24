@@ -13,24 +13,22 @@ import java.util.Iterator;
  */
 public class Historial {
     
-    public static int partidasGrupo;    //contador de partidas en grupales
-    
-    private int numeroNivel;
+
+   
+    private int numNivel;
     private String estado;
     private int cantidadMovimientos;
     private int tiempo;
     private int vecesJugado=0;
     private  int bestMoves;
-    public static  ArrayList<Grupo> partidasGrupales=new ArrayList();   //se hace una sola lista para
-                                                                        //partidas grupales
-    private Estadistica generales=new Estadistica();
     
-    public int getNumeroNivel() {
-        return numeroNivel;
+    
+    public int getNumNivel() {
+        return numNivel;
     }
 
-    public void setNumeroNivel(int numero) {
-        this.numeroNivel = numero;
+    public void setNumNivel(int numero) {
+        this.numNivel = numero;
     }
 
     public String getEstado() {
@@ -73,24 +71,5 @@ public class Historial {
         this.bestMoves = bestMoves;
     }
 
-    public int getPartidasGrupales() {
-      
-        return 0;
-    }
-
-    public void setPartidasGrupales(Grupo partida) {
-        
-    }
-
-    public Estadistica getGenerales() {
-        return generales;
-    }
-
-    public void setGenerales() {
-      
-    }
-    
-    
-    
     
 }

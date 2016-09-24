@@ -14,64 +14,92 @@ import java.util.Iterator;
  */
 public class Grupo {
     
-    private ArrayList<Jugador> jugadores=new ArrayList();
-    private ArrayList<Nivel> niveles= new ArrayList();
-    private Usuario generador;
+    private ArrayList<Jugador> jugadores;
+    private ArrayList<Nivel> niveles;
+    private String generador;
     private int contMove;
     private int tiempo;
     public int menorTiempo;
     public int menorMovimientos;
-    public String mejorJugador;
+    public String mejorEnTiempo;
+    public String mejorEnMovimientos;
+
+    // se inicializan los array
+    public Grupo() {
+        
+        jugadores=new ArrayList();
+        niveles=new ArrayList();
+        
+        
+    }
     
-    public void setGenerador(String nombre,int numero){
+    
+    
+    public void setGenerador(String nombre){
+        this.generador=nombre;
+    }
+    
+    public String getGenerador(){
+    
+        return generador;
     
     }
     
+    // se agrega un nivel a la lista de nivels
     public void addNivel(int numero){
     
+        if (niveles.size()==5){ //si el arreglo ya contiene su maximo valor posible no se agrega
+            System.out.println("array lleno");
+        }
+        
     }
     
-    public int getNivel(){
-    
-        return 0;
+    //devuelve en un string los niveles que se eligió jugar, con un separador
+    public String getNiveles(){
+        
+        String levels="";
+        
+        for (int i=0;i<niveles.size();i++){
+        
+            levels+=niveles.get(i).getNumNivel();
+            levels+=",";
+            
+        }
+        
+        return levels;
     }
     
     public void addJugadores(int numero){
+        
+        if (jugadores.size()==4){ //si el arreglo ya contiene su maximo valor posible no se agrega
+            System.out.println("array lleno");
     
+    }
     }
     
     public void setContMove(){
-    
         contMove ++;
+        
     }
     
     public int getContMove(){
     
-    return 0;
+        return contMove++;
     }
     
     public void setTiempo(int segundos){
     
+        tiempo=segundos;
     }
     
     public int getTiempo(){
     
-        return 0;
-    }
-    
-    public void setMejorJugador(String nombre){
-    mejorJugador=nombre;
-    
-    } 
-    
-    public String getMejorJugador(){
-    
-    return mejorJugador;
-    
+        return tiempo;
     }
     
     public void setMenorTiempo(int tiempo){
     
+        menorTiempo=tiempo;
     }
     
     public int getMenorTiempo(){
@@ -89,10 +117,52 @@ public class Grupo {
         return menorMovimientos;
     }
     
+    //retorna un string con los nombres de los jugadores
     public String getJugadores(){
     
-    return "we";
+    String players="";
+    
+    for (int i=0;i<jugadores.size();i++){
+    
+        players+= jugadores.get(i).getNombre();
+        players+=",";        
+     }
+        
+    return players;
     }
+
+    
+    public String getMejorEnTiempo() {
+        return mejorEnTiempo;
+    }
+
+    public void setMejorEnTiempo(String mejorEnTiempo) {
+        this.mejorEnTiempo = mejorEnTiempo;
+    }
+
+    public String getMejorEnMovimientos() {
+        return mejorEnMovimientos;
+    }
+
+    public void setMejorEnMovimientos(String mejorEnMovimientos) {
+        this.mejorEnMovimientos = mejorEnMovimientos;
+    }
+    
+    //se va a eliminar del grupo al jugador que decida abandonar
+    public void abandonarGrupo(int cedula){
+        
+        for (int i=0;i<jugadores.size();i++){
+        
+            if (jugadores.get(i).getCedula()==cedula){
+                jugadores.remove(i);        //se elimina el elemento
+                break;
+            }
+            
+        }
+           
+    }
+    
+    
     
 }
 

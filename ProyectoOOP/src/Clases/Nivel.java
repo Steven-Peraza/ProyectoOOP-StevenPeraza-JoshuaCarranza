@@ -112,6 +112,7 @@ public class Nivel {
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
     }
-    
-    
+  
+ 
+        
 }

@@ -12,6 +12,10 @@ package Clases;
 public class Reglas {
     private int cajasPorMover;
     private int controlZ;
+    
+    public Reglas(){
+    
+    }
 
     public int getCajasPorMover() {
         return cajasPorMover;
@@ -26,7 +30,7 @@ public class Reglas {
     }
 
     public void setControlZ(int habilitar) {
-        this.controlZ = controlZ;
+        this.controlZ = habilitar;
     }
     
     
