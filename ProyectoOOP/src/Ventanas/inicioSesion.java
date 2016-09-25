@@ -58,6 +58,7 @@ public class inicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
+        setResizable(false);
 
         contraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         contraseña.setText("Contraseña");
@@ -143,17 +144,20 @@ public class inicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose(); //se esconde la ventana
         new RegistrarAdministrador().setVisible(true);
+        mensaje.setText("");
     }//GEN-LAST:event_registraAdminActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         // TODO add your handling code here:
+       
         String nombre=usuario.getText();   //se obtiene el nombre digitado
         String contra="";
         char [] code=password.getPassword();    //el password field encripta lo que se digita debe 
                                                 //usarse el getpassword y no el gettext(), y pasar la cadena de
                                                 //caracteres al string
        
-         
+        password.setText("");
+        usuario.setText("");
         for (int i=0;i<code.length;i++){
         
             contra+=code[i];
@@ -168,12 +172,15 @@ public class inicioSesion extends javax.swing.JFrame {
         if (esta==true){
             
             mensaje.setText("Si estas");        //si esta
+            contra="";
         }
         else{
           
             mensaje.setForeground(Color.red);
             mensaje.setText("Alguno de los datos es incorrecto");
+            contra="";
         }
+        
         
     }//GEN-LAST:event_ingresarActionPerformed
 
@@ -181,7 +188,7 @@ public class inicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         new RegistrarJugador().setVisible(true);
-        
+        mensaje.setText("");
     }//GEN-LAST:event_registrarJugadorActionPerformed
     
    

@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import Clases.*;
+
 /**
  *
  * @author Josua

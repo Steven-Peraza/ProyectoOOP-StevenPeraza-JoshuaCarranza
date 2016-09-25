@@ -42,8 +42,8 @@ public class Programa {
       //System.out.println(users.size());
        for (int i=0;i<users.size();i++){
       
-          if (users.get(i).getCedula()==nuevo.getCedula()){    //se compara el numero de cedula
-                System.out.println("Ya está registrado numero de cedula");              //para ver si ya existe
+          if (users.get(i).getContraseña().equals(nuevo.getContraseña())||(users.get(i).getNombre().equals(nuevo.getNombre()))||(users.get(i).getCedula()==nuevo.getCedula())){    //se compara el numero de cedula
+                System.out.println("Ya está el nombre de usuario,la cedula o la contraseña");              //para ver si ya existe
                 return;                                 //no se agrega si el numero de cedula ya está.
                 
       }
@@ -290,6 +290,22 @@ public class Programa {
   }
   
   public void agregarAdministrador(Administrador nuevo){
+      
+      for (int i=0;i<administradores.size();i++){
+      
+          if (administradores.get(i).getContraseña().equals(nuevo.getContraseña())||(administradores.get(i).getNombre().equals(nuevo.getNombre()))||(administradores.get(i).getCedula()==nuevo.getCedula())){    //se compara el numero de cedula
+                System.out.println("Ya está el nombre de usuario,la cedula o la contraseña");              //para ver si ya existe
+                return;                                
+                
+      }
+          
+       }
+       
+       administradores.add(nuevo); //se agrega el usuario jugador
+       System.out.println(administradores.size());
+       
+      
+      
   
   }
   
@@ -321,9 +337,9 @@ public class Programa {
           }
       }
       
-      for (int i=0;i<administradores.size();i++){   //se busca en la lista de administradores
+      for (int x=0;x<administradores.size();x++){   //se busca en la lista de administradores
             
-          if ((administradores.get(i).getNombre()==nom)&&(administradores.get(i).getContraseña()==password)){
+          if ((administradores.get(x).getNombre().equals(nom))&&(administradores.get(x).getContraseña().equals(password))){
               
               return true;
           }

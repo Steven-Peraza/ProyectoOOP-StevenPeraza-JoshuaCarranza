@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Administrador;
 import java.awt.Color;
 import proyectooop.*;
 import clases.*;
@@ -53,6 +54,8 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Administrador");
+        setAutoRequestFocus(false);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Registro de administrador");
@@ -64,7 +67,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         cedula.setText("Numero de Cédula");
 
         try {
-            id.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+            id.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -204,34 +207,35 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
         // TODO add your handling code here:
         
-    String nombre;
+    String name;
     String contra="";
     String correos;
-    String cedula;
+    String ced;
     String nacionalida;
     String fechaRegistro;
     
-    nombre=nom.getText();
+    name=nombre.getText();
     char [] cadena =pass.getPassword();
     for (int i=0;i<cadena.length;i++){
         contra+=cadena[i];
     }
     
     correos=correo.getText();
-    cedula=(id.getText());
+    ced=(id.getText());
     nacionalida=nacionalidad.getText();
     fechaRegistro=fecha.getText();
                                     //se valida que no hayan datos incorrectos
-    if ((!nombre.equals(""))&&(cedula.length()==9)&&(!contra.equals(""))&&(!correos.equals(""))&&(!nacionalida.equals(""))&&(!fechaRegistro.equals("")));
+    if ((!name.equals(""))&&(ced.length()==9)&&(!contra.equals(""))&&(!correos.equals(""))&&(!nacionalida.equals(""))&&(!fechaRegistro.equals("")));
     
-        int numero= Integer.parseInt(cedula);
-        Administrador nuevo = new Administrador(nombre,numero,correos,contra,fechaRegistro);
+        int numero= Integer.parseInt(ced);
+        Administrador  nuevo;
+        nuevo=new Administrador(name,numero,correos,contra,fechaRegistro);
         nuevo.setNacionalidad(nacionalida);
         programa.agregarAdministrador(nuevo);   //se agrega
         exito.setForeground(Color.green);
         exito.setText("Registro exitoso");
         
-        nom.setText("");
+        nombre.setText("");
         pass.setText("");
         correo.setText("");
         id.setText("");
