@@ -5,6 +5,13 @@
  */
 package Clases;
 
+import Clases.Administrador;
+import Clases.Grupo;
+import Clases.Historial;
+import Clases.Juego;
+import Clases.Jugador;
+import Clases.Nivel;
+import Clases.Reglas;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
@@ -27,7 +34,12 @@ public class Programa {
         listaGrupos=new ArrayList();
         
     }
+
+    public ArrayList<Jugador> getUsers() {
+        return users;
+    }
   
+    
   
   
   public void agregarJugador(Jugador nuevo){
@@ -306,9 +318,25 @@ public class Programa {
       return admin;
   }
   
-  public boolean login(String nombre,int id){
-  
-      return true;
+  public boolean login(String nom,String password){
+      
+      for (int i=0;i<users.size();i++){     //se busca en la lista de jugadores
+             System.out.println(String.valueOf(users.get(i).getNombre()== nom));
+          if ((users.get(i).getNombre()== nom)&&(users.get(i).getContraseña()==password)){
+              System.out.println("entre");
+              return true;
+          }
+      }
+      
+      for (int i=0;i<administradores.size();i++){   //se busca en la lista de administradores
+            
+          if ((administradores.get(i).getNombre()==nom)&&(administradores.get(i).getContraseña()==password)){
+              
+              return true;
+          }
+      }
+      
+      return false;     //si no estaba en los anteriores se retorna false
   }
   
   public void cambiarOrdenNivel(){

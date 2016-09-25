@@ -10,6 +10,7 @@ package proyectooop;
  *
  * @author Steven
  */
+import Clases.Programa;
 import Clases.Administrador;
 import Clases.Cajas;
 import Clases.Estadistica;
@@ -19,35 +20,45 @@ import Clases.Juego;
 import Clases.Jugador;
 import Clases.Nivel;
 import Clases.Personaje;
-import Clases.Programa;
 import Clases.Reglas;
 import Clases.Usuario;
-public class ProyectoOOP {
+import javax.swing.Timer;
+import Ventanas.*;
 
+public class ProyectoOOP {
+   
+   
     /**
      * @param args the command line arguments
      */
+    
+    public static Timer timer;
+    public static Programa programa=new Programa();
+    public static inicioSesion ventana=new inicioSesion();
     public static void main(String[] args) {
         // TODO code application logic here
-        Programa nuevo=new Programa();
-        Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","23","30 de mayo");
+
+        
+        Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
+        //Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
         //primero.getEstadistica().setCanGanesOptimizados();
-        nuevo.agregarJugador(primero);
-        Nivel primer=new Nivel();
-        primer.setNumNivel(3);
+        programa.agregarJugador(primero);
+        System.out.println(String.valueOf(programa.login("alguien","hola")));
+       // Nivel primer=new Nivel();
+       // primer.setNumNivel(3);
        // nuevo.usuariosGaOpt();
-        primer.setCedulaAdministrador(333);
+       // primer.setCedulaAdministrador(333);
         
-        nuevo.agregarNivel(primer);
+       // nuevo.agregarNivel(primer);
         
-        Jugador prime=new Jugador("alguien",30,"joshua@gmail.com","32","30 de mayo");
-       nuevo.eliminarJugador(2334);
-       nuevo.agregarJugador(prime);
-       Nivel segundo=new Nivel();
-       segundo.setNumNivel(1);
-       segundo.setCedulaAdministrador(444);
-       nuevo.agregarNivel(segundo);
-           
+       // prime=new Jugador("alguien",30,"joshua@gmail.com","32","30 de mayo");
+      // nuevo.eliminarJugador(2334);
+      // nuevo.agregarJugador(prime);
+      // Nivel segundo=new Nivel();
+      // segundo.setNumNivel(1);
+       //segundo.setCedulaAdministrador(444);
+       //nuevo.agregarNivel(segundo);
+       ventana.setVisible(true);
     }
     
 }
