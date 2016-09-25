@@ -11,8 +11,9 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 import Clases.*;
 import java.util.ArrayList;
+import ventanas.*;
 import static proyectooop.ProyectoOOP.programa;
-//import static proyectooop.ProyectoOOP.programa;
+
 
 /**
  *
@@ -20,8 +21,8 @@ import static proyectooop.ProyectoOOP.programa;
  */
 public class inicioSesion extends javax.swing.JFrame {
     
-    String nombre="";
-    String contra="";
+ 
+    
     //Programa nuevo=programa;
    
     /**
@@ -56,12 +57,13 @@ public class inicioSesion extends javax.swing.JFrame {
         mensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pantalla de acceso");
 
         contraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        contraseña.setText("           Contraseña");
+        contraseña.setText("Contraseña");
 
         nombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        nombreUsuario.setText("       Nombre de Usuario");
+        nombreUsuario.setText(" Nombre de Usuario");
 
         ingresar.setText("Ingresar");
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,58 +80,60 @@ public class inicioSesion extends javax.swing.JFrame {
         });
 
         registrarJugador.setText("Registrarse como Jugador");
+        registrarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarJugadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(35, 35, 35)
                 .addComponent(registraAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(registrarJugador)
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(ingresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(145, 145, 145))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ingresar)
-                        .addGap(200, 200, 200))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136))))
+                            .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nombreUsuario)
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(contraseña))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(21, 21, 21)
+                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(ingresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registraAdmin)
                     .addComponent(registrarJugador))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,11 +141,14 @@ public class inicioSesion extends javax.swing.JFrame {
 
     private void registraAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registraAdminActionPerformed
         // TODO add your handling code here:
+        this.dispose(); //se esconde la ventana
+        new RegistrarAdministrador().setVisible(true);
     }//GEN-LAST:event_registraAdminActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         // TODO add your handling code here:
-        nombre=usuario.getText();   //se obtiene el nombre digitado
+        String nombre=usuario.getText();   //se obtiene el nombre digitado
+        String contra="";
         char [] code=password.getPassword();    //el password field encripta lo que se digita debe 
                                                 //usarse el getpassword y no el gettext(), y pasar la cadena de
                                                 //caracteres al string
@@ -159,15 +166,23 @@ public class inicioSesion extends javax.swing.JFrame {
        
          
         if (esta==true){
+            
             mensaje.setText("Si estas");        //si esta
         }
         else{
           
-            //mensaje.setForeground(Color.red);
-           // mensaje.setText("Alguno de los datos es incorrecto");
+            mensaje.setForeground(Color.red);
+            mensaje.setText("Alguno de los datos es incorrecto");
         }
         
     }//GEN-LAST:event_ingresarActionPerformed
+
+    private void registrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJugadorActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new RegistrarJugador().setVisible(true);
+        
+    }//GEN-LAST:event_registrarJugadorActionPerformed
     
    
     

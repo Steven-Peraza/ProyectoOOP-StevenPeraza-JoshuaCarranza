@@ -20,7 +20,7 @@ import java.util.Iterator;
  */
 public class Programa {
    
-  private ArrayList<Jugador> users;
+  static public ArrayList<Jugador> users;
   private ArrayList<Administrador> administradores; 
   private ArrayList<Grupo> listaGrupos;
   private ArrayList<Nivel> niveles;
@@ -35,13 +35,6 @@ public class Programa {
         
     }
 
-    public ArrayList<Jugador> getUsers() {
-        return users;
-    }
-  
-    
-  
-  
   public void agregarJugador(Jugador nuevo){
       
       
@@ -321,8 +314,8 @@ public class Programa {
   public boolean login(String nom,String password){
       
       for (int i=0;i<users.size();i++){     //se busca en la lista de jugadores
-             System.out.println(String.valueOf(users.get(i).getNombre()== nom));
-          if ((users.get(i).getNombre()== nom)&&(users.get(i).getContraseña()==password)){
+             
+          if ((users.get(i).getNombre().equals(nom))&&(users.get(i).getContraseña().equals(password))){
               System.out.println("entre");
               return true;
           }

@@ -10,6 +10,7 @@ package proyectooop;
  *
  * @author Steven
  */
+import Ventanas.inicioSesion;
 import Clases.Programa;
 import Clases.Administrador;
 import Clases.Cajas;
@@ -23,7 +24,7 @@ import Clases.Personaje;
 import Clases.Reglas;
 import Clases.Usuario;
 import javax.swing.Timer;
-import Ventanas.*;
+//import Ventanas.*;
 
 public class ProyectoOOP {
    
@@ -33,8 +34,8 @@ public class ProyectoOOP {
      */
     
     public static Timer timer;
-    public static Programa programa=new Programa();
     public static inicioSesion ventana=new inicioSesion();
+    public static Programa programa=new Programa();
     public static void main(String[] args) {
         // TODO code application logic here
 
