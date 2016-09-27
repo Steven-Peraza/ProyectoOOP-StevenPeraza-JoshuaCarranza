@@ -13,7 +13,7 @@ public class Personaje {
     
     private int posicionFila;
     private int posicionColumna;
-    private int id;
+    private int id = 3;
 
     public Personaje(int posicionFila, int posicionColumna) {   //se asigna la posicion inical del personaje
         this.posicionFila = posicionFila;

@@ -237,7 +237,7 @@ public class Programa {
                     }
              
          }
-  
+      }
       
       String jugadores;
       jugadores=array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
@@ -250,12 +250,12 @@ public class Programa {
       jugadores+=",";
       jugadores+=array.get(4).getNombre();
       return jugadores;
-      
-  }
+    
+      }
   
   public String usuariosInsistentesEnNivel(int numero){
       
-      
+
       return " ";
   }
   
@@ -276,8 +276,8 @@ public class Programa {
       
       else{
           for (int z=0;z<users.size();z++){
-              
-              ArrayList temporal= users.get(z).getArrayHistorial(); // se accede temporalmente al array historial
+              Jugador player = (Jugador) users.get(z);
+              ArrayList temporal= player.getArrayHistorial(); // se accede temporalmente al array historial
               for (int x=0;x<temporal.size();x++ ){                 //del jugador
                   
                   Historial temp=(Historial) temporal.get(x);   //correccion java
@@ -303,44 +303,17 @@ public class Programa {
       
       return player;
   }
+ 
   
-  public void agregarAdministrador(Administrador nuevo){
+
+  
+  public Usuario buscarUsuario(int identificacion){
+  
+      Usuario usuario=null;
       
-      for (int i=0;i<administradores.size();i++){
-      
-          if (administradores.get(i).getContraseña().equals(nuevo.getContraseña())||(administradores.get(i).getNombre().equals(nuevo.getNombre()))||(administradores.get(i).getCedula()==nuevo.getCedula())){    //se compara el numero de cedula
-                System.out.println("Ya está el nombre de usuario,la cedula o la contraseña");              //para ver si ya existe
-                return;                                
-                
-      }
-          
-       }
-       
-       administradores.add(nuevo); //se agrega el usuario jugador
-       System.out.println(administradores.size());
-       
-      
-      
-  
-  }
-  
-  public void eliminarAdministrador (int identificacion){
-  
-  }
-  
-  public Jugador buscarJugador(int identificacion){
-  
-      Jugador player=null;
-      
-      return player;
+      return usuario;
   } 
-  
-  public Administrador buscarAdministrador(int identificacion){
-  
-      Administrador admin=null;
-      
-      return admin;
-  }
+ 
   
   public boolean login(String nom,String password){
       
@@ -352,18 +325,10 @@ public class Programa {
           }
       }
       
-      for (int x=0;x<administradores.size();x++){   //se busca en la lista de administradores
-            
-          if ((administradores.get(x).getNombre().equals(nom))&&(administradores.get(x).getContraseña().equals(password))){
-              
-              return true;
-          }
-      }
-      
       return false;     //si no estaba en los anteriores se retorna false
   }
   
-  public void cambiarOrdenNivel(){
+  public void cambiarOrdenNivel(int numero){
   
   
   }
@@ -407,7 +372,7 @@ public class Programa {
       return texto;
   }
   
-  public int calcularDiferenciaEnMovimientos(int numNivel){
+  public int calcularDiferenciaEnMovimientos(int numNivel,Historial historial){
   
   
       return 0;
@@ -450,7 +415,7 @@ public class Programa {
       return 0;
   }
   
-  public int obteenerNivelMasRepetido(Jugador usuario){
+  public int obtenerNivelMasRepetido(Jugador usuario){
   
   
   return 0;
@@ -475,15 +440,10 @@ public class Programa {
   return listaGrupos;
   }
   
-  //recibe el nuevo bestmoves del nivel y el numero de nivel para cambiarle ese valor
-  public void nuevoRecord(int cantMovimientos,int numNivel){
-  
-  
-  }
 
     @Override
     public String toString() {
-        return "Programa{" + "users=" + users.size() + ", administradores=" + administradores.size() + ", listaGrupos=" + listaGrupos.size() + ", niveles=" + niveles.size() + ", ruler=" + ruler.toString() + '}';
+        return "Programa{" + "users=" + users.size() +  ", listaGrupos=" + listaGrupos.size() + ", niveles=" + niveles.size() + ", ruler=" + ruler.toString() + '}';
     }
 
    

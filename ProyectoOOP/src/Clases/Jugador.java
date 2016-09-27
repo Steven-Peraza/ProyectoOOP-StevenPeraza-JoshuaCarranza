@@ -17,7 +17,7 @@ public class Jugador extends Usuario{
     private int bestMoves;
     private int nivelActual;
     private int masRepetido;
-    private Estadistica estadistica=new Estadistica();
+    private Estadistica estadistica=new Estadistica(0,0,0);
     private ArrayList<Historial> arrayHistorial=new ArrayList(); //historial por nivel
 
     public Jugador(String nombre, int cedula, String correo, String contraseña, String fechaRegistro) {

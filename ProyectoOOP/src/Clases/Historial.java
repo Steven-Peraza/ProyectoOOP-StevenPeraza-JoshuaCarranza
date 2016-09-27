@@ -14,17 +14,22 @@ import java.util.Iterator;
 public class Historial {
     
 
-   
     private int numNivel;
+    private Nivel nivel;
     private String estado;
     private int cantidadMovimientos;
     private int tiempo;
     private int vecesJugado=0;
     private  int bestMoves;
 
-    public Historial() {
-    }
-    
+    public Historial(int numNivel, Nivel nivel, String estado, int cantidadMovimientos, int tiempo, int bestMoves) {
+        this.numNivel = numNivel;
+        this.nivel = nivel;
+        this.estado = estado;
+        this.cantidadMovimientos = cantidadMovimientos;
+        this.tiempo = tiempo;
+        this.bestMoves = bestMoves;
+    }    
     
     
     public int getNumNivel() {
@@ -73,6 +78,10 @@ public class Historial {
 
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
+    }
+    
+    public void enlazarNivel(){
+        //comparar numNivel con el nivel deseado...
     }
 
     @Override

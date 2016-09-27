@@ -11,7 +11,7 @@ package Clases;
  */
 public class Cajas {
     
-    private int id;
+    private int id = 1;
     private int numeroCaja;
     private int posicionFila;
     private int posicionColumna;

@@ -18,7 +18,8 @@ public class Juego {
     private int contmoves=0;
     private int tiempo;
     private int regresar=0;   //si existe el controlz esta variable
-                             //representa las veces que se ha usado  
+                             //representa las veces que se ha usado
+    private Nivel nivel;
    private Personaje person;
    private int deshacer; 
    private int numNivel;
@@ -28,9 +29,11 @@ public class Juego {
    private int reglaMovimientosCajas;
    private int segundaOportunidad=3;
    private JLabel[][] matrizGrafica;    //se tiene la matrizgrafica
+   private int[] ultimoPersonaje;
    
 
     public Juego() {
+        person = new Personaje(0,0); //Cambiar el 0,0
         ultimaCaja=new int [3];     //un arreglo de 3 , para guardar el numero de caja, y la posicion
     }
 
@@ -53,7 +56,7 @@ public class Juego {
         return tiempo;
     }
 
-    public void setTiempo(int tiempo) {
+    public void setTiempo(int segundos) {
         this.tiempo = tiempo;
     }
 
@@ -187,9 +190,28 @@ public class Juego {
     
     }
     
+    public void mover(){
+        
+    }
+    
+    public void cambiarBestMoves(int nuevoBM){
+        
+    }
+    
+    public void setUltimaPosicionPersonaje(int posX,int posY){
+        
+    }
+    public int[] getUltimaPosicionPersonaje(){
+        return ultimoPersonaje;
+    }
+    
+    public void buscarNivel(int level){
+        //nivel va a ser una referencia a level...
+    }
+    
     @Override
     public String toString() {
-        return "Juego{" + "contmoves=" + contmoves + ", tiempo=" + tiempo + ", regresar=" + regresar + ", deshacer=" + deshacer + ", numNivel=" + numNivel + ", cajas=" + cajas.size() + ", ultimaCaja=" + ultimaCaja[0] + ", reglaMovimientosCajas=" + reglaMovimientosCajas + ", segundaOportunidad=" + segundaOportunidad +  '}';
+        return "Juego{" + "contmoves=" + contmoves + ", tiempo=" + tiempo + ", regresar=" + regresar + ", deshacer=" + deshacer + ", numNivel=" + nivel.getNumNivel() + ", cajas=" + cajas.size() + ", ultimaCaja=" + ultimaCaja[0] + ", reglaMovimientosCajas=" + reglaMovimientosCajas + ", segundaOportunidad=" + segundaOportunidad +  '}';
     }
     
     

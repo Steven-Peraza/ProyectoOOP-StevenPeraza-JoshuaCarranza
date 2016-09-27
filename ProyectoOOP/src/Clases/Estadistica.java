@@ -15,6 +15,12 @@ public class Estadistica {
     private int recordRotos;
     private int canGanesOptimizados;
     private int nivelMasRepetido;
+
+    public Estadistica(int recordRotos, int canGanesOptimizados, int nivelMasRepetido) {
+        this.recordRotos = recordRotos;
+        this.canGanesOptimizados = canGanesOptimizados;
+        this.nivelMasRepetido = nivelMasRepetido;
+    }
     
     
     public int getCantNivelesJugados() {
