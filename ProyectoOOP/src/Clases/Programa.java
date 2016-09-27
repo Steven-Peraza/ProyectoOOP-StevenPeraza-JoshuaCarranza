@@ -20,8 +20,8 @@ import java.util.Iterator;
  */
 public class Programa {
    
-  static public ArrayList<Jugador> users;
-  private ArrayList<Administrador> administradores; 
+  static public ArrayList<Usuario> users;
+ 
   private ArrayList<Grupo> listaGrupos;
   private ArrayList<Nivel> niveles;
   private Reglas ruler;
@@ -30,12 +30,11 @@ public class Programa {
     public Programa() {
         users=new ArrayList();
         niveles=new ArrayList();
-        administradores=new ArrayList();
         listaGrupos=new ArrayList();
         
     }
 
-  public void agregarJugador(Jugador nuevo){
+  public void agregarUsuario(Usuario nuevo){
       
       
       
@@ -55,7 +54,7 @@ public class Programa {
        
   }
     
-  public void eliminarJugador(int identificacion){
+  public void eliminarUsuario(int identificacion){
   
       for (int i=0;i<users.size();i++){
       
@@ -100,25 +99,33 @@ public class Programa {
   
   public int nivelesPorAdministrador(int identificacion){
       
-      for (int i=0;i<administradores.size();i++){
-      
-          if (administradores.get(i).getCedula()==identificacion){    //se compara el numero de cedula
-               return administradores.get(i).getNivelesAgregados(); //se devuelve la cantidad de niveles agregados
+      for (int i=0;i<users.size();i++){
+          
+          if (users.get(i) instanceof Administrador){
+              Administrador admin=(Administrador) users.get(i);  // sugerencia java
+          if (users.get(i).getCedula()==identificacion){    //se compara el numero de cedula
+               return admin.getNivelesAgregados(); //se devuelve la cantidad de niveles agregados
               }
+                    }
+     
       }
-      return 0;
       
+       return 0;
   }
   public Jugador historialJugador(int identificacion){
       
       Jugador player = null;   //para guardar el jugador al que hay que acceder
       for (int i=0;i<users.size();i++){
+          
+            if (users.get(i) instanceof Jugador){
+
              if(users.get(i).getCedula()==identificacion){
              
-                    player=users.get(i); //se encontro el jugador
+                    player=(Jugador) users.get(i); //se encontro el jugador
                     break;
              }
                     
+      }
       }
       
       return player;    //se retorna el jugador
@@ -133,11 +140,15 @@ public class Programa {
       ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
       int cantidad;
       for (int i=0;i<users.size()-1;i++){
-        
-          cantidad=users.get(i).getEstadistica().getCanGanesOptimizados();
+          
+          if (users.get(i) instanceof Jugador){
+           
+          Jugador nuevo=(Jugador) users.get(i);
+          cantidad=nuevo.getEstadistica().getCanGanesOptimizados();
+          
           
         if (array.size()==0){   //si no hay nada solo se agrega
-           array.add(users.get(i));
+           array.add((Jugador) users.get(i));
             
             }
          
@@ -146,7 +157,7 @@ public class Programa {
                
                 if (array.get(x).getEstadistica().getCanGanesOptimizados()<cantidad){
                     
-                    array.add(x, users.get(i)); //se inserta el jugador
+                    array.add(x, (Jugador) users.get(i)); //se inserta el jugador
                 }
                 
              
@@ -158,7 +169,7 @@ public class Programa {
                
                 if (array.get(x).getEstadistica().getCanGanesOptimizados()<cantidad){
                     
-                    array.add(x, users.get(i)); //se inserta el jugador
+                    array.add(x, (Jugador) users.get(i)); //se inserta el jugador
                 }
                 
              
@@ -167,6 +178,7 @@ public class Programa {
                     }
              
          }
+            }
       String jugadores;
       jugadores=array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
       jugadores+=",";
@@ -188,11 +200,14 @@ public class Programa {
       ArrayList<Jugador> array= new ArrayList();  //arreglo de jugadores para cinco
       int cantidad;
       for (int i=0;i<users.size()-1;i++){
-        
-          cantidad=users.get(i).getEstadistica().getRecordRotos();
+                    
+          if (users.get(i) instanceof Jugador){
+          Jugador nuevo=(Jugador) users.get(i);
+          cantidad = nuevo.getEstadistica().getRecordRotos();
+         
           
         if (array.size()==0){   //si no hay nada solo se agrega
-           array.add(users.get(i));
+           array.add((Jugador) users.get(i));
             
             }
          
@@ -201,7 +216,7 @@ public class Programa {
                
                 if (array.get(x).getEstadistica().getRecordRotos()<cantidad){
                     
-                    array.add(x, users.get(i)); //se inserta el jugador
+                    array.add(x, (Jugador) users.get(i)); //se inserta el jugador
                 }
                 
              
@@ -213,7 +228,7 @@ public class Programa {
                
                 if (array.get(x).getEstadistica().getRecordRotos()<cantidad){
                     
-                    array.add(x, users.get(i)); //se inserta el jugador
+                    array.add(x, (Jugador) users.get(i)); //se inserta el jugador
                 }
                 
              
