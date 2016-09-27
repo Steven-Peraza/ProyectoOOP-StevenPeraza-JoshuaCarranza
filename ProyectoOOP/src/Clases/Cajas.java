@@ -24,35 +24,35 @@ public class Cajas {
     }
 
     
-    
+    //funcion que retorna el numero de la caja dentro del juego
     public int getNumeroCaja() {
         return numeroCaja;
     }
-
+    //funcion que establece el numero de la caja dentro del juego
     public void setNumeroCaja(int numeroCaja) {
         this.numeroCaja = numeroCaja;
     }
-
+    //funcion que retorna la posicion en el eje x de la caja dentro del juego
     public int getPosicionFila() {
         return posicionFila;
     }
-
+     //funcion que establece la posicion en el eje x de la caja dentro del juego
     public void setPosicionFila(int posicionFila) {
         this.posicionFila = posicionFila;
     }
-
+    //funcion que retorna la posicion en el eje y de la caja dentro del juego
     public int getPosicionColumna() {
         return posicionColumna;
     }
-
+    //funcion que establece la posicion en el eje y de la caja dentro del juego
     public void setPosicionColumna(int posicionColumna) {
         this.posicionColumna = posicionColumna;
     }
-
+    //funcion que retorna el numero que representa a las cajas en la matriz logica
     public int getId() {
         return id;
     }
-
+    //funcion que establece el numero que representa a las cajas en la matriz logica
     public void setId() {
         this.id = 1;
     }

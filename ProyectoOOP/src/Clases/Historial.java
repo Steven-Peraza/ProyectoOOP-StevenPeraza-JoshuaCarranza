@@ -31,51 +31,51 @@ public class Historial {
         this.bestMoves = bestMoves;
     }    
     
-    
+    //funcion que retorna el numero del nivel jugado
     public int getNumNivel() {
         return numNivel;
     }
-
+    //funcion que establece el numero del nivel jugado
     public void setNumNivel(int numero) {
         this.numNivel = numero;
     }
-
+    //funcion que retorna el estado del nivel jugado (completo, incompleto)
     public String getEstado() {
         return estado;
     }
-
+    //funcion que establece el estado del nivel jugado (completo, incompleto)
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    //funcion que retorna la cantidad de moves que ha realizado el usuario
     public int getCantidadMovimientos() {
         return cantidadMovimientos;
     }
-
+    //funcion que establece la cantidad de moves que ha realizado el usuario
     public void setCantidadMovimientos(int cantidad) {
         this.cantidadMovimientos = cantidad;
     }
-
+    //funcion que retorna el tiempo trancurrido en un nivel
     public int getTiempo() {
         return tiempo;
     }
-
+    //funcion que establece el tiempo trancurrido en un nivel
     public void setTiempo(int segundos) {
         this.tiempo = segundos;
     }
-
+    //funcion que retorna la cantidad de veces que ha sido jugado un nivel por el usuario.
     public int getVecesJugado() {
         return vecesJugado;
     }
-
+    //funcion que establece la cantidad de veces que ha sido jugado un nivel por el usuario.
     public void setVecesJugado() {
         this.vecesJugado ++;
     }
-
+    //funcion que retorna los best moves conseguidos por el usuario
     public int getBestMoves() {
         return bestMoves;
     }
-
+    //funcion que establece los best moves conseguidos por el usuario
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
     }

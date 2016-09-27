@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Clases;
-
+//se importan herramientas de netbeans
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @author Josua
  */
 public class Grupo {
-    
+    //se declaran las variables de la clase
     private ArrayList<Jugador> jugadores;
     private ArrayList<Nivel> niveles;
     private String generador;
@@ -34,11 +34,11 @@ public class Grupo {
     }
     
     
-    
+    //funcion que establece el nombre del usuario que creo el grupo
     public void setGenerador(String nombre){
         this.generador=nombre;
     }
-    
+    //funcion que retorna el nombre del usuario que creo el grupo
     public String getGenerador(){
     
         return generador;
@@ -68,7 +68,7 @@ public class Grupo {
         
         return levels;
     }
-    
+    //funcion que agrega jugadores mientras no haya una cantidad mayor a 4
     public void addJugadores(int numero){
         
         if (jugadores.size()==4){ //si el arreglo ya contiene su maximo valor posible no se agrega
@@ -76,42 +76,42 @@ public class Grupo {
     
     }
     }
-    
+     //funcion que establece los movimientos que un usuario ha realizado en un nivel
     public void setContMove(){
         contMove ++;
         
     }
-    
+    //funcion que retorna los movimientos que un usuario ha realizado en un nivel
     public int getContMove(){
     
         return contMove++;
     }
-    
+    //funcion que establece el tiempo de juego
     public void setTiempo(int segundos){
     
         tiempo=segundos;
     }
-    
+    //funcion que retorna el tiempo de juego
     public int getTiempo(){
     
         return tiempo;
     }
-    
+    //funcion que establece el menor tiempo en realizar un nivel    
     public void setMenorTiempo(int tiempo){
     
         menorTiempo=tiempo;
     }
-    
+    //funcion que retorna el menor tiempo en realizar un nivel 
     public int getMenorTiempo(){
     
       return menorTiempo;
     }
-    
+    //funcion que establece la menor cantidad de moves en realizar un nivel 
     public void setMenorMovimientos(int moves){
     
         menorMovimientos=moves;
     }
-    
+    //funcion que retorna la menor cantidad de moves en realizar un nivel
     public int getMenorMovimientos(){
     
         return menorMovimientos;
@@ -131,19 +131,19 @@ public class Grupo {
     return players;
     }
 
-    
+    //funcion que retorna el jugador con el mejor tiempo
     public String getMejorEnTiempo() {
         return mejorEnTiempo;
     }
-
+    //funcion que establece el juegador con el mejor tiempo
     public void setMejorEnTiempo(String mejorEnTiempo) {
         this.mejorEnTiempo = mejorEnTiempo;
     }
-
+    //funcion que retorna el jugador con menos moves
     public String getMejorEnMovimientos() {
         return mejorEnMovimientos;
     }
-
+    //funcion que establece el jugador con menos moves
     public void setMejorEnMovimientos(String mejorEnMovimientos) {
         this.mejorEnMovimientos = mejorEnMovimientos;
     }
@@ -161,7 +161,7 @@ public class Grupo {
         }
            
     }
-    
+    // funcion que verifica la cantidad de usuarios en el grupo (de 2 a 4)
     public boolean hacerGrupo(){
         return true;
     }
