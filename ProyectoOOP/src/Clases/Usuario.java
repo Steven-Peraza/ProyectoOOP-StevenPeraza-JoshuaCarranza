@@ -26,7 +26,7 @@ private String fotografia;
         this.fotografia = foto;
     }
 
-
+    // constructor de la clase
     public Usuario(String nombre, int cedula, String correo, String contraseña, String fechaRegistro) {
         this.nombre = nombre;
         this.cedula = cedula;

@@ -206,7 +206,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
     
         int numero= Integer.parseInt(cedula);
         Jugador nuevo = new Jugador (nombre,numero,correo,contra,fechaRegistro);
-        programa.agregarJugador(nuevo);   //se agrega
+        programa.agregarUsuario(nuevo);   //se agrega
         exito.setForeground(Color.green);
         exito.setText("Registro exitoso");
         

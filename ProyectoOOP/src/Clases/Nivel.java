@@ -50,6 +50,7 @@ public class Nivel {
         this.cantPuntos = cantPuntos;
     }
 
+    // retorna la matriz logica del nivel
     public int[][] getMatrizLogica() {
         return matrizLogica;
     }
@@ -73,7 +74,8 @@ public class Nivel {
     public void setFilas(int filas) {
         this.filas = filas;
     }
-
+    
+    // se obtiene la columna en la que se situó el personaje
     public int getPersonajeColumna() {
         return personajeColumna;
     }
@@ -82,6 +84,7 @@ public class Nivel {
         this.personajeColumna = personajeColumna;
     }
 
+    // se obtiene la fila en la que se situó el personaje
     public int getPersonajeFila() {
         return personajeFila;
     }
@@ -93,7 +96,8 @@ public class Nivel {
     public String getNombreAdministrador() {
         return nombreAdministrador;
     }
-
+    
+    // se guarda el nombre del administrador que hizo el nivel
     public void setNombreAdministrador(String nombreAdministrador) {
         this.nombreAdministrador = nombreAdministrador;
     }
@@ -101,7 +105,8 @@ public class Nivel {
     public int getCedulaAdministrador() {
         return cedulaAdministrador;
     }
-
+    
+    // se guarda la cedula del administrador que hizo el nivel
     public void setCedulaAdministrador(int cedulaAdministrador) {
         this.cedulaAdministrador = cedulaAdministrador;
     }
@@ -118,6 +123,7 @@ public class Nivel {
         return bestMoves;
     }
 
+    // se asigna la cantidad de movimientos necesarios para resolver el nivel
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
     }
@@ -125,13 +131,13 @@ public class Nivel {
     //se inicialia la matriz con el tamaño especificado
     public void generarMatriz(){
     
-    matrizLogica= new int [columnas][filas];    
+    matrizLogica= new int [filas][columnas];    
     }
     
     // se recibe la posicion de la matriz logica en la que se insertará la caja
     public void hacerCaja (int x,int y){
     
-        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){    //que no este en ninguno de los extremos de la matriz   
+        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){    //que no este en ninguno de los extremos de la matriz   
         
             matrizLogica[x][y]=1;       //el uno representa a las cajas en la matriz logica 
         }   
@@ -139,7 +145,7 @@ public class Nivel {
     
     public void hacerPunto(int x,int y){
     
-        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
             
              matrizLogica[x][y]=2;       //el dos representa a los puntos en la matriz logica 
              
@@ -148,7 +154,7 @@ public class Nivel {
     }
     
     public void ubicarPersonaje(int x,int y){
-     if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+     if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
             
              matrizLogica[x][y]=3;       //el tres representa al personaje en la matriz logica 
              
@@ -158,7 +164,7 @@ public class Nivel {
     
     public void hacerPared (int x,int y){
 
-        if (((x>0)&&(x<filas))&&((y>0)&&(y<filas))){ 
+        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
             
              matrizLogica[x][y]=0;       //el cero represen a la pared en la matriz logica 
              
@@ -169,6 +175,32 @@ public class Nivel {
     //se revisa si la matriz esta bien hecha
     // se retorna un uno si sí un dos si no
     public int validarMatriz(){
+        int cont =0;        //para saber si el usuario coloco dos personajes
+        int points=0;
+        int cajas=0;
+        for(int i=0;i<filas;i++){
+        
+           for (int x=0;x<columnas;x++){
+               
+               if (matrizLogica[filas][columnas]==3){
+               cont ++;
+               }
+               
+               else if (matrizLogica[filas][columnas]==1){
+                   cajas++;
+               }
+               
+               else if (matrizLogica[filas][columnas]==2){
+               points ++;
+               }
+           }
+        
+        }
+        
+        if ((cont < 1)||(points !=cajas)){
+        return 2;           //no puede haber mas de un personaje en una matriz
+                           //tiene que haber igual cantidad de puntos y de cajas
+        }           
     
     return 0;
     }

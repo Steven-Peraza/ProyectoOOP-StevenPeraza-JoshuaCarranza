@@ -22,7 +22,7 @@ public class Personaje {
 
     
     
-    
+    // se retorna la posicion en y del personaje dentro de la matriz logica
     public int getPosicionFila() {
         return posicionFila;
     }
@@ -30,7 +30,8 @@ public class Personaje {
     public void setPosicionFila(int posicionFila) {
         this.posicionFila = posicionFila;
     }
-
+    
+    // se asigna la posicion en x del personaje dentro de la matriz logica
     public int getPosicionColumna() {
         return posicionColumna;
     }
@@ -42,7 +43,8 @@ public class Personaje {
     public int getId() {
         return id;
     }
-
+    
+    //numero con el que se representa el personaje en la matriz logica
     public void setId(int id) {
         this.id = 3;            //numero que representa al personaje
     }

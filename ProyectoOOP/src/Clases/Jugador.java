@@ -29,15 +29,18 @@ public class Jugador extends Usuario{
     public int getBestMoves() {
         return bestMoves;
     }
-
+    
+    // se asigna la cantidad de record rotos
     public void setBestMoves(int bestMoves) {
         this.bestMoves = bestMoves;
     }
-
+    
+    //se tiene el nivel actual en que se encuentra el usuario
     public int getNivelActual() {
         return nivelActual;
     }
-
+    
+    //metodo para fijar el nivel actual del jugador
     public void setNivelActual(int nivelActual) {
         this.nivelActual = nivelActual;
     }
@@ -46,18 +49,22 @@ public class Jugador extends Usuario{
         return masRepetido;
     }
 
+    // se asigna el nivel que mas ha jugado el usuario
     public void setMasRepetido(int masRepetido) {
         this.masRepetido = masRepetido;
     }
-
+    
+    // se retorna la lista de historiales por nivel que tiene el jugador
     public ArrayList getArrayHistorial() {
         return arrayHistorial;
     }
-
+    
+    // se va agregar un nivel al historial
     public void setArrayHistorial(Historial var) {
         this.arrayHistorial.add(var);
     }
-
+    
+   // se retorna la estadistica general del jugador
     public Estadistica getEstadistica() {
         return estadistica;
     }

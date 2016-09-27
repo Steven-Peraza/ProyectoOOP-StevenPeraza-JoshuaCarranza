@@ -231,7 +231,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         Administrador  nuevo;
         nuevo=new Administrador(name,numero,correos,contra,fechaRegistro);
         nuevo.setNacionalidad(nacionalida);
-        programa.agregarAdministrador(nuevo);   //se agrega
+        programa.agregarUsuario(nuevo);   //se agrega
         exito.setForeground(Color.green);
         exito.setText("Registro exitoso");
         
