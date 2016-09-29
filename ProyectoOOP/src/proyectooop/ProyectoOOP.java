@@ -41,7 +41,7 @@ public class ProyectoOOP {
         // TODO code application logic here
 
         
-        Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
+        Jugador primero=new Jugador("alguien",300000000,"joshua@gmail.com","hola","30 de mayo");
         //Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
         //primero.getEstadistica().setCanGanesOptimizados();
         Nivel nuevo= new Nivel(10,8);

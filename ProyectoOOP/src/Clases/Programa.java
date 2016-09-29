@@ -55,19 +55,20 @@ public class Programa {
     }
 
     //recibe un atributo unico del usario a eliminar y lo elimina
-    public void eliminarUsuario(int identificacion) {
+    public boolean eliminarUsuario(int identificacion) {
 
         for (int i = 0; i < users.size(); i++) {
-
+            if (users.get(i) instanceof Jugador){
             if (users.get(i).getCedula() == identificacion) {    //se compara el numero de cedula
                 users.remove(i);
                 System.out.println("Se eliminó");    //se remueve el usuario
-                return;
-            }
+                return true;
+            }}
         }
         System.out.println("No se encuentra el usuario");
 
         System.out.println(users.size());
+        return false;
 
     }
 

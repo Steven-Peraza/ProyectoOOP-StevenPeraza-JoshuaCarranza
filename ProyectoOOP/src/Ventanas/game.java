@@ -64,6 +64,7 @@ public class game extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sokoban");
+        setResizable(false);
 
         jLabel1.setText("Movimientos");
 
