@@ -44,8 +44,12 @@ public class ProyectoOOP {
         Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
         //Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
         //primero.getEstadistica().setCanGanesOptimizados();
+        Nivel nuevo= new Nivel(10,8);
+        primero.setNivelActual(1);
+       nuevo.setNumNivel(1);
         programa.agregarUsuario(primero);
         System.out.println(String.valueOf(programa.login("alguien","hola")));
+        programa.agregarNivel(nuevo);
        // Nivel primer=new Nivel();
        // primer.setNumNivel(3);
        // nuevo.usuariosGaOpt();

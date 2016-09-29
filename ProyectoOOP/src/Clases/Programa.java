@@ -589,6 +589,13 @@ public class Programa {
         return listaGrupos;
     }
 
+    public ArrayList<Nivel> getNiveles() {
+        return niveles;
+    }
+    
+    
+    
+
     @Override
     public String toString() {
         return "Programa{" + "users=" + users.size() + ", listaGrupos=" + listaGrupos.size() + ", niveles=" + niveles.size() + ", ruler=" + ruler.toString() + '}';

@@ -101,6 +101,11 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenu1.add(juegoGrupal);
 
         juegoNormal.setText("Juego individual");
+        juegoNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                juegoNormalActionPerformed(evt);
+            }
+        });
         jMenu1.add(juegoNormal);
 
         jMenuBar1.add(jMenu1);
@@ -160,6 +165,14 @@ public class ventanaJugador extends javax.swing.JFrame {
         this.dispose();
         ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
+
+    private void juegoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNormalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new game().setVisible(true);
+        
+        
+    }//GEN-LAST:event_juegoNormalActionPerformed
 
     /**
      * @param args the command line arguments
