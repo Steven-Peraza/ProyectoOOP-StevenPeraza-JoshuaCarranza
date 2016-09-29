@@ -8,6 +8,8 @@ package Ventanas;
 import Clases.Administrador;
 import java.awt.Color;
 import clases.*;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import static proyectooop.ProyectoOOP.programa;
 import proyectooop.ProyectoOOP;
 
@@ -29,11 +31,24 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         admin=(Administrador)ProyectoOOP.usuario;
         bienvenida.setForeground(Color.black);
         jLabel1.setForeground(Color.black);
+        this.setLocationRelativeTo(null);   //centrar pantalla
         jLabel2.setForeground(Color.black);
         this.getContentPane().setBackground(new Color(200,250,200));    //color a la ventana
         exit.setForeground(Color.blue);
         bienvenida.setText("Bienvenido  "+admin.getNombre());
-        
+        String ima=admin.getFotografia();
+        ImageIcon imag = new ImageIcon(ima);
+               
+        Image photo = imag.getImage();
+               
+               //cambiar tamaño a la imagen
+        Image nueva= photo.getScaledInstance(155, 175, java.awt.Image.SCALE_SMOOTH);
+               
+        //generando imageicon con la nueva imagen
+               
+        ImageIcon icono= new ImageIcon(nueva);
+         imagen.setIcon(icono);
+         imagen.setSize(155, 175);
     }
 
     /**
@@ -49,6 +64,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         exit = new javax.swing.JToggleButton();
+        imagen = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         agregarnivel = new javax.swing.JMenu();
         hacernivel = new javax.swing.JMenuItem();
@@ -127,26 +143,31 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -206,6 +227,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem estadisticas;
     private javax.swing.JToggleButton exit;
     private javax.swing.JMenuItem hacernivel;
+    private javax.swing.JLabel imagen;
     private javax.swing.JMenuItem insistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

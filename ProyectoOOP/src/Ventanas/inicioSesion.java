@@ -32,7 +32,7 @@ public class inicioSesion extends javax.swing.JFrame {
     public inicioSesion() {
         initComponents();
         this.getContentPane().setBackground(new Color(200,200,255));    //color a la ventana
-        //ingresar.setBackground(Color.yellow);           //color de fondo al boton
+        this.setLocationRelativeTo(null);   //centrar pantalla
         ingresar.setForeground(Color.blue);             //color de la letra del boton
         registraAdmin.setForeground(Color.blue);
         registrarJugador.setForeground(Color.blue);
@@ -146,6 +146,9 @@ public class inicioSesion extends javax.swing.JFrame {
         this.dispose(); //se esconde la ventana
         new RegistrarAdministrador().setVisible(true);
         mensaje.setText("");
+        usuario.setText("");
+        password.setText("");
+        
     }//GEN-LAST:event_registraAdminActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
@@ -172,7 +175,7 @@ public class inicioSesion extends javax.swing.JFrame {
          
         if (esta==true){
             
-            //mensaje.setText("Si estas");        //si esta
+            mensaje.setText("");        //si esta
             
             
             for (int i=0;i<programa.users.size();i++){
@@ -213,6 +216,9 @@ public class inicioSesion extends javax.swing.JFrame {
         this.dispose();
         new RegistrarJugador().setVisible(true);
         mensaje.setText("");
+        usuario.setText("");
+        password.setText("");
+        
     }//GEN-LAST:event_registrarJugadorActionPerformed
     
    

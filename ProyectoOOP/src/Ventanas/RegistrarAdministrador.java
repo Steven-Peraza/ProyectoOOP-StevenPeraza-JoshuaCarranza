@@ -9,6 +9,10 @@ import Clases.Administrador;
 import java.awt.Color;
 import proyectooop.*;
 import clases.*;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import static proyectooop.ProyectoOOP.programa;
 /**
  *
@@ -19,12 +23,18 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarAdministrador
      */
+    
+    public String direccionImagen;
+    private FileNameExtensionFilter archivo= new FileNameExtensionFilter("Archivo de imagen","png");
+    
     public RegistrarAdministrador() {
         initComponents();
         this.getContentPane().setBackground(new Color(200,250,200));    //color a la ventana
+        this.setLocationRelativeTo(null);   //centrar pantalla
         registro.setForeground(Color.blue);
         volver.setForeground(Color.blue);
         adv.setForeground(Color.red);
+        direccionImagen="";
     }
 
     /**
@@ -53,6 +63,8 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         pass = new javax.swing.JPasswordField();
         id = new javax.swing.JFormattedTextField();
         adv = new javax.swing.JLabel();
+        imagen = new javax.swing.JButton();
+        mostrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Administrador");
@@ -111,6 +123,13 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
         adv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        imagen.setText("Agregar Imagen");
+        imagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imagenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +162,14 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
                                     .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                     .addComponent(nacionalidad)
                                     .addComponent(pass))))))
-                .addGap(265, 265, 265))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -165,35 +191,42 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cedula, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(id))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cedula, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(id))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(imagen)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(exito, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(113, Short.MAX_VALUE))
+                        .addContainerGap(108, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -244,6 +277,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         Administrador  nuevo;
         nuevo=new Administrador(name,numero,correos,contra,fechaRegistro);
         nuevo.setNacionalidad(nacionalida);
+        nuevo.setFotografia(direccionImagen);
         programa.agregarUsuario(nuevo);   //se agrega
         exito.setForeground(Color.green);
         exito.setText("Registro exitoso");
@@ -253,11 +287,50 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         correo.setText("");
         id.setText("");
         nacionalidad.setText("");
-        fecha.setText("");}
+        fecha.setText("");
+        mostrar.setIcon(new ImageIcon(""));
+        direccionImagen="";}
     
     else { adv.setText("Existen apartados en blanco"); }
     }//GEN-LAST:event_registroActionPerformed
 
+    private void imagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagenActionPerformed
+        // TODO add your handling code here:
+         //se hace un objeto tipo Jfilechooser
+        
+        JFileChooser nuevo = new JFileChooser ();
+        
+        // se establece el formato de la imagen a aceptar
+        nuevo.setFileFilter(archivo);
+        
+        //abrir la ventana de dialogo en esta ventana para selleccionar imagen
+        int var =nuevo.showOpenDialog(this);
+        
+        if (var==JFileChooser.APPROVE_OPTION){   // si selecciono una imagen
+                    //obtener el archivo seleeccionado
+               String seleccionado= nuevo.getSelectedFile().getPath();
+                
+                   // obtener direccion donde se guardara la imagen
+               String direccion= nuevo.getSelectedFile().toString();
+               mostrar.setIcon(new ImageIcon(seleccionado));
+               
+               ImageIcon imagen = new ImageIcon(seleccionado);
+               
+               Image photo = imagen.getImage();
+               
+               //cambiar tamaño a la imagen
+               Image nueva= photo.getScaledInstance(155, 175, java.awt.Image.SCALE_SMOOTH);
+               
+               //generando imageicon con la nueva imagen
+               
+               ImageIcon icono= new ImageIcon(nueva);
+               mostrar.setIcon(icono);
+               mostrar.setSize(155, 175);
+               
+               direccionImagen=seleccionado;
+        
+    }//GEN-LAST:event_imagenActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -300,11 +373,13 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel exito;
     private javax.swing.JFormattedTextField fecha;
     private javax.swing.JFormattedTextField id;
+    private javax.swing.JButton imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel mostrar;
     private javax.swing.JTextField nacionalidad;
     private javax.swing.JLabel nom;
     private javax.swing.JTextField nombre;
