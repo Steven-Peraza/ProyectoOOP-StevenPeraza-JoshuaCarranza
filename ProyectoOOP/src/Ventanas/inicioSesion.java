@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 import Clases.*;
 import java.util.ArrayList;
+import proyectooop.ProyectoOOP;
 import ventanas.*;
 import static proyectooop.ProyectoOOP.programa;
 
@@ -171,7 +172,30 @@ public class inicioSesion extends javax.swing.JFrame {
          
         if (esta==true){
             
-            mensaje.setText("Si estas");        //si esta
+            //mensaje.setText("Si estas");        //si esta
+            
+            
+            for (int i=0;i<programa.users.size();i++){
+            
+                if ((programa.users.get(i).getContraseña().equals(contra))&&(programa.users.get(i).getNombre().equals(nombre))){
+                    ProyectoOOP.usuario= programa.users.get(i);
+                    break;          //se termina el ciclo
+                            
+                }
+            }
+            
+            if ( ProyectoOOP.usuario instanceof Administrador){  // si es instancia de administrador
+                        
+                    
+                    new ventanaAdministrador().setVisible(true);
+                    this.dispose();
+                }
+                
+            else{  
+                   new ventanaJugador().setVisible(true);
+                   this.dispose();
+            }
+         
             contra="";
         }
         else{

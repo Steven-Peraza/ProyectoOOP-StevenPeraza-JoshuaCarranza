@@ -113,6 +113,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        id.setToolTipText("9 dígitos, incluya ceros");
 
         imagen.setLabel("Seleccionar Imagen");
         imagen.addActionListener(new java.awt.event.ActionListener() {

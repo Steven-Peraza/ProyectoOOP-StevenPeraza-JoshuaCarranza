@@ -36,7 +36,7 @@ public class ProyectoOOP {
     public static Timer timer;
     public static inicioSesion ventana=new inicioSesion();
     public static Programa programa=new Programa();
-    public static Usuario jugador;
+    public static Usuario usuario;
     public static void main(String[] args) {
         // TODO code application logic here
 

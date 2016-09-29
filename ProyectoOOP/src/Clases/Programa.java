@@ -275,6 +275,8 @@ public class Programa {
   //se recibe el numero de nivel y se busca los cinco usuarios que mas lo han jugado
   public String usuariosInsistentesEnNivel(int numero){
       boolean esta=false;
+      String usuarios="";
+      ArrayList<Jugador> arreglo=new ArrayList();
       for (int i=0;i<niveles.size();i++){
       
            if (numero==niveles.get(i).getNumNivel()){
@@ -288,9 +290,43 @@ public class Programa {
           return "";
       }
       
+      else{ 
+          for(int x=0;x<users.size();x++){
+              
+              if (users.get(x) instanceof Jugador ){
+              Jugador player = (Jugador) users.get(x);
+              ArrayList temporal= player.getArrayHistorial(); // se accede temporalmente al array historial
+              for (int r=0;r<temporal.size();r++ ){                 //del jugador
+                  
+                  Historial temp=(Historial) temporal.get(r);   //correccion java
+                  if (temp.getNumNivel()==numero);{       //si ya jugo el nivel
+                   //si lo paso
+                   
+                   if (arreglo.size()==0){arreglo.add(player);  }
+                   
+                   else if(arreglo.size()==5){ 
+                        
+                       if 
+              
+                  }}}
+          
+          }
+          
+          }
+      
+      
+            return " ";  
+          }
+            
+      
+          
+        
+    
+        
+      
 
-      return " ";
-  }
+     
+  
   
   // se recibe el numero de nivel y se busca los usuarios que ganaron ese nivel
   public String usuariosGanaron(int numero){
@@ -515,6 +551,9 @@ public class Programa {
   
   return listaGrupos;
   }
+
+  
+  
   
 
     @Override

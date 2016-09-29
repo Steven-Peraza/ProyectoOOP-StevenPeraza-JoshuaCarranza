@@ -107,6 +107,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        id.setToolTipText("9 dígitos, incluya ceros");
 
         adv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
