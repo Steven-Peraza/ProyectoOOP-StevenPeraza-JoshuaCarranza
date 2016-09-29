@@ -10,7 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 import Clases.*;
+import java.awt.Font;
 import java.util.ArrayList;
+import proyectooop.ProyectoOOP;
 import ventanas.*;
 import static proyectooop.ProyectoOOP.programa;
 
@@ -31,7 +33,7 @@ public class inicioSesion extends javax.swing.JFrame {
     public inicioSesion() {
         initComponents();
         this.getContentPane().setBackground(new Color(200,200,255));    //color a la ventana
-        //ingresar.setBackground(Color.yellow);           //color de fondo al boton
+        this.setLocationRelativeTo(null);   //centrar pantalla
         ingresar.setForeground(Color.blue);             //color de la letra del boton
         registraAdmin.setForeground(Color.blue);
         registrarJugador.setForeground(Color.blue);
@@ -55,87 +57,62 @@ public class inicioSesion extends javax.swing.JFrame {
         registraAdmin = new javax.swing.JButton();
         registrarJugador = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
+        setPreferredSize(new java.awt.Dimension(1200, 640));
         setResizable(false);
+        getContentPane().setLayout(null);
 
-        contraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        contraseña.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         contraseña.setText("Contraseña");
+        getContentPane().add(contraseña);
+        contraseña.setBounds(590, 320, 130, 38);
 
-        nombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombreUsuario.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         nombreUsuario.setText(" Nombre de Usuario");
+        getContentPane().add(nombreUsuario);
+        nombreUsuario.setBounds(530, 220, 240, 34);
+        getContentPane().add(usuario);
+        usuario.setBounds(520, 270, 250, 32);
+        getContentPane().add(password);
+        password.setBounds(520, 360, 250, 29);
 
-        ingresar.setText("Ingresar");
+        ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonIngresar.fw.png"))); // NOI18N
         ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarActionPerformed(evt);
             }
         });
+        getContentPane().add(ingresar);
+        ingresar.setBounds(540, 410, 210, 100);
 
-        registraAdmin.setText("Registrarse como administrador");
+        registraAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonAdmin.fw.png"))); // NOI18N
         registraAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registraAdminActionPerformed(evt);
             }
         });
+        getContentPane().add(registraAdmin);
+        registraAdmin.setBounds(100, 470, 340, 130);
 
-        registrarJugador.setText("Registrarse como Jugador");
+        registrarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonJugador.fw.png"))); // NOI18N
         registrarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarJugadorActionPerformed(evt);
             }
         });
+        getContentPane().add(registrarJugador);
+        registrarJugador.setBounds(850, 470, 270, 130);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(registraAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(registrarJugador)
-                .addGap(46, 46, 46))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(ingresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nombreUsuario)
-                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
-                                    .addComponent(contraseña))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(ingresar)
-                .addGap(18, 18, 18)
-                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registraAdmin)
-                    .addComponent(registrarJugador))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        mensaje.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(mensaje);
+        mensaje.setBounds(480, 530, 360, 110);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/menuprincipal.fw.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, -210, 1190, 1070);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +122,9 @@ public class inicioSesion extends javax.swing.JFrame {
         this.dispose(); //se esconde la ventana
         new RegistrarAdministrador().setVisible(true);
         mensaje.setText("");
+        usuario.setText("");
+        password.setText("");
+        
     }//GEN-LAST:event_registraAdminActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
@@ -171,14 +151,38 @@ public class inicioSesion extends javax.swing.JFrame {
          
         if (esta==true){
             
-            mensaje.setText("Si estas");        //si esta
+            mensaje.setText("");        //si esta
+            
+            
+            for (int i=0;i<programa.users.size();i++){
+            
+                if ((programa.users.get(i).getContraseña().equals(contra))&&(programa.users.get(i).getNombre().equals(nombre))){
+                    ProyectoOOP.usuario= programa.users.get(i);
+                    break;          //se termina el ciclo
+                            
+                }
+            }
+            
+            if ( ProyectoOOP.usuario instanceof Administrador){  // si es instancia de administrador
+                        
+                    
+                    new ventanaAdministrador().setVisible(true);
+                    this.dispose();
+                }
+                
+            else{  
+                   new ventanaJugador().setVisible(true);
+                   this.dispose();
+            }
+         
             contra="";
         }
         else{
-          
+            Font fuente = new Font("Stencilia-Bold", 1, 20);
             mensaje.setForeground(Color.red);
+            mensaje.setFont(fuente);
             mensaje.setText("Alguno de los datos es incorrecto");
-            contra="";
+            contra = "";
         }
         
         
@@ -189,6 +193,9 @@ public class inicioSesion extends javax.swing.JFrame {
         this.dispose();
         new RegistrarJugador().setVisible(true);
         mensaje.setText("");
+        usuario.setText("");
+        password.setText("");
+        
     }//GEN-LAST:event_registrarJugadorActionPerformed
     
    
@@ -232,6 +239,7 @@ public class inicioSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel contraseña;
     private javax.swing.JButton ingresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel mensaje;
     private javax.swing.JLabel nombreUsuario;
     private javax.swing.JPasswordField password;

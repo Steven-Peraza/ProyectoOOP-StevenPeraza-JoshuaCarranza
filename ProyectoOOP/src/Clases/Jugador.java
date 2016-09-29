@@ -15,7 +15,7 @@ import java.util.Iterator;
 public class Jugador extends Usuario{
     
     private int bestMoves;
-    private int nivelActual;
+    private int nivelActual=1;
     private int masRepetido;
     private Estadistica estadistica=new Estadistica(0,0,0);
     private ArrayList<Historial> arrayHistorial=new ArrayList(); //historial por nivel
