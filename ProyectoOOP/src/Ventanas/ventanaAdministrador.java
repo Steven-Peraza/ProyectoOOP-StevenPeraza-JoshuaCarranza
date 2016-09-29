@@ -111,6 +111,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         verHistorial.setText("Usuarios");
 
         jMenuItem1.setText("Eliminar Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         verHistorial.add(jMenuItem1);
 
         jMenu1.setText("Ver usuarios con");
@@ -183,6 +188,12 @@ public class ventanaAdministrador extends javax.swing.JFrame {
          this.dispose();
          ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new eliminarUsuarios().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
