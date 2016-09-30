@@ -104,6 +104,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         agregarnivel.add(hacernivel);
 
         agregados.setText("Ver informacion de niveles agregados");
+        agregados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregadosActionPerformed(evt);
+            }
+        });
         agregarnivel.add(agregados);
 
         jMenuBar1.add(agregarnivel);
@@ -121,12 +126,27 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jMenu1.setText("Ver usuarios con");
 
         optimos.setText("Más ganes  óptimos");
+        optimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optimosActionPerformed(evt);
+            }
+        });
         jMenu1.add(optimos);
 
         records.setText("Más record rotos");
+        records.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordsActionPerformed(evt);
+            }
+        });
         jMenu1.add(records);
 
         superado.setText("Cierto nivel superado");
+        superado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                superadoActionPerformed(evt);
+            }
+        });
         jMenu1.add(superado);
 
         insistencia.setText("Insistencia en un nivel");
@@ -206,6 +226,37 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         new estadistica().setVisible(true);
         
     }//GEN-LAST:event_estadisticasActionPerformed
+
+    private void optimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimosActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new ganesOpt().setVisible(true);
+        
+        
+    }//GEN-LAST:event_optimosActionPerformed
+
+    private void recordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordsActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        new record().setVisible(true);
+        
+    }//GEN-LAST:event_recordsActionPerformed
+
+    private void superadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superadoActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new insistentes().setVisible(true);
+        
+    }//GEN-LAST:event_superadoActionPerformed
+
+    private void agregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregadosActionPerformed
+        // TODO add your handling code here:
+       
+        this.dispose();
+        new agregados().setVisible(true);
+        
+    }//GEN-LAST:event_agregadosActionPerformed
 
     /**
      * @param args the command line arguments

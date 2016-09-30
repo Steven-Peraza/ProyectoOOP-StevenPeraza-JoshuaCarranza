@@ -114,7 +114,7 @@ public class Programa {
 
         }
 
-        return 0;
+       return 0;
     }
 
     // retorna un objeto tipo jugador con el que luego puede accederse al historial de este 
@@ -366,12 +366,13 @@ public class Programa {
             }
         }
 
-        return nombres;
+        return nombres.substring(nombres.length()-1);
+        
 
     }
 
     // se recibe la identificacion de un jugador y sse retorna el objeto tipo jugador
-    public Jugador imprmirEstadisticaJugador(int identificacion) {
+    public Jugador imprimirEstadisticaJugador(int identificacion) {
 
         Jugador player = null;
 
