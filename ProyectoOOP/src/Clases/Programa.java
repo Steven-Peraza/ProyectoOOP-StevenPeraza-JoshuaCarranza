@@ -389,11 +389,13 @@ public class Programa {
         Usuario usuario = null;
 
         for (int i = 0; i < users.size(); i++) {
-
+            
+            if (users.get(i)instanceof Jugador){
+            
             if (users.get(i).getCedula() == identificacion) {
                 usuario = users.get(i);
                 break; //lo encontro se termina el ciclo
-            }
+            }}
         }
 
         return usuario; //se retorna 
@@ -550,33 +552,37 @@ public class Programa {
     // recibe por parametro el jugador para generar la estadistica
     public int cantidadNivelesJugados(Jugador usuario) {
 
-        int cant = 0;
-
-        for (int i = 0; i < usuario.getArrayHistorial().size(); i++) {
-
-            cant++;
-        }
-
-        return cant;
+        Estadistica tabla=usuario.getEstadistica();
+        
+        int cantidad= tabla.getCantNivelesJugados();
+      
+        return cantidad;
     }
 
     // se retorna los records rotos por el usuario
     public int cantidadRecordRotos(Jugador usuario) {
-
-        return 0;
+        
+        int cantidad=usuario.getEstadistica().getRecordRotos();
+        
+        
+        return cantidad;
     }
 
     // se retorna el nivel que ha jugado mas veces el ususario
     public int obtenerNivelMasRepetido(Jugador usuario) {
-
-        return 0;
+        
+        int canti=usuario.getEstadistica().getNivelMasRepetido();
+        
+        return canti;
 
     }
 
     // se retorna la cantidad de ganes optimizados del jugador
     public int jugadorCantidadGanesOpt(Jugador Usuario) {
-
-        return 0;
+        
+        int cantidad= Usuario.getEstadistica().getCanGanesOptimizados();
+      
+        return cantidad;
     }
 
     //recibe la informacion de todo un grupo, se coloca en la lista de grupos general del programa

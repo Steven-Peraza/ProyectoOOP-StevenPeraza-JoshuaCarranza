@@ -135,6 +135,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         verHistorial.add(jMenu1);
 
         estadisticas.setText("Imprimir estadisticas de usuario");
+        estadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadisticasActionPerformed(evt);
+            }
+        });
         verHistorial.add(estadisticas);
 
         jMenuItem2.setText("Ver historial de un usuario");
@@ -194,6 +199,13 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         this.dispose();
         new eliminarUsuarios().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new estadistica().setVisible(true);
+        
+    }//GEN-LAST:event_estadisticasActionPerformed
 
     /**
      * @param args the command line arguments
