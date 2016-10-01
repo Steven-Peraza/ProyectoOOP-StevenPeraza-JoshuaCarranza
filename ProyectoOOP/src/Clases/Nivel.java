@@ -137,26 +137,26 @@ public class Nivel {
     // se recibe la posicion de la matriz logica en la que se insertará la caja
     public void hacerCaja (int x,int y){
     
-        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){    //que no este en ninguno de los extremos de la matriz   
+        if (((x>0)&&(x<columnas-1))&&((y>0)&&(y<filas-1))){    //que no este en ninguno de los extremos de la matriz   
         
-            matrizLogica[x][y]=1;       //el uno representa a las cajas en la matriz logica 
+            matrizLogica[y][x]=1;       //el uno representa a las cajas en la matriz logica 
         }   
     }
     
     public void hacerPunto(int x,int y){
     
-        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
+        if (((x>0)&&(x<columnas-1))&&((y>0)&&(y<filas-1))){ 
             
-             matrizLogica[x][y]=2;       //el dos representa a los puntos en la matriz logica 
+             matrizLogica[y][x]=2;       //el dos representa a los puntos en la matriz logica 
              
         }
     
     }
     
     public void ubicarPersonaje(int x,int y){
-     if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
+     if (((x>0)&&(x<columnas-1))&&((y>0)&&(y<filas-1))){ 
             
-             matrizLogica[x][y]=3;       //el tres representa al personaje en la matriz logica 
+             matrizLogica[y][x]=3;       //el tres representa al personaje en la matriz logica 
              
         }
     
@@ -164,9 +164,9 @@ public class Nivel {
     
     public void hacerPared (int x,int y){
 
-        if (((x>0)&&(x<columnas))&&((y>0)&&(y<filas))){ 
+        if (((x>0)&&(x<columnas-1))&&((y>0)&&(y<filas-1))){ 
             
-             matrizLogica[x][y]=0;       //el cero represen a la pared en la matriz logica 
+             matrizLogica[y][x]=0;       //el cero represen a la pared en la matriz logica 
              
         }
     
@@ -176,33 +176,33 @@ public class Nivel {
     // se retorna un uno si sí un dos si no
     public int validarMatriz(){
         int cont =0;        //para saber si el usuario coloco dos personajes
-        int points=0;
-        int cajas=0;
+        int points=0;       //numero de puntos que hay
+        int cajas=0;        // numero de cajas que hay
         for(int i=0;i<filas;i++){
         
            for (int x=0;x<columnas;x++){
                
-               if (matrizLogica[filas][columnas]==3){
+               if (matrizLogica[i][x]==3){
                cont ++;
                }
                
-               else if (matrizLogica[filas][columnas]==1){
+               else if (matrizLogica[i][x]==1){
                    cajas++;
                }
                
-               else if (matrizLogica[filas][columnas]==2){
+               else if (matrizLogica[i][x]==2){
                points ++;
                }
            }
         
         }
         
-        if ((cont < 1)||(points !=cajas)){
+        if ((cont >1)||(cont==0)||(points !=cajas)){    //validaciones
         return 2;           //no puede haber mas de un personaje en una matriz
                            //tiene que haber igual cantidad de puntos y de cajas
         }           
     
-    return 0;
+        else{return 0;}
     }
 
     @Override

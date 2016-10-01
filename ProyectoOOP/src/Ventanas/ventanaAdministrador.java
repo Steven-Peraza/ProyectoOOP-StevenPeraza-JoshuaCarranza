@@ -101,6 +101,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         agregarnivel.setText("Niveles");
 
         hacernivel.setText("Hacer un Nivel");
+        hacernivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hacernivelActionPerformed(evt);
+            }
+        });
         agregarnivel.add(hacernivel);
 
         agregados.setText("Ver informacion de niveles agregados");
@@ -257,6 +262,13 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         new agregados().setVisible(true);
         
     }//GEN-LAST:event_agregadosActionPerformed
+
+    private void hacernivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacernivelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new hacerNivel().setVisible(true);
+        
+    }//GEN-LAST:event_hacernivelActionPerformed
 
     /**
      * @param args the command line arguments
