@@ -358,7 +358,7 @@ public class superado extends javax.swing.JFrame {
              
              String[] lista= nombres.split(",");
              
-             for (int i=0;i<lista.length;i++){
+             for (int i=0;(i<lista.length&&i<16);i++){
                  
                  datos[i].setVisible(true);
                  datos[i].setText(lista[i]);

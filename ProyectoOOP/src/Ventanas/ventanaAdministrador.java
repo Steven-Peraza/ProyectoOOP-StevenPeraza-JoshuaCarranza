@@ -155,6 +155,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jMenu1.add(superado);
 
         insistencia.setText("Insistencia en un nivel");
+        insistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insistenciaActionPerformed(evt);
+            }
+        });
         jMenu1.add(insistencia);
 
         verHistorial.add(jMenu1);
@@ -168,6 +173,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         verHistorial.add(estadisticas);
 
         jMenuItem2.setText("Ver historial de un usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         verHistorial.add(jMenuItem2);
 
         jMenuBar1.add(verHistorial);
@@ -251,7 +261,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
     private void superadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superadoActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new insistentes().setVisible(true);
+        new superado().setVisible(true);
         
     }//GEN-LAST:event_superadoActionPerformed
 
@@ -269,6 +279,19 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         new hacerNivel().setVisible(true);
         
     }//GEN-LAST:event_hacernivelActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new historial().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void insistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insistenciaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new insistentes().setVisible(true);
+    }//GEN-LAST:event_insistenciaActionPerformed
 
     /**
      * @param args the command line arguments

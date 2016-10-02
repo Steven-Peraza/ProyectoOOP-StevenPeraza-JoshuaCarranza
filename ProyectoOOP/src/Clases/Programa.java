@@ -180,16 +180,13 @@ public class Programa {
 
             }
         }
-        String jugadores;
-        jugadores = array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
+        String jugadores = "";
+        
+        for (int i=0;(i<5&&i<array.size());i++){
+        jugadores = array.get(i).getNombre();   //se concatena el contenido del array en un string para retornarlo
         jugadores += ",";
-        jugadores += array.get(1).getNombre();
-        jugadores += ",";
-        jugadores += array.get(2).getNombre();
-        jugadores += ",";
-        jugadores += array.get(3).getNombre();
-        jugadores += ",";
-        jugadores += array.get(4).getNombre();
+        }
+        
         return jugadores;
 
     }

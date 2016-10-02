@@ -43,7 +43,7 @@ public class record extends javax.swing.JFrame {
         
         lista=jugadores.split(",");
         
-        for (int i=0;i<lista.length;i++){ //se muestra informacion
+        for (int i=0;(i<lista.length&&i<5);i++){ //se muestra informacion
         
             arreglo[i].setText(lista[i]);
                 }
