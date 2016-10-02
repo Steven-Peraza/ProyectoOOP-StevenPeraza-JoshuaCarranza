@@ -114,7 +114,7 @@ public class Programa {
 
         }
 
-        return 0;
+       return 0;
     }
 
     // retorna un objeto tipo jugador con el que luego puede accederse al historial de este 
@@ -180,16 +180,13 @@ public class Programa {
 
             }
         }
-        String jugadores;
-        jugadores = array.get(0).getNombre();   //se concatena el contenido del array en un string para retornarlo
+        String jugadores = "";
+        
+        for (int i=0;(i<5&&i<array.size());i++){
+        jugadores = array.get(i).getNombre();   //se concatena el contenido del array en un string para retornarlo
         jugadores += ",";
-        jugadores += array.get(1).getNombre();
-        jugadores += ",";
-        jugadores += array.get(2).getNombre();
-        jugadores += ",";
-        jugadores += array.get(3).getNombre();
-        jugadores += ",";
-        jugadores += array.get(4).getNombre();
+        }
+        
         return jugadores;
 
     }
@@ -366,12 +363,13 @@ public class Programa {
             }
         }
 
-        return nombres;
+        return nombres.substring(nombres.length()-1);
+        
 
     }
 
     // se recibe la identificacion de un jugador y sse retorna el objeto tipo jugador
-    public Jugador imprmirEstadisticaJugador(int identificacion) {
+    public Jugador imprimirEstadisticaJugador(int identificacion) {
 
         Jugador player = null;
 
@@ -389,11 +387,13 @@ public class Programa {
         Usuario usuario = null;
 
         for (int i = 0; i < users.size(); i++) {
-
+            
+            if (users.get(i)instanceof Jugador){
+            
             if (users.get(i).getCedula() == identificacion) {
                 usuario = users.get(i);
                 break; //lo encontro se termina el ciclo
-            }
+            }}
         }
 
         return usuario; //se retorna 
@@ -550,33 +550,37 @@ public class Programa {
     // recibe por parametro el jugador para generar la estadistica
     public int cantidadNivelesJugados(Jugador usuario) {
 
-        int cant = 0;
-
-        for (int i = 0; i < usuario.getArrayHistorial().size(); i++) {
-
-            cant++;
-        }
-
-        return cant;
+        Estadistica tabla=usuario.getEstadistica();
+        
+        int cantidad= tabla.getCantNivelesJugados();
+      
+        return cantidad;
     }
 
     // se retorna los records rotos por el usuario
     public int cantidadRecordRotos(Jugador usuario) {
-
-        return 0;
+        
+        int cantidad=usuario.getEstadistica().getRecordRotos();
+        
+        
+        return cantidad;
     }
 
     // se retorna el nivel que ha jugado mas veces el ususario
     public int obtenerNivelMasRepetido(Jugador usuario) {
-
-        return 0;
+        
+        int canti=usuario.getEstadistica().getNivelMasRepetido();
+        
+        return canti;
 
     }
 
     // se retorna la cantidad de ganes optimizados del jugador
     public int jugadorCantidadGanesOpt(Jugador Usuario) {
-
-        return 0;
+        
+        int cantidad= Usuario.getEstadistica().getCanGanesOptimizados();
+      
+        return cantidad;
     }
 
     //recibe la informacion de todo un grupo, se coloca en la lista de grupos general del programa

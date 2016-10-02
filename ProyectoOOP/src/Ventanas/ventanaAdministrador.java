@@ -101,9 +101,19 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         agregarnivel.setText("Niveles");
 
         hacernivel.setText("Hacer un Nivel");
+        hacernivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hacernivelActionPerformed(evt);
+            }
+        });
         agregarnivel.add(hacernivel);
 
         agregados.setText("Ver informacion de niveles agregados");
+        agregados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregadosActionPerformed(evt);
+            }
+        });
         agregarnivel.add(agregados);
 
         jMenuBar1.add(agregarnivel);
@@ -121,23 +131,53 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jMenu1.setText("Ver usuarios con");
 
         optimos.setText("Más ganes  óptimos");
+        optimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optimosActionPerformed(evt);
+            }
+        });
         jMenu1.add(optimos);
 
         records.setText("Más record rotos");
+        records.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordsActionPerformed(evt);
+            }
+        });
         jMenu1.add(records);
 
         superado.setText("Cierto nivel superado");
+        superado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                superadoActionPerformed(evt);
+            }
+        });
         jMenu1.add(superado);
 
         insistencia.setText("Insistencia en un nivel");
+        insistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insistenciaActionPerformed(evt);
+            }
+        });
         jMenu1.add(insistencia);
 
         verHistorial.add(jMenu1);
 
         estadisticas.setText("Imprimir estadisticas de usuario");
+        estadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadisticasActionPerformed(evt);
+            }
+        });
         verHistorial.add(estadisticas);
 
         jMenuItem2.setText("Ver historial de un usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         verHistorial.add(jMenuItem2);
 
         jMenuBar1.add(verHistorial);
@@ -194,6 +234,64 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         this.dispose();
         new eliminarUsuarios().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new estadistica().setVisible(true);
+        
+    }//GEN-LAST:event_estadisticasActionPerformed
+
+    private void optimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimosActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new ganesOpt().setVisible(true);
+        
+        
+    }//GEN-LAST:event_optimosActionPerformed
+
+    private void recordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordsActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        new record().setVisible(true);
+        
+    }//GEN-LAST:event_recordsActionPerformed
+
+    private void superadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superadoActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new superado().setVisible(true);
+        
+    }//GEN-LAST:event_superadoActionPerformed
+
+    private void agregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregadosActionPerformed
+        // TODO add your handling code here:
+       
+        this.dispose();
+        new agregados().setVisible(true);
+        
+    }//GEN-LAST:event_agregadosActionPerformed
+
+    private void hacernivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacernivelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new hacerNivel().setVisible(true);
+        
+    }//GEN-LAST:event_hacernivelActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new historial().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void insistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insistenciaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new insistentes().setVisible(true);
+    }//GEN-LAST:event_insistenciaActionPerformed
 
     /**
      * @param args the command line arguments
