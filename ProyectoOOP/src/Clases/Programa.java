@@ -398,6 +398,21 @@ public class Programa {
 
         return usuario; //se retorna 
     }
+    
+        // devuelve un objeto tipo usuario, recibe una identificacion unica del usuario
+    public Nivel buscarNivel(int level) {
+
+        Nivel nivel = null;
+
+        for (int i = 0; i < niveles.size(); i++) {
+            if (niveles.get(i).getNumNivel() == level) {
+                nivel = niveles.get(i);
+                break; //lo encontro se termina el ciclo
+            }
+        }
+
+        return nivel; //se retorna 
+    }
 
     //devuelve true si la persona esta registrada
     public boolean login(String nom, String password) {

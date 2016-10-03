@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hacer grupo de juego"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="juegoGrupalActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="juegoNormal">
               <Properties>
@@ -33,11 +36,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver mis estad&#xed;sticas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verEstadisticaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="verHistorial">
               <Properties>
-                <Property name="text" type="java.lang.String" value="ver mi historial"/>
+                <Property name="text" type="java.lang.String" value="Ver mi historial"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verHistorialActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -255,8 +255,7 @@ public class historial extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new ventanaAdministrador().setVisible(true);
-        
+        new ventanaAdministrador().setVisible(true); 
     }//GEN-LAST:event_exitActionPerformed
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed

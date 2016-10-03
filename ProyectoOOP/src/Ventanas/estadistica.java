@@ -202,25 +202,25 @@ public class estadistica extends javax.swing.JFrame {
         Usuario use=programa.buscarUsuario(Integer.parseInt(ced.getText()));
         
         if (use!=null){
-        int reps;
-        int cant;
-        int roto;
-        int ganes;
-        jugador=(Jugador) use;
-        cant= programa.cantidadNivelesJugados(jugador);
-        reps=programa.obtenerNivelMasRepetido(jugador);
-        roto=programa.cantidadRecordRotos(jugador);
-        ganes=programa.jugadorCantidadGanesOpt(jugador);
-        
-        nombre.setText(jugador.getNombre());        //se despliegan datos
-        
-        niveles.setText("  "+String.valueOf(cant));
-        rotos.setText("  "+String.valueOf(roto));
-        opt.setText("  "+String.valueOf(opt));
-        rep.setText("  "+String.valueOf(reps));
-        mensaje.setVisible(false);
-        
-        }
+            int reps;
+            int cant;
+            int roto;
+            int ganes;
+            jugador=(Jugador) use;
+            cant= programa.cantidadNivelesJugados(jugador);
+            reps=programa.obtenerNivelMasRepetido(jugador);
+            roto=programa.cantidadRecordRotos(jugador);
+            ganes=programa.jugadorCantidadGanesOpt(jugador);
+
+            nombre.setText(jugador.getNombre());        //se despliegan datos
+
+            niveles.setText("  "+String.valueOf(cant));
+            rotos.setText("  "+String.valueOf(roto));
+            opt.setText("  "+String.valueOf(ganes));
+            rep.setText("  "+String.valueOf(reps));
+            mensaje.setVisible(false);
+
+            }
         else{  mensaje.setVisible(true); }
         
         }

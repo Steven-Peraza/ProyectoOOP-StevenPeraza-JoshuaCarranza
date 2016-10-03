@@ -61,23 +61,13 @@ public class inicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de acceso");
-        setPreferredSize(new java.awt.Dimension(1200, 640));
         setResizable(false);
-        getContentPane().setLayout(null);
 
         contraseña.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         contraseña.setText("Contraseña");
-        getContentPane().add(contraseña);
-        contraseña.setBounds(590, 320, 130, 38);
 
         nombreUsuario.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         nombreUsuario.setText(" Nombre de Usuario");
-        getContentPane().add(nombreUsuario);
-        nombreUsuario.setBounds(530, 220, 240, 34);
-        getContentPane().add(usuario);
-        usuario.setBounds(520, 270, 250, 32);
-        getContentPane().add(password);
-        password.setBounds(520, 360, 250, 29);
 
         ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonIngresar.fw.png"))); // NOI18N
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +75,6 @@ public class inicioSesion extends javax.swing.JFrame {
                 ingresarActionPerformed(evt);
             }
         });
-        getContentPane().add(ingresar);
-        ingresar.setBounds(540, 410, 210, 100);
 
         registraAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonAdmin.fw.png"))); // NOI18N
         registraAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -94,8 +82,6 @@ public class inicioSesion extends javax.swing.JFrame {
                 registraAdminActionPerformed(evt);
             }
         });
-        getContentPane().add(registraAdmin);
-        registraAdmin.setBounds(100, 470, 340, 130);
 
         registrarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonJugador.fw.png"))); // NOI18N
         registrarJugador.addActionListener(new java.awt.event.ActionListener() {
@@ -103,16 +89,69 @@ public class inicioSesion extends javax.swing.JFrame {
                 registrarJugadorActionPerformed(evt);
             }
         });
-        getContentPane().add(registrarJugador);
-        registrarJugador.setBounds(850, 470, 270, 130);
 
         mensaje.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(mensaje);
-        mensaje.setBounds(480, 530, 360, 110);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/menuprincipal.fw.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, -210, 1190, 1070);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(registraAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addComponent(registrarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(590, 590, 590)
+                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(530, 530, 530)
+                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(480, 480, 480)
+                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(460, 460, 460)
+                .addComponent(registraAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(460, 460, 460)
+                .addComponent(registrarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

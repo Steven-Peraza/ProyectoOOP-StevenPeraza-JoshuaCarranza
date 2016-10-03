@@ -98,6 +98,11 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenu1.setText("Juego");
 
         juegoGrupal.setText("Hacer grupo de juego");
+        juegoGrupal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                juegoGrupalActionPerformed(evt);
+            }
+        });
         jMenu1.add(juegoGrupal);
 
         juegoNormal.setText("Juego individual");
@@ -113,9 +118,19 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenu2.setText("Reportes");
 
         verEstadistica.setText("Ver mis estadísticas");
+        verEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verEstadisticaActionPerformed(evt);
+            }
+        });
         jMenu2.add(verEstadistica);
 
-        verHistorial.setText("ver mi historial");
+        verHistorial.setText("Ver mi historial");
+        verHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verHistorialActionPerformed(evt);
+            }
+        });
         jMenu2.add(verHistorial);
 
         jMenuBar1.add(jMenu2);
@@ -173,6 +188,21 @@ public class ventanaJugador extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_juegoNormalActionPerformed
+
+    private void verEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEstadisticaActionPerformed
+       this.dispose();
+       new estadisticasPersonales().setVisible(true);
+    }//GEN-LAST:event_verEstadisticaActionPerformed
+
+    private void verHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verHistorialActionPerformed
+       this.dispose();
+       new historialPersonal().setVisible(true);
+    }//GEN-LAST:event_verHistorialActionPerformed
+
+    private void juegoGrupalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoGrupalActionPerformed
+       this.dispose();
+       new juegoGrupal().setVisible(true);
+    }//GEN-LAST:event_juegoGrupalActionPerformed
 
     /**
      * @param args the command line arguments
