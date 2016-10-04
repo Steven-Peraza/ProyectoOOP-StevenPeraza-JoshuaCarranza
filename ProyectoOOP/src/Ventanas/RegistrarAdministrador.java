@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import Clases.Administrador;
@@ -40,6 +35,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         Calendar Cal= Calendar.getInstance(); 
         String fec= Cal.get(Cal.DATE)+"/"+(Cal.get(Cal.MONTH)+1)+"/"+Cal.get(Cal.YEAR);
         fecha.setText(fec);
+        
     }
 
     /**
@@ -106,6 +102,8 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
                 registroActionPerformed(evt);
             }
         });
+        getContentPane().add(registro);
+        registro.setBounds(200, 350, 112, 43);
 
         jLabel2.setFont(new java.awt.Font("Stencilia-Bold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,6 +119,8 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
+        getContentPane().add(volver);
+        volver.setBounds(200, 400, 113, 41);
 
         jLabel4.setFont(new java.awt.Font("Stencilia-Bold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,6 +138,8 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         id.setToolTipText("9 dígitos, incluya ceros");
 
         adv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(adv);
+        adv.setBounds(20, 320, 276, 22);
 
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonImagen.fw.png"))); // NOI18N
         imagen.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +289,10 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+        jLabel6.setText("Exito en registro");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 550, 480);
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -328,10 +334,10 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         nuevo.setFotografia(direccionImagen);
         programa.agregarUsuario(nuevo);   //se agrega
         Font fuente = new Font("Stencilia-Bold", 1, 20);
-        exito.setFont(fuente);
-        exito.setForeground(Color.green);
-        exito.setText("Registro exitoso");
-        
+        adv.setFont(fuente);
+        adv.setForeground(Color.green);
+        adv.setText("Registro exitoso");
+        //adv.setVisible(true);
         nombre.setText("");
         pass.setText("");
         correo.setText("");
