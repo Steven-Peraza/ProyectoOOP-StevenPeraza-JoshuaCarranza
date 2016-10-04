@@ -34,6 +34,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(200,250,200));    //color a la ventana
         this.setLocationRelativeTo(null);   //centrar pantalla
         registro.setForeground(Color.blue);
+        
         volver.setForeground(Color.blue);
         adv.setForeground(Color.red);
         direccionImagen="";
@@ -90,7 +91,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(registro);
-        registro.setBounds(210, 350, 110, 37);
+        registro.setBounds(200, 340, 110, 37);
 
         volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/BotonRegresar.fw.png"))); // NOI18N
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +100,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(volver);
-        volver.setBounds(210, 410, 110, 38);
+        volver.setBounds(200, 390, 110, 38);
 
         jLabel2.setFont(new java.awt.Font("Stencilia-A", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +142,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
 
         adv.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(adv);
-        adv.setBounds(20, 320, 307, 23);
+        adv.setBounds(30, 300, 307, 23);
 
         try {
             id.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
@@ -169,11 +170,8 @@ public class RegistrarJugador extends javax.swing.JFrame {
         fecha.setBounds(170, 194, 166, 27);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/menuregistrar.fw.png"))); // NOI18N
-        jLabel8.setMaximumSize(new java.awt.Dimension(560, 510));
-        jLabel8.setMinimumSize(new java.awt.Dimension(560, 510));
-        jLabel8.setPreferredSize(new java.awt.Dimension(560, 510));
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 570, 470);
+        jLabel8.setBounds(0, 0, 570, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -218,7 +216,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
         exito.setFont(fuente);
         exito.setForeground(Color.green);
         exito.setText("Registro exitoso");
-        
+        exito.setVisible(true);
         nom.setText("");
         password.setText("");
         correos.setText("");

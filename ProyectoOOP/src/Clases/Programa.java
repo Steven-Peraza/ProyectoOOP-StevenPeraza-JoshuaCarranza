@@ -62,11 +62,13 @@ public class Programa {
             if (users.get(i).getCedula() == identificacion) {    //se compara el numero de cedula
                 users.remove(i);
                 System.out.println("Se eliminó");    //se remueve el usuario
+                System.out.println("Quedaron : ");
+                System.out.println(users.size());
                 return true;
             }}
         }
         System.out.println("No se encuentra el usuario");
-
+        System.out.println("Quedaron : ");
         System.out.println(users.size());
         return false;
 
