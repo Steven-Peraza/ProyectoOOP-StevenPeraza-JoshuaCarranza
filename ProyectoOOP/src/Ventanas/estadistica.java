@@ -243,7 +243,7 @@ public class estadistica extends javax.swing.JFrame {
 	} catch (NumberFormatException mistake){    //si no todos los caracteres son numeros
 		return false;
     
-    }
+        }
     }
     
     
