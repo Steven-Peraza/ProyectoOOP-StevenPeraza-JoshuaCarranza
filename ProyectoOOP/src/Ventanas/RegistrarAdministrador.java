@@ -343,7 +343,6 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         correo.setText("");
         id.setText("");
         nacionalidad.setText("");
-        fecha.setText("");
         mostrar.setIcon(new ImageIcon(""));
         direccionImagen="";}
     

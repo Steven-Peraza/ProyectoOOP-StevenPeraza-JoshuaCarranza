@@ -294,8 +294,6 @@ public class RegistrarJugador extends javax.swing.JFrame {
         password.setText("");
         correos.setText("");
         id.setText("");
-      
-        fecha.setText("");
         mostrar.setIcon(new ImageIcon(""));
         direccionImagen="";
     }
