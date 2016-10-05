@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Grupo;
 import Clases.Jugador;
 import Clases.Nivel;
 import Clases.Usuario;
@@ -20,6 +21,8 @@ public class juegoGrupal extends javax.swing.JFrame {
     public Nivel level;
     private int maximoJug = 1;
     private int maximoNiveles = 0;
+    public Grupo group=new Grupo();
+    
     ArrayList<Jugador> jugadores = new ArrayList();
     ArrayList<Nivel> nivelesGrupo = new ArrayList();
     
@@ -218,6 +221,13 @@ public class juegoGrupal extends javax.swing.JFrame {
         
        if ((maximoJug >= 2)&&(nivelesGrupo != null)){
            //se llama la función de jugar con los datos de los jugadores y niveles agregados por el usuario
+           
+           
+           group.setJugadores(jugadores);   //se agregan los jugadores al objeto grupo
+           group.setNiveles(nivelesGrupo);  //se agregan niveles
+           group.setGenerador(proyectooop.ProyectoOOP.usuario.getNombre()); //nombre del jugador que generó el grupo
+           
+           programa.agregaraGrupoLista(group);  //se agrega el grupo recien hecho a la lista de programa
            System.out.print("A Juegar!!!");
        }
        else
@@ -234,6 +244,7 @@ public class juegoGrupal extends javax.swing.JFrame {
                 jugadores.add(jugador);
                 maximoJug ++;
                 cedu.setText("");
+                
             }
             else
                 jug.setVisible(true);

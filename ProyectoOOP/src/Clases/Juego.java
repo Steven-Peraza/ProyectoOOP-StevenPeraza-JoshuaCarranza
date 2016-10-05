@@ -65,6 +65,13 @@ public class Juego {
         return regresar;
     }
 
+    public void setCajas(ArrayList<Cajas> cajas) {
+        this.cajas = cajas;
+    }
+
+    
+    
+    
     public void setRegresar() { //se aumenta porque se uso el control z
         this.regresar ++;
     }
@@ -77,6 +84,10 @@ public class Juego {
         ultimaCaja[0]=numeroCaja;
         ultimaCaja[1]=x;   //se asigna valor al arreglo de la ultimacaja
         ultimaCaja[2]=y;
+        
+        
+        
+        
     }
     //función que resetea el nivel
     public void reset(){

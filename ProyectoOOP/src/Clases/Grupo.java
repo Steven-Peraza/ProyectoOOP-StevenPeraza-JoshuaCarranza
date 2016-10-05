@@ -32,6 +32,16 @@ public class Grupo {
         
         
     }
+
+    public void setJugadores(ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public void setNiveles(ArrayList<Nivel> niveles) {
+        this.niveles = niveles;
+    }
+    
+    
     
     
     //funcion que establece el nombre del usuario que creo el grupo
@@ -52,6 +62,9 @@ public class Grupo {
             System.out.println("array lleno");
         }
         
+        else{
+            
+        }
     }
     
     //devuelve en un string los niveles que se eligió jugar, con un separador
@@ -75,16 +88,21 @@ public class Grupo {
             System.out.println("array lleno");
     
     }
+        
+        else{
+        
+            
+        }
     }
      //funcion que establece los movimientos que un usuario ha realizado en un nivel
-    public void setContMove(){
-        contMove ++;
+    public void setContMove(int cont){
+        contMove=cont;
         
     }
     //funcion que retorna los movimientos que un usuario ha realizado en un nivel
     public int getContMove(){
     
-        return contMove++;
+        return contMove;
     }
     //funcion que establece el tiempo de juego
     public void setTiempo(int segundos){
@@ -161,6 +179,11 @@ public class Grupo {
         }
            
     }
+    
+    
+    
+    
+    
     // funcion que verifica la cantidad de usuarios en el grupo (de 2 a 4)
     public boolean hacerGrupo(){
         return true;

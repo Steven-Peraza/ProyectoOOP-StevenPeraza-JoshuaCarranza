@@ -602,7 +602,8 @@ public class Programa {
 
     //recibe la informacion de todo un grupo, se coloca en la lista de grupos general del programa
     public void agregaraGrupoLista(Grupo group) {
-
+        
+        listaGrupos.add(group);  //se añade el grupo a la lista
     }
 
     // se retorna la lista de grupos general que tiene el programa

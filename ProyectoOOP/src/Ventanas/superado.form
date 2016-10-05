@@ -174,18 +174,22 @@
                   <Component id="four" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cinco" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="trece" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="threet" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="five" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="trece" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="threet" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="five" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="seis" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="catorce" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fourt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="six" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="catorce" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fourt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="six" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

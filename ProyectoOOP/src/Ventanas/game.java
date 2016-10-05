@@ -5,13 +5,14 @@
  */
 package Ventanas;
 
+import Clases.Cajas;
 import Clases.Juego;
 import Clases.Jugador;
 import Clases.Nivel;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import proyectooop.ProyectoOOP;
-
+import static proyectooop.ProyectoOOP.programa;
 /**
  *
  * @author Josua
@@ -21,25 +22,55 @@ public class game extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
+    Juego games = new Juego();  //instancia de juego
+    ArrayList <Nivel> level;    //inicializacion de variables
+    ArrayList<Cajas> box=new ArrayList();
+    
+    Jugador uno;
+    Nivel jugando=null;
+    int niv;
+    
     public game() {
         initComponents();
-        ArrayList <Nivel> level;    //inicializacion de variables
-        Jugador uno;
-        Nivel jugando=null;
-        Juego games = null;
+        
+        String[]reglas;
         uno= (Jugador)ProyectoOOP.usuario;
         
-        int nivel=uno.getNivelActual();
+        niv=uno.getNivelActual();
         level=ProyectoOOP.programa.getNiveles();
         
         for (int i=0;i<level.size();i++){   //se busca el nivel en la lista general del programa
                 
-            if (level.get(i).getNumNivel()==nivel){
+            if (level.get(i).getNumNivel()==niv){
                     jugando=level.get(i);
                     break;                  //se hace una referencia al nivel
                     
                     }
                 }
+        
+        games.setMatrizLogica(jugando.getMatrizLogica());  //para que el juego conozca la matriz logica del nivel respectivo
+        games.setNumNivel(niv);
+        reglas=programa.getReglas().split(","); //en posicion 0 cantidad de cajas, en posicion 1 controlz
+        games.setReglaMovimientosCajas(Integer.parseInt(reglas[0]));
+        games.setDeshacer(Integer.parseInt(reglas[1]));
+        
+        int[][] mat=jugando.getMatrizLogica();
+        int cont=0;
+        for(int i=0;i<jugando.getFilas();i++){      //se hace que el juego tenga una lista de cajas
+        
+           for (int x=0;x<jugando.getColumnas();x++){   
+               
+               if(mat[i][x]==1){        //represenacion de la caja en matriz logica
+                   cont++;
+                   Cajas c=new Cajas(cont,i,x);
+                   box.add(c); 
+                   
+               }}
+           }
+        
+        games.setCajas(box);  // se asigna el arreglo de cajas
+            
+        
         
          this.setSize(new Dimension(jugando.getColumnas()*60+300,jugando.getFilas()*60+150)); //se determina tamaño de la ventana
          //games.setMatrizLogica(jugando.getMatrizLogica());  //se obtiene la matriz lógica

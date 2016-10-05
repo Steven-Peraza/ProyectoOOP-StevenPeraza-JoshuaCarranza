@@ -469,7 +469,7 @@ public class hacerNivel extends javax.swing.JFrame {
             
             
             cont=1;
-            conta=1;
+            conta=1;            //colocando espacios en la matriz grafica
            
             while(conta<level.getFilas()-1){
                 cont=1;
@@ -506,7 +506,7 @@ public class hacerNivel extends javax.swing.JFrame {
             
             
             level.ubicarPersonaje(x,y);
-            col1.setEditable(false);
+            col1.setEditable(false);    //se guardan datos del personaje
             fil1.setEditable(false);
             men.setVisible(false);
             level.setPersonajeColumna(x);
@@ -532,6 +532,8 @@ public class hacerNivel extends javax.swing.JFrame {
             
             int x=Integer.parseInt(col2.getText());
             int y=Integer.parseInt(fil2.getText());
+            
+            //validacion de que la caja no se inserte en extremos de la matriz ya que estos siempre son paredes
             
             if( (x>0)&&(x<level.getColumnas()-1)&&((y>0)&&(y<level.getFilas()-1))){
             men.setVisible(false);
@@ -591,6 +593,8 @@ public class hacerNivel extends javax.swing.JFrame {
             int x=Integer.parseInt(col4.getText());
             int y=Integer.parseInt(fil4.getText());
             
+            //lo mismo que con cajas
+            
             if( (x>0)&&(x<level.getColumnas()-1)&&((y>0)&&(y<level.getFilas()-1))){
             men.setVisible(false);
             level.hacerPared(Integer.parseInt(col4.getText()), Integer.parseInt(fil4.getText()));
@@ -617,7 +621,8 @@ public class hacerNivel extends javax.swing.JFrame {
         
         if (esnumero(moves.getText())==true){
         
-            level.setBestMoves(Integer.parseInt(moves.getText()));
+            // movimientos necesarios para resolver el nivel
+            level.setBestMoves(Integer.parseInt(moves.getText()));  
             
             }
         else{men.setVisible(true); }
@@ -632,10 +637,10 @@ public class hacerNivel extends javax.swing.JFrame {
             
             men.setVisible(false);
             adm=(Administrador) ProyectoOOP.usuario;
-            level.setCedulaAdministrador(adm.getCedula());
+            level.setCedulaAdministrador(adm.getCedula());      //para saber quien hizo el nivel;
             level.setNombreAdministrador(adm.getNombre());
             level.setCantCajas(cajas);
-            level.setCantPuntos(puntos);
+            level.setCantPuntos(puntos);    //para saber la cantidad de cajas y de puntos del nivel
             exi.setVisible(true);
             programa.agregarNivel(level);  //se agrega el nivel a la lista general de niveles
             
@@ -656,7 +661,7 @@ public class hacerNivel extends javax.swing.JFrame {
         if (esnumero(moves.getText())==true){
             
             men.setVisible(false);
-            level.setNumNivel(Integer.parseInt(moves.getText()));
+            level.setNumNivel(Integer.parseInt(moves.getText()));   //se agrega el numero de nivel
             
             }
         else {men.setVisible(true); }

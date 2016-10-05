@@ -205,7 +205,7 @@ public class estadistica extends javax.swing.JFrame {
         if (use!=null){
             int reps;
             int cant;
-            int roto;
+            int roto;   //variables para almacenar datos
             int ganes;
             jugador=(Jugador) use;
             cant= programa.cantidadNivelesJugados(jugador);

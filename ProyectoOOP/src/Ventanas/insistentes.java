@@ -202,7 +202,7 @@ public class insistentes extends javax.swing.JFrame {
         
         if (esnumero(num.getText())==true){
            
-          if (ProyectoOOP.programa.usuariosInsistentesEnNivel(Integer.parseInt(num.getText())).equals("")){
+          if (!ProyectoOOP.programa.usuariosInsistentesEnNivel(Integer.parseInt(num.getText())).equals("")){
               men.setVisible(false);
               String nombres=ProyectoOOP.programa.usuariosInsistentesEnNivel(Integer.parseInt(num.getText()));
               
