@@ -48,6 +48,11 @@
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel7" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="nombre" min="-2" pref="96" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel4" alignment="0" pref="111" max="32767" attributes="0"/>
                                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
@@ -62,17 +67,12 @@
                                           <Component id="estate" min="-2" pref="96" max="-2" attributes="0"/>
                                           <Component id="movNi" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                           <Component id="movJu" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
-                                          <Component id="time" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                           <Component id="veces" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <Component id="time" min="-2" pref="96" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" pref="111" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="nombre" min="-2" pref="96" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
@@ -154,12 +154,12 @@
                   <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="time" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="veces" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="no" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

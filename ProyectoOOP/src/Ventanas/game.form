@@ -52,9 +52,11 @@
           <Group type="102" attributes="0">
               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
               <Component id="reset" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="137" pref="137" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="reiniciar" min="-2" pref="124" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Component id="controlZ" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="151" pref="151" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               <Component id="exit" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -92,15 +94,13 @@
               </Group>
               <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="controlZ" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="reset" min="-2" max="-2" attributes="0"/>
-                          <Component id="exit" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Component id="reset" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="exit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="controlZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="reiniciar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -168,6 +168,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="controlZActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="reiniciar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reiniciar Juego"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

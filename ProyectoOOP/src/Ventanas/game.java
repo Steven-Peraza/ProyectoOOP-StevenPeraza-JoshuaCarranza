@@ -69,6 +69,7 @@ public class game extends javax.swing.JFrame {
         reset = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         controlZ = new javax.swing.JButton();
+        reiniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sokoban");
@@ -107,6 +108,8 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        reiniciar.setText("Reiniciar Juego");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,9 +138,11 @@ public class game extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(reset)
-                .addGap(137, 137, 137)
+                .addGap(51, 51, 51)
+                .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addComponent(controlZ)
-                .addGap(151, 151, 151)
+                .addGap(65, 65, 65)
                 .addComponent(exit))
         );
         layout.setVerticalGroup(
@@ -166,14 +171,13 @@ public class game extends javax.swing.JFrame {
                             .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(44, 44, 44)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(controlZ)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reset)
-                            .addComponent(exit)))))
+                    .addComponent(reset)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(exit)
+                        .addComponent(controlZ)
+                        .addComponent(reiniciar))))
         );
 
         pack();
@@ -239,6 +243,7 @@ public class game extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel moves;
     private javax.swing.JLabel nivel;
+    private javax.swing.JButton reiniciar;
     private javax.swing.JButton reset;
     private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables
