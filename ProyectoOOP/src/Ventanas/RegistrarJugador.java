@@ -23,7 +23,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
     
     // para el formato de la imagen
     private FileNameExtensionFilter archivo= new FileNameExtensionFilter("Archivo de imagen","png");
-    String direccionImagen;
+    String direccionImagen=" ";
     
     public RegistrarJugador() {
         initComponents();
@@ -278,7 +278,7 @@ public class RegistrarJugador extends javax.swing.JFrame {
     
     fechaRegistro=fecha.getText();
                                     //se valida que no hayan datos incorrectos
-    if ((!nombre.equals(""))&&(cedula.length()==9)&&(!contra.equals(""))&&(!correo.equals(""))&&(!fechaRegistro.equals(""))){
+    if ((!nombre.equals(""))&&(cedula.length()==9)&&(!contra.equals(""))&&(!correo.equals(""))&&(!fechaRegistro.equals(""))&&(!direccionImagen.equals(""))){
     
         adv.setText("");
         int numero= Integer.parseInt(cedula);

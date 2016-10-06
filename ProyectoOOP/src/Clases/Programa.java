@@ -79,6 +79,7 @@ public class Programa {
         if (niveles.size() == 0) {   //si está vacio solo se agrega
             nuevo.setNumNivel(1); //se asigna como el nivel 1;
             niveles.add(nuevo);
+            System.out.println(niveles.size()); 
             return;
         }
 
@@ -86,7 +87,8 @@ public class Programa {
 
             if (niveles.get(i).getNumNivel() == nuevo.getNumNivel()) {    //se compara el numero de nivel
                 niveles.add(i, nuevo);        //se inserta en esa posicion
-                System.out.println("Se inserto");    //se remueve el usuario
+                System.out.println("Se inserto"); 
+                System.out.println(niveles.size()); 
                 for (int x = 0; x < niveles.size(); x++) {
                     niveles.get(i).setNumNivel(x + 1); //se reasigna numero de niveles para ordenar
                 }
@@ -99,7 +101,8 @@ public class Programa {
         for (int i = 0; i < niveles.size(); i++) {
             niveles.get(i).setNumNivel(i + 1); //se reasigna numero de niveles para ordenar
         }
-
+        
+        System.out.println(niveles.size()); 
     }
 
     // recibe la identificacion del administrador y se retorna los niveles agregados por este
@@ -166,6 +169,7 @@ public class Programa {
                         if (array.get(x).getEstadistica().getCanGanesOptimizados() < cantidad) {
 
                             array.add(x, (Jugador) users.get(i)); //se inserta el jugador
+                            break;
                         }
 
                     }
@@ -175,6 +179,7 @@ public class Programa {
                         if (array.get(x).getEstadistica().getCanGanesOptimizados() < cantidad) {
 
                             array.add(x, (Jugador) users.get(i)); //se inserta el jugador
+                            break;
                         }
 
                     }
@@ -185,7 +190,7 @@ public class Programa {
         String jugadores = "";
         
         for (int i=0;(i<5&&i<array.size());i++){
-        jugadores = array.get(i).getNombre();   //se concatena el contenido del array en un string para retornarlo
+        jugadores += array.get(i).getNombre();   //se concatena el contenido del array en un string para retornarlo
         jugadores += ",";
         }
         
@@ -218,6 +223,7 @@ public class Programa {
                         if (array.get(x).getEstadistica().getRecordRotos() < cantidad) {
 
                             array.add(x, (Jugador) users.get(i)); //se inserta el jugador
+                            break;
                         }
 
                     }
@@ -227,6 +233,7 @@ public class Programa {
                         if (array.get(x).getEstadistica().getRecordRotos() < cantidad) {
 
                             array.add(x, (Jugador) users.get(i)); //se inserta el jugador
+                            break;
                         }
 
                     }
@@ -280,7 +287,7 @@ public class Programa {
                         {       //si ya jugo el nivel
 
                             if (arreglo.size() == 0) {
-                                arreglo.add(0, player.getNombre());    // si esta vacio se agrega simplr
+                                arreglo.add(0, player.getNombre());    // si esta vacio se agrega simple
                                 arreglo.add(1, String.valueOf(temp.getVecesJugado()));
 
                             } else if (arreglo.size() == 10) {
@@ -348,6 +355,8 @@ public class Programa {
             return "";
         } else {
             for (int z = 0; z < users.size(); z++) {
+                
+                if (users.get(z) instanceof Jugador){
                 Jugador player = (Jugador) users.get(z);
                 ArrayList temporal = player.getArrayHistorial(); // se accede temporalmente al array historial
                 for (int x = 0; x < temporal.size(); x++) {                 //del jugador
@@ -362,7 +371,7 @@ public class Programa {
                     }
 
                 }
-            }
+            }}
         }
 
         return nombres.substring(nombres.length()-1);
@@ -442,7 +451,26 @@ public class Programa {
 
     // se cambia el gane de usuarios de optimizado a ganado simplemente
     public void cambiarNivelesOptimizados(int numeroNivel) {
-
+        
+        for (int i=0;i<users.size();i++){
+    
+        if (users.get(i) instanceof Jugador){               //si es un jugador
+            
+            Jugador player = (Jugador) users.get(i);
+            ArrayList <Historial> history=player.getArrayHistorial();   //se accede al historial del jugador
+            for (int x=0;x<history.size();i++){
+                
+                // si ya jugo el nivel y lo ganó de manera optimizada
+                if ((history.get(x).getNumNivel()==numeroNivel)&&(history.get(x).getEstado().equals("Optimizado"))){
+                    
+                    // como alguien romió el record su gane ahora es normal
+                    history.get(x).setEstado("Ganado");
+                }
+            
+            }   //final segundo ciclo
+        }
+    }   //final primer ciclo
+        
     }
 
     // funcion que inicia el juego
@@ -560,8 +588,45 @@ public class Programa {
     }
 
     //recibe toda la informacion del juego recien jugado para colocarlo en el historial del jugador
-    public void generarHistorial(Juego game) {
-
+    public void generarHistorial(Juego game,Jugador player) {
+        
+        
+       int numero=game.getNumNivel();
+       String estado;
+       Historial nuevo;
+       ArrayList <Historial> history=player.getArrayHistorial();
+      
+       Nivel lev = null;
+       for(int i=0;i<niveles.size();i++){             //para obtener el nivel y tener una variable de referencia
+       
+           if (niveles.get(i).getNumNivel()==numero){
+           lev = niveles.get(i);                    // se asigna el valor a  la variable
+           break; //salir del ciclo
+           }
+       }
+       
+       if(game.getContmoves()==lev.getBestMoves()){ // se determina el tipo de gane
+           estado="Optimizado";
+           }
+       
+       else{
+           estado="Ganado";
+        } 
+       
+       nuevo=new Historial(numero,lev,estado,game.getContmoves(),game.getTiempo(),lev.getBestMoves());
+       
+       for (int x=0;x<history.size();x++){
+       
+           if (history.get(x).getNumNivel()==numero){       // si ya existe en el historial
+               
+               history.set(x, nuevo);  // se agrega la informcion de este nuevo historial y se remplaza el anterior
+               return;               //fin del metodo
+           }
+       }
+       
+       history.add(nuevo); // se agrega como un historial nuevo
+       player.setArrayHistorial(nuevo);  //se actualiza el historial del jugador
+       
     }
 
     // recibe por parametro el jugador para generar la estadistica

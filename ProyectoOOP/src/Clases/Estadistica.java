@@ -12,8 +12,8 @@ package Clases;
 public class Estadistica {
     
     private int cantNivelesJugados=0;
-    private int recordRotos;
-    private int canGanesOptimizados;
+    private int recordRotos=0;
+    private int canGanesOptimizados=0;
     private int nivelMasRepetido;
 
     public Estadistica(int recordRotos, int canGanesOptimizados, int nivelMasRepetido) {

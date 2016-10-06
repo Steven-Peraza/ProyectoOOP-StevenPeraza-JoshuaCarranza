@@ -21,7 +21,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
      * Creates new form RegistrarAdministrador
      */
     
-    public String direccionImagen;
+    public String direccionImagen=" ";      // guardar direccion de la imagen
     private FileNameExtensionFilter archivo= new FileNameExtensionFilter("Archivo de imagen","png");
     
     public RegistrarAdministrador() {
@@ -324,7 +324,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     nacionalida=nacionalidad.getText();
     fechaRegistro=fecha.getText();
                                     //se valida que no hayan datos incorrectos
-    if ((!name.equals(""))&&(ced.length()==9)&&(!contra.equals(""))&&(!correos.equals(""))&&(!nacionalida.equals(""))){
+    if ((!name.equals(""))&&(ced.length()==9)&&(!contra.equals(""))&&(!correos.equals(""))&&(!nacionalida.equals(""))&&(!direccionImagen.equals(""))){
     
         adv.setText("");
         int numero= Integer.parseInt(ced);

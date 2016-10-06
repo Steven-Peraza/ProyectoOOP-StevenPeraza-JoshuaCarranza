@@ -40,14 +40,38 @@ public class ProyectoOOP {
     public static void main(String[] args) {
         // TODO code application logic here
 
+        Estadistica e;
         
-        Jugador primero=new Jugador("alguien",300000000,"joshua@gmail.com","hola","30 de mayo");
-        //Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");
-        //primero.getEstadistica().setCanGanesOptimizados();
+        Jugador primero=new Jugador("alguien1",300900000,"joshua@gmail.com","hola","30 de mayo");
+        Jugador primer=new Jugador("alguien2",300080000,"joshua@gmail.com","holas","30 de mayo");
+        Jugador prime=new Jugador("alguien3",300050000,"joshua@gmail.com","holasd","30 de mayo");
+        Jugador prim=new Jugador("alguien4",300004000,"joshua@gmail.com","holass","30 de mayo");
+        Jugador pri=new Jugador("alguien5",300000700,"joshua@gmail.com","holaa","30 de mayo");
+        Jugador pr=new Jugador("alguien6",300000060,"joshua@gmail.com","holae","30 de mayo");
+        
+        
         Nivel nuevo= new Nivel(10,8);
         primero.setNivelActual(1);
-       nuevo.setNumNivel(1);
+        nuevo.setNumNivel(1);
         programa.agregarUsuario(primero);
+        programa.agregarUsuario(primer);
+        programa.agregarUsuario(prime);
+        programa.agregarUsuario(prim);
+        programa.agregarUsuario(pri);
+        programa.agregarUsuario(pr);
+        e=new Estadistica(1,1,1);
+        primero.setEstadistica(e);
+        e=new Estadistica(2,4,1);
+        primer.setEstadistica(e);
+        e=new Estadistica(4,2,1);
+        prime.setEstadistica(e);
+        e=new Estadistica(3,3,1);
+        prim.setEstadistica(e);
+        e=new Estadistica(6,6,1);
+        pri.setEstadistica(e);
+        e=new Estadistica(5,7,1);
+        pr.setEstadistica(e);
+        
         System.out.println(String.valueOf(programa.login("alguien","hola")));
         programa.agregarNivel(nuevo);
        // Nivel primer=new Nivel();
