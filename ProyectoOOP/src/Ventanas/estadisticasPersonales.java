@@ -165,7 +165,7 @@ public class estadisticasPersonales extends javax.swing.JFrame {
             roto=programa.cantidadRecordRotos(jugador);
             ganes=programa.jugadorCantidadGanesOpt(jugador);
             
-            niveles.setText("  "+String.valueOf(cant));
+            niveles1.setText("  "+String.valueOf(cant));
             rotos.setText("  "+String.valueOf(roto));
             opot.setText("  "+String.valueOf(ganes));
             rep.setText("  "+String.valueOf(reps));

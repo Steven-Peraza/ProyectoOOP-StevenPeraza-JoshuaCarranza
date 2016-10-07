@@ -33,11 +33,11 @@ public class insistentes extends javax.swing.JFrame {
         arreglo[2]=tres;
         arreglo[3]=cuatro;
         arreglo[4]=cinco;
-        uno.setEnabled(false);
-        dos.setEnabled(false);
-        tres.setEnabled(false);
-        cuatro.setEnabled(false);
-        cinco.setEnabled(false);
+        uno.setEditable(false);
+        dos.setEditable(false);
+        tres.setEditable(false);
+        cuatro.setEditable(false);
+        cinco.setEditable(false);
         this.setLocationRelativeTo(null);   //centrar pantalla
     }
 
@@ -79,7 +79,7 @@ public class insistentes extends javax.swing.JFrame {
             }
         });
 
-        men.setText("Error en el proceso");
+        men.setText("No existen datos a mostrar");
 
         jLabel2.setText("1");
 
@@ -115,7 +115,7 @@ public class insistentes extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(men, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(men, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +202,12 @@ public class insistentes extends javax.swing.JFrame {
         
         if (esnumero(num.getText())==true){
            
-          if (!ProyectoOOP.programa.usuariosInsistentesEnNivel(Integer.parseInt(num.getText())).equals("")){
+            int a=Integer.parseInt(num.getText());
+            String texto=ProyectoOOP.programa.usuariosInsistentesEnNivel(a);
+            
+          if (!texto.equals("")){
               men.setVisible(false);
-              String nombres=ProyectoOOP.programa.usuariosInsistentesEnNivel(Integer.parseInt(num.getText()));
+              String nombres=texto;
               
               String [] lista= new String [5];
               

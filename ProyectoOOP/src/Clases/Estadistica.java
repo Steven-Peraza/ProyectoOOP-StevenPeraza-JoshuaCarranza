@@ -28,7 +28,7 @@ public class Estadistica {
     }
     //funcion que establece la cantidad de niveles jugados
     public void setCantNivelesJugados() {
-        this.cantNivelesJugados ++;
+        this.cantNivelesJugados++;
     }
     //funcion que retorna la cantidad records rotos
     public int getRecordRotos() {

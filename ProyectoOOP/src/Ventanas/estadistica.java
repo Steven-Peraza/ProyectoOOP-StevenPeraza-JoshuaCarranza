@@ -212,7 +212,8 @@ public class estadistica extends javax.swing.JFrame {
             reps=programa.obtenerNivelMasRepetido(jugador);
             roto=programa.cantidadRecordRotos(jugador);
             ganes=programa.jugadorCantidadGanesOpt(jugador);
-
+            
+            
             nombre.setText(jugador.getNombre());        //se despliegan datos
 
             niveles.setText("  "+String.valueOf(cant));

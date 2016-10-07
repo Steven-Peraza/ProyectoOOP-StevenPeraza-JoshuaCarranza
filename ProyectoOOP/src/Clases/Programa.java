@@ -32,7 +32,7 @@ public class Programa {
         users = new ArrayList();
         niveles = new ArrayList();
         listaGrupos = new ArrayList();
-
+        ruler=new Reglas(0,0);      // se inicializan en cero
     }
 
     // se recibe un objeto tipo usuario para agregar a la lista
@@ -297,6 +297,7 @@ public class Programa {
 
                                     arreglo.set(8, player.getNombre());   //sustituye
                                     arreglo.set(9, String.valueOf(temp.getVecesJugado()));
+                                    
 
                                 }
                             } else {
@@ -304,7 +305,7 @@ public class Programa {
                                 for (int c = 1; c < arreglo.size(); c += 2) {
 
                                     int nume = Integer.parseInt((String) (arreglo.get(c)));
-                                    if (nume < temp.getVecesJugado()) {
+                                    if ((nume == temp.getVecesJugado())||(nume<temp.getVecesJugado())) {
 
                                         arreglo.add(c - 1, player.getNombre());        // se inserta en la posicion
                                         arreglo.add(c, String.valueOf(temp.getVecesJugado()));
@@ -324,14 +325,14 @@ public class Programa {
         }
 
         //ciclo para retornar string con los cinco nombres
-        for (int var = 1; var < arreglo.size(); var += 2) {
+        for (int var = 0; var < arreglo.size(); var += 2) {
 
             usuarios += arreglo.get(var);
             usuarios += ",";
 
         }
 
-        return usuarios.substring(usuarios.length() - 1);  // se quita la coma que tiene de mas  
+        return usuarios;  // se quita la coma que tiene de mas  
     }
 
     // se recibe el numero de nivel y se busca los usuarios que ganaron ese nivel
@@ -374,7 +375,7 @@ public class Programa {
             }}
         }
 
-        return nombres.substring(nombres.length()-1);
+        return nombres;   //se quita la ultima coma
         
 
     }
@@ -502,9 +503,14 @@ public class Programa {
     public String getReglas() {
 
         String texto = "";
-        texto += String.valueOf(ruler.getCajasPorMover());
+        int b=ruler.getCajasPorMover();
+        String  a=String.valueOf(b);
+        texto += a;
         texto += ",";
-        texto += String.valueOf(ruler.getControlZ());
+        b=ruler.getControlZ();
+        a=String.valueOf(b);
+        texto += a;
+        texto+=",";
         return texto;
     }
 

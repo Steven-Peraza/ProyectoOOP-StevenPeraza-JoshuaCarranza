@@ -282,7 +282,7 @@ public class historialPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_antActionPerformed
 
     private void sigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigActionPerformed
-        if (indice<arreglo.size()){
+        if (indice<arreglo.size()-1){
         
             indice++; //se aumenta el indice
              numNivel.setText(String.valueOf(arreglo.get(indice).getNumNivel()));

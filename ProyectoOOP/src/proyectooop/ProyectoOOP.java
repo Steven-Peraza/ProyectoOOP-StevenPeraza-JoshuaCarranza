@@ -39,9 +39,14 @@ public class ProyectoOOP {
     public static Usuario usuario;
     public static void main(String[] args) {
         // TODO code application logic here
-
-        Estadistica e;
+        //String nombre, int cedula, String correo, String contraseña, String fechaRegistro
+        Administrador h=new Administrador("alguien",23000000,"nada","sd","10/10/2010");
         
+        programa.setReglas(1, 1);   // se fija las reglas
+        programa.agregarUsuario(h);
+        
+        Estadistica e;
+        Historial b;
         Jugador primero=new Jugador("alguien1",300900000,"joshua@gmail.com","hola","30 de mayo");
         Jugador primer=new Jugador("alguien2",300080000,"joshua@gmail.com","holas","30 de mayo");
         Jugador prime=new Jugador("alguien3",300050000,"joshua@gmail.com","holasd","30 de mayo");
@@ -51,8 +56,45 @@ public class ProyectoOOP {
         
         
         Nivel nuevo= new Nivel(10,8);
+       int [][]matriz={ {0,0,0,0,0,0,0,0},
+                        {0,1,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,1,0,0,0,0,0,0},
+                        {0,1,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                         };
+        nuevo.setMatrizLogica(matriz);// se asigna matriz logica
         primero.setNivelActual(1);
         nuevo.setNumNivel(1);
+        
+        //int numNivel, Nivel nivel, String estado, int cantidadMovimientos, int tiempo, int bestMoves
+        b=new Historial(1,nuevo,"perdido",23,34,20);
+        b.setVecesJugado();
+        b.setVecesJugado();
+        primero.setArrayHistorial(b);
+        primer.setArrayHistorial(b);
+        b=new Historial(1,nuevo,"Perdido",23,34,20);
+        b.setVecesJugado();
+        prime.setArrayHistorial(b);
+        
+        b=new Historial(1,nuevo,"Perdido",23,34,20);
+        b.setVecesJugado();
+        b.setVecesJugado();
+        b.setVecesJugado();
+        prim.setArrayHistorial(b);
+        
+        b=new Historial(1,nuevo,"perdido",23,34,20);
+        b.setVecesJugado();
+        b.setVecesJugado();
+        pri.setArrayHistorial(b);
+        pr.setArrayHistorial(b);
+        
+        
+      
         programa.agregarUsuario(primero);
         programa.agregarUsuario(primer);
         programa.agregarUsuario(prime);
@@ -60,16 +102,22 @@ public class ProyectoOOP {
         programa.agregarUsuario(pri);
         programa.agregarUsuario(pr);
         e=new Estadistica(1,1,1);
+        e.setCantNivelesJugados();
         primero.setEstadistica(e);
         e=new Estadistica(2,4,1);
+        e.setCantNivelesJugados();
         primer.setEstadistica(e);
         e=new Estadistica(4,2,1);
+        e.setCantNivelesJugados();
         prime.setEstadistica(e);
         e=new Estadistica(3,3,1);
+        e.setCantNivelesJugados();
         prim.setEstadistica(e);
         e=new Estadistica(6,6,1);
+        e.setCantNivelesJugados();
         pri.setEstadistica(e);
         e=new Estadistica(5,7,1);
+        e.setCantNivelesJugados();
         pr.setEstadistica(e);
         
         System.out.println(String.valueOf(programa.login("alguien","hola")));

@@ -25,15 +25,16 @@ public class game extends javax.swing.JFrame {
     Juego games = new Juego();  //instancia de juego
     ArrayList <Nivel> level;    //inicializacion de variables
     ArrayList<Cajas> box=new ArrayList();
-    
+    String rules;
     Jugador uno;
+    String[]reglas;
     Nivel jugando=null;
     int niv;
     
     public game() {
         initComponents();
         
-        String[]reglas;
+        
         uno= (Jugador)ProyectoOOP.usuario;
         
         niv=uno.getNivelActual();
@@ -50,15 +51,19 @@ public class game extends javax.swing.JFrame {
         
         games.setMatrizLogica(jugando.getMatrizLogica());  //para que el juego conozca la matriz logica del nivel respectivo
         games.setNumNivel(niv);
-        reglas=programa.getReglas().split(","); //en posicion 0 cantidad de cajas, en posicion 1 controlz
-        games.setReglaMovimientosCajas(Integer.parseInt(reglas[0]));
+        
+        rules=programa.getReglas();
+        reglas=rules.split(","); //en posicion 0 cantidad de cajas, en posicion 1 controlz
+        String nu=reglas[0];
+        int n=Integer.parseInt(nu);
+        games.setReglaMovimientosCajas(Integer.parseInt(nu));
         games.setDeshacer(Integer.parseInt(reglas[1]));
         
         int[][] mat=jugando.getMatrizLogica();
         int cont=0;
-        for(int i=0;i<jugando.getFilas();i++){      //se hace que el juego tenga una lista de cajas
+        for(int i=0;i<jugando.getFilas()-1;i++){      //se hace que el juego tenga una lista de cajas
         
-           for (int x=0;x<jugando.getColumnas();x++){   
+           for (int x=0;x<jugando.getColumnas()-1;x++){   
                
                if(mat[i][x]==1){        //represenacion de la caja en matriz logica
                    cont++;
