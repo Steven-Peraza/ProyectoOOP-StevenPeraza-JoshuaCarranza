@@ -410,7 +410,7 @@ public class historial extends javax.swing.JFrame {
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
         // TODO add your handling code here:
         
-        if (indice<arreglo.size()){
+        if (indice<arreglo.size()-1){
         
             indice++; //se aumenta el indice
              niv.setText(String.valueOf(arreglo.get(indice).getNumNivel()));

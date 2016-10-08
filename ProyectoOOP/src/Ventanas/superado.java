@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
+
 
 import java.awt.Color;
 import java.io.IOException;
@@ -204,6 +200,7 @@ public class superado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
@@ -444,14 +441,19 @@ public class superado extends javax.swing.JFrame {
         String nombres;
         if (esnumero(num.getText())==true){
             
-            if (!programa.usuariosGanaron(Integer.parseInt(num.getText())).equals("")){
+            int a=Integer.parseInt(num.getText());
+            
+            String text=programa.usuariosGanaron(a);
+            
+            if (!text.equals("")){
              men.setVisible(false);
              
-             nombres=programa.usuariosGanaron(Integer.parseInt(num.getText()));
+             nombres=text;
+           //  nombres=programa.usuariosGanaron(Integer.parseInt(num.getText()));
              
              String[] lista= nombres.split(",");
              
-             for (int i=0;(i<lista.length&&i<16);i++){
+             for (int i=0;((i<lista.length)&&(i<16));i++){
                  
                  datos[i].setVisible(true);
                  datos[i].setText(lista[i]);

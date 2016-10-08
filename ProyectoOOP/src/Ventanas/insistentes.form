@@ -53,7 +53,47 @@
                       <Component id="cinco" min="-2" pref="211" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+<<<<<<< HEAD
                       <EmptySpace min="307" pref="307" max="-2" attributes="0"/>
+=======
+                      <Component id="men" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cinco" pref="211" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cuatro" pref="211" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tres" pref="211" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="dos" pref="211" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                              <Component id="hacer" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="uno" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+>>>>>>> d921598fd512e28ebf507ac4f33555191efa09d3
                       <Component id="exit" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -195,10 +235,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="men">
       <Properties>
+<<<<<<< HEAD
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Stencil" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Error en el proceso"/>
+=======
+        <Property name="text" type="java.lang.String" value="No existen datos a mostrar"/>
+>>>>>>> d921598fd512e28ebf507ac4f33555191efa09d3
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

@@ -12,8 +12,8 @@ package Clases;
 public class Estadistica {
     
     private int cantNivelesJugados=0;
-    private int recordRotos;
-    private int canGanesOptimizados;
+    private int recordRotos=0;
+    private int canGanesOptimizados=0;
     private int nivelMasRepetido;
 
     public Estadistica(int recordRotos, int canGanesOptimizados, int nivelMasRepetido) {
@@ -28,7 +28,7 @@ public class Estadistica {
     }
     //funcion que establece la cantidad de niveles jugados
     public void setCantNivelesJugados() {
-        this.cantNivelesJugados ++;
+        this.cantNivelesJugados++;
     }
     //funcion que retorna la cantidad records rotos
     public int getRecordRotos() {

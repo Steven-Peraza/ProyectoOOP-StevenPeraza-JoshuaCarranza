@@ -138,9 +138,22 @@
                       <Component id="siguiente" min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
+<<<<<<< HEAD
               <EmptySpace min="162" pref="162" max="-2" attributes="0"/>
               <Component id="veces" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
+=======
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="time" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="veces" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+>>>>>>> d921598fd512e28ebf507ac4f33555191efa09d3
               <Component id="no" min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">

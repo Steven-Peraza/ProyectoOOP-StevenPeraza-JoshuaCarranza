@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.event.KeyListener;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
 
@@ -245,7 +246,8 @@ public class estadistica extends javax.swing.JFrame {
             reps=programa.obtenerNivelMasRepetido(jugador);
             roto=programa.cantidadRecordRotos(jugador);
             ganes=programa.jugadorCantidadGanesOpt(jugador);
-
+            
+            
             nombre.setText(jugador.getNombre());        //se despliegan datos
 
             niveles.setText("  "+String.valueOf(cant));

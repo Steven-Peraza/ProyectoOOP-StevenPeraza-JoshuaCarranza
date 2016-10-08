@@ -27,7 +27,7 @@ public class record extends javax.swing.JFrame {
         initComponents();
         
         String jugadores;
-        String [] lista= new String[5];
+        String [] lista;
         
         JTextField[] arreglo=new JTextField[5];
         uno.setEditable(false);
@@ -44,7 +44,7 @@ public class record extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(200,200,255));    //color a la ventana
         this.setLocationRelativeTo(null);   //centrar pantalla
         
-        jugadores=programa.usuariosGaOpt();
+        jugadores=programa.usuariosReRot();
         
         lista=jugadores.split(",");
         
