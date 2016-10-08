@@ -10,7 +10,12 @@ import Clases.Juego;
 import Clases.Jugador;
 import Clases.Nivel;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
 /**
@@ -216,7 +221,15 @@ public class game extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
-        new ventanaJugador().setVisible(true);
+        try {
+            new ventanaJugador().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_exitActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed

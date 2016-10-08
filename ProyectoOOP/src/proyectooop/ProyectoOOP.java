@@ -23,6 +23,9 @@ import Clases.Nivel;
 import Clases.Personaje;
 import Clases.Reglas;
 import Clases.Usuario;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Timer;
 //import Ventanas.*;
 
@@ -34,12 +37,13 @@ public class ProyectoOOP {
      */
     
     public static Timer timer;
-    public static inicioSesion ventana=new inicioSesion();
+    public static inicioSesion ventana;
     public static Programa programa=new Programa();
     public static Usuario usuario;
-    public static void main(String[] args) {
-        // TODO code application logic here
 
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        // TODO code application logic here
+        ventana= new inicioSesion();
         
         Jugador primero=new Jugador("alguien",300000000,"joshua@gmail.com","hola","30 de mayo");
         //Jugador primero=new Jugador("alguien",30,"joshua@gmail.com","hola","30 de mayo");

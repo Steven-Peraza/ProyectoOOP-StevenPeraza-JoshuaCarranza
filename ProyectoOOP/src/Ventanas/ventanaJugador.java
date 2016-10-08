@@ -9,6 +9,15 @@ import Clases.Jugador;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import static proyectooop.ProyectoOOP.programa;
 import proyectooop.ProyectoOOP;
@@ -23,11 +32,11 @@ public class ventanaJugador extends javax.swing.JFrame {
      * Creates new form ventanaJugador
      */
     
-    
-     public Jugador jugador;
-     String ima;
+    private static Clip clip2;
+    public Jugador jugador;
+    String ima;
      
-    public ventanaJugador() {
+    public ventanaJugador() throws IOException, UnsupportedAudioFileException, LineUnavailableException{
         initComponents();
         this.getContentPane().setBackground(new Color(200,250,200));    //color a la ventana
         this.setLocationRelativeTo(null);   //centrar pantalla
@@ -52,6 +61,10 @@ public class ventanaJugador extends javax.swing.JFrame {
         ImageIcon icono= new ImageIcon(nueva);
          imagen.setIcon(icono);
          imagen.setSize(155, 175);
+         if (clip2 == null)
+            Musica("Anville_Town.wav");
+         else
+             System.out.println("Sigue la mùsica");
     }
 
     /**
@@ -68,6 +81,7 @@ public class ventanaJugador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
         imagen = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         juegoGrupal = new javax.swing.JMenuItem();
@@ -82,12 +96,13 @@ public class ventanaJugador extends javax.swing.JFrame {
 
         bienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel1.setText("En el menu de la parte superior de la ventana ");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel2.setText("encontrará las acciones que puedes realizar");
 
+        exit.setFont(new java.awt.Font("Stencil Std", 0, 11)); // NOI18N
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +110,12 @@ public class ventanaJugador extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Juego");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/fondomenusJyA.fw.png"))); // NOI18N
 
+        jMenu1.setText("Juego");
+        jMenu1.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
+
+        juegoGrupal.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         juegoGrupal.setText("Hacer grupo de juego");
         juegoGrupal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +124,7 @@ public class ventanaJugador extends javax.swing.JFrame {
         });
         jMenu1.add(juegoGrupal);
 
+        juegoNormal.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         juegoNormal.setText("Juego individual");
         juegoNormal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +136,9 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Reportes");
+        jMenu2.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
+        verEstadistica.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         verEstadistica.setText("Ver mis estadísticas");
         verEstadistica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +147,7 @@ public class ventanaJugador extends javax.swing.JFrame {
         });
         jMenu2.add(verEstadistica);
 
+        verHistorial.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         verHistorial.setText("Ver mi historial");
         verHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,69 +164,82 @@ public class ventanaJugador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(368, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(308, 308, 308)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(362, 362, 362)
+                .addComponent(exit))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(60, 60, 60)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        // TODO add your handling code here:
+        clip2.stop();
         this.dispose();
         ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
 
     private void juegoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNormalActionPerformed
-        // TODO add your handling code here:
+        clip2.stop();
         this.dispose();
-        new game().setVisible(true);
-        
-        
+        new game().setVisible(true);      
     }//GEN-LAST:event_juegoNormalActionPerformed
 
     private void verEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEstadisticaActionPerformed
-       this.dispose();
+
+        this.dispose();
        new estadisticasPersonales().setVisible(true);
     }//GEN-LAST:event_verEstadisticaActionPerformed
 
     private void verHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verHistorialActionPerformed
-       this.dispose();
+
+        this.dispose();
        new historialPersonal().setVisible(true);
     }//GEN-LAST:event_verHistorialActionPerformed
 
     private void juegoGrupalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoGrupalActionPerformed
-       this.dispose();
+
+        this.dispose();
        new juegoGrupal().setVisible(true);
     }//GEN-LAST:event_juegoGrupalActionPerformed
 
+    public static void Musica(String soundFile) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    File f = new File("./" + soundFile);
+    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+    clip2 = AudioSystem.getClip();
+    clip2.open(audioIn);
+    clip2.loop(Clip.LOOP_CONTINUOUSLY);
+    }   
     /**
      * @param args the command line arguments
      */
@@ -234,7 +270,11 @@ public class ventanaJugador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaJugador().setVisible(true);
+                try {
+                    new ventanaJugador().setVisible(true);
+                } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
+                    Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -245,6 +285,7 @@ public class ventanaJugador extends javax.swing.JFrame {
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
