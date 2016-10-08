@@ -19,93 +19,106 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
+
 /**
  *
  * @author Josua
  */
-public class game extends javax.swing.JFrame  {
+public class game extends javax.swing.JFrame {
 
     /**
      * Creates new form Juego
      */
     Juego games = new Juego();  //instancia de juego
-    ArrayList <Nivel> level;    //inicializacion de variables
-    ArrayList<Cajas> box=new ArrayList();
+    ArrayList<Nivel> level;    //inicializacion de variables
+    ArrayList<Cajas> box = new ArrayList();
     String rules;
+
+    Cronometro cron;
+
     Jugador uno;
-    String[]reglas;
-    Personaje perso=new Personaje(0,0);
+    String[] reglas;
+    Personaje perso = new Personaje(0, 0);
     int[][] mat;
-    Nivel jugando=null;
+    Nivel jugando = null;
     int niv;
-    JLabel [][]grafica;
+    JLabel[][] grafica;
     int filas;
     int col;
-   
-    
+    int movimientos = 0;
+
     public game() {
         initComponents();
-        
+
+        tiempo.setForeground(Color.blue);
+        cron = new Cronometro(tiempo);     //recibe el label por parametro
+        cron.start();
+        //se inicia
+        gane.setVisible(false);
+        moves.setForeground(Color.blue);
+        bestmov.setForeground(Color.blue);
+        nivel.setForeground(Color.blue);
+
         panel.setFocusable(true);
-        
+        moves.setText(String.valueOf(movimientos)); //mostrar mensajes
+
         this.setLocationRelativeTo(null);
-        uno= (Jugador)ProyectoOOP.usuario;
-        
-        niv=uno.getNivelActual();
-        level=ProyectoOOP.programa.getNiveles();
-        
-        for (int i=0;i<level.size();i++){   //se busca el nivel en la lista general del programa
-                
-            if (level.get(i).getNumNivel()==niv){
-                    jugando=level.get(i);
-                    break;                  //se hace una referencia al nivel
-                    
-                    }
-                }
-        
+        uno = (Jugador) ProyectoOOP.usuario;
+
+        niv = uno.getNivelActual();
+        level = ProyectoOOP.programa.getNiveles();
+
+        for (int i = 0; i < level.size(); i++) {   //se busca el nivel en la lista general del programa
+
+            if (level.get(i).getNumNivel() == niv) {
+                jugando = level.get(i);
+                break;                  //se hace una referencia al nivel
+
+            }
+
+        }
+
+        bestmov.setText(String.valueOf(jugando.getBestMoves()));    //mostrando datos
+        nivel.setText(String.valueOf(jugando.getNumNivel()));
+
         games.setMatrizLogica(jugando.getMatrizLogica());  //para que el juego conozca la matriz logica del nivel respectivo
         games.setNumNivel(niv);
-        
-        rules=programa.getReglas();
-        reglas=rules.split(","); //en posicion 0 cantidad de cajas, en posicion 1 controlz
-        String nu=reglas[0];
-        int n=Integer.parseInt(nu);
+
+        rules = programa.getReglas();
+        reglas = rules.split(","); //en posicion 0 cantidad de cajas, en posicion 1 controlz
+        String nu = reglas[0];
+        int n = Integer.parseInt(nu);
         games.setReglaMovimientosCajas(Integer.parseInt(nu));
         games.setDeshacer(Integer.parseInt(reglas[1]));
-        
-        
-        
-        mat=jugando.getMatrizLogica();
-        int cont=0;
-        filas= jugando.getFilas();
-        col=jugando.getColumnas();
-        grafica=new JLabel[filas][col];     //se inicializa la matriz grafica
-        for(int i=0;i<mat.length;i++){      //se hace que el juego tenga una lista de cajas
-        
-           for (int x=0;x<mat[i].length;x++){ // forma de recorrer la matriz  
-               
-               if(mat[i][x]==1){        //represenacion de la caja en matriz logica
-                   cont++;
-                   Cajas c=new Cajas(cont,i,x);
-                   box.add(c); }
-               
-               else if(mat[i][x]==3){
-                         perso.setPosicionFila(x);
-                         perso.setPosicionColumna(i);
-                           
-                       }    
-               }}
-           
-        
+
+        mat = jugando.getMatrizLogica();
+        int cont = 0;
+        filas = jugando.getFilas();
+        col = jugando.getColumnas();
+        grafica = new JLabel[filas][col];     //se inicializa la matriz grafica
+        for (int i = 0; i < mat.length; i++) {      //se hace que el juego tenga una lista de cajas
+
+            for (int x = 0; x < mat[i].length; x++) { // forma de recorrer la matriz  
+
+                if (mat[i][x] == 1) {        //represenacion de la caja en matriz logica
+                    cont++;
+                    Cajas c = new Cajas(cont, i, x);
+                    box.add(c);
+                } else if (mat[i][x] == 3) {
+                    perso.setPosicionFila(i);
+                    perso.setPosicionColumna(x);
+
+                }
+            }
+        }
+
         games.setCajas(box);  // se asigna el arreglo de cajas
-            
-         
-         
-         this.setSize(new Dimension(jugando.getColumnas()*60+300,jugando.getFilas()*60+150)); //se determina tamaño de la ventana
-         //games.setMatrizLogica(jugando.getMatrizLogica());  //se obtiene la matriz lógica
-         
-         setimagenes();
-        
+
+        this.setSize(new Dimension(jugando.getColumnas() * 60 + 300, jugando.getFilas() * 60 + 150)); //se determina tamaño de la ventana
+        //games.setMatrizLogica(jugando.getMatrizLogica());  //se obtiene la matriz lógica
+
+        setimagenes();
+
     }
 
     /**
@@ -113,6 +126,29 @@ public class game extends javax.swing.JFrame  {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
+    //true si el jugador gano
+    //false si no ha ganado
+    public void determinarGane() {
+        int contador = 0;  // contar los puntos que hay para saber si gano el jugador
+
+        for (int i = 0; i < mat.length; i++) {      //se hace que el juego tenga una lista de cajas
+
+            for (int x = 0; x < mat[i].length; x++) { // forma de recorrer la matriz  
+
+                if (mat[i][x] == 5) {        //represenacion de la caja en matriz logica
+                    contador++;
+                }
+            }
+
+        }
+
+        if (contador == jugando.getCantCajas()) {  //si hay tantas llegadas como cajas habian
+            panel.setFocusable(false);  //se inhabilita lectura de
+            gane.setVisible(true);
+            cron.detener();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,6 +166,7 @@ public class game extends javax.swing.JFrame  {
         controlZ = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         reset = new javax.swing.JButton();
+        gane = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sokoban");
@@ -178,13 +215,25 @@ public class game extends javax.swing.JFrame  {
             }
         });
 
+        gane.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
+        gane.setForeground(new java.awt.Color(255, 255, 51));
+        gane.setText("Has superado este nivel");
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(reset)
+                        .addGap(28, 28, 28)
+                        .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(controlZ)
+                        .addGap(61, 61, 61)
+                        .addComponent(exit))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,25 +242,25 @@ public class game extends javax.swing.JFrame  {
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(bestmov, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(reset)
-                        .addGap(28, 28, 28)
-                        .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(controlZ)
-                                .addGap(61, 61, 61)
-                                .addComponent(exit)))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel3))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,20 +269,20 @@ public class game extends javax.swing.JFrame  {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
+                            .addComponent(jLabel1)
                             .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
-                                .addComponent(jLabel3)))
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(moves, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tiempo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(bestmov, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(moves, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bestmov, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reiniciar)
                     .addComponent(controlZ)
@@ -270,115 +319,258 @@ public class game extends javax.swing.JFrame  {
     }//GEN-LAST:event_controlZActionPerformed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-    
+
     }//GEN-LAST:event_formKeyReleased
 
     private void panelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelKeyReleased
         // TODO add your handling code here:
         int a;
         System.out.println(evt.getKeyCode());
-        switch(evt.getKeyCode()){   //se obtiene la tecla pulsada
-             
-             case KeyEvent.VK_LEFT:
-                        a=mat[perso.getPosicionFila()][perso.getPosicionColumna()-1];
-                    if ((a!=1)&&(a!=0)){
-                        mat[perso.getPosicionFila()-1][perso.getPosicionColumna()]=perso.getId();
-                        mat[perso.getPosicionFila()][perso.getPosicionColumna()]=4;
-                       
-                        grafica[perso.getPosicionColumna()-1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
-                        perso.setPosicionColumna(perso.getPosicionColumna()-1);
-                        }
-                 break;
-                 
-             case KeyEvent.VK_RIGHT:
-                    a=mat[perso.getPosicionFila()][perso.getPosicionColumna()+1];
-                    if ((a!=1)&&(a!=0)){
-                        mat[perso.getPosicionFila()][perso.getPosicionColumna()+1]=perso.getId();
-                        mat[perso.getPosicionFila()][perso.getPosicionColumna()]=4;
-                       
-                        grafica[perso.getPosicionColumna()+1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
-                        perso.setPosicionColumna(perso.getPosicionColumna()+1);
-                        }
-                    
-                 break;
-                 
-             case KeyEvent.VK_UP:
-                 a=mat[perso.getPosicionFila()-1][perso.getPosicionColumna()];
-                    if ((a!=1)&&(a!=0)){
-                        mat[perso.getPosicionFila()-1][perso.getPosicionColumna()]=perso.getId();
-                        mat[perso.getPosicionFila()][perso.getPosicionColumna()]=4;
-                       
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()-1].setIcon(getImagen(perso.getId()));
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
-                        perso.setPosicionFila(perso.getPosicionFila()-1);
-                        }
-                 
-                    
-                 break;
-                 
-             case KeyEvent.VK_DOWN:
-                      a=mat[perso.getPosicionFila()+1][perso.getPosicionColumna()];
-                    if ((a!=1)&&(a!=0)){
-                        mat[perso.getPosicionFila()-1][perso.getPosicionColumna()]=perso.getId();
-                        mat[perso.getPosicionFila()][perso.getPosicionColumna()]=4;
-                       
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()-1].setIcon(getImagen(perso.getId()));
-                        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
-                        perso.setPosicionFila(perso.getPosicionFila()-1);
-                        }
-                   
-                 break;
-                 
-                    
-        
+        switch (evt.getKeyCode()) {   //se obtiene la tecla pulsada
+
+            case KeyEvent.VK_LEFT:
+                int b = perso.getPosicionFila();
+                int c = perso.getPosicionColumna();
+                a = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1];
+
+                
+                    if (a != 5) {
+                        moverIzquierda();
+                    }
+                break;
+
+            case KeyEvent.VK_RIGHT:
+                a = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1];
+
+               
+                    if (a != 5) {
+                        moverDerecha();
+                    }
+                
+
+                break;
+
+            case KeyEvent.VK_UP:
+                a = mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()];
+
+                
+
+                    if (a != 5) {
+                        moverArriba();
+                    }
+               
+                break;
+
+            case KeyEvent.VK_DOWN:
+                a = mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()];
+
+               
+                    if (a != 5) {      //si no fue una caja que llego al destino
+                        moverAbajo();
+                    }
+               
+                break;
+
         }
     }//GEN-LAST:event_panelKeyReleased
 
-    
-    public ImageIcon getImagen(int num){
-        
-        switch(num){
-        
-            case 0: 
+    public void moverAbajo() {
+        int a;
+        a = mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()];
+        if ((a != 1) && (a != 0) && (a != 2)) {
+            mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            perso.setPosicionFila(perso.getPosicionFila() + 1);
+            
+        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 2)) {
+            mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] = 5;
+            
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(5));
+            perso.setPosicionFila(perso.getPosicionFila() + 1);
+
+        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)) {
+            mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] = 1;
+
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(1));
+            perso.setPosicionFila(perso.getPosicionFila() + 1);
+
+        }
+
+        movimientos++;
+        moves.setText(String.valueOf(movimientos));
+        determinarGane();
+    }
+
+    public void moverArriba() {
+        int a;
+        a = mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()];
+
+        if ((a != 1) && (a != 0) && (a != 2)) {
+            mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            perso.setPosicionFila(perso.getPosicionFila() - 1);
+
+        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 2)) {
+            mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] = 5;
+
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(5));
+            perso.setPosicionFila(perso.getPosicionFila() - 1);
+
+        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)) {
+            mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] = 1;
+
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 1].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(1));
+            perso.setPosicionFila(perso.getPosicionFila() - 1);
+
+        }
+
+        movimientos++;
+        moves.setText(String.valueOf(movimientos));
+        determinarGane();
+    }
+
+    public void moverDerecha() {
+        int a;
+        a = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1];
+        if ((a != 1) && (a != 0) && (a != 2)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+
+            grafica[perso.getPosicionColumna() + 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            perso.setPosicionColumna(perso.getPosicionColumna() + 1);
+        } //mover caja
+        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 2)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] = 5;       //caja llego al destino
+
+            grafica[perso.getPosicionColumna() + 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(5)); //caja de otro color
+            perso.setPosicionColumna(perso.getPosicionColumna() + 1);
+
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] = 1;
+
+            grafica[perso.getPosicionColumna() + 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(1));
+            perso.setPosicionColumna(perso.getPosicionColumna() + 1);
+        }
+
+        movimientos++;
+        moves.setText(String.valueOf(movimientos));
+        determinarGane();
+    }
+
+    public void moverIzquierda() {
+        int a;
+        int b = perso.getPosicionFila();
+        int c = perso.getPosicionColumna();
+        a = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1];
+
+        if ((a != 1) && (a != 0) && (a != 2)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+
+            grafica[perso.getPosicionColumna() - 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            perso.setPosicionColumna(perso.getPosicionColumna() - 1);
+        } //mover caja
+        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 2)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] = 5;       //caja de otro color
+
+            grafica[perso.getPosicionColumna() - 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(5));
+            perso.setPosicionColumna(perso.getPosicionColumna() - 1);
+
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1)) {
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
+            mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
+            mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] = 1;
+
+            grafica[perso.getPosicionColumna() - 1][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+            grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+            grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(1));
+            perso.setPosicionColumna(perso.getPosicionColumna() - 1);
+        }
+
+        movimientos++;
+        moves.setText(String.valueOf(movimientos));
+        determinarGane();
+
+    }
+
+    public ImageIcon getImagen(int num) {
+
+        switch (num) {
+
+            case 0:
                 return new ImageIcon(getClass().getResource("/ImagenesUsuario/pared.png"));
-                
+
             case 1:
                 return new ImageIcon(getClass().getResource("/ImagenesUsuario/caja.png"));
-            
+
             case 2:
                 return new ImageIcon(getClass().getResource("/ImagenesUsuario/diamante.png"));
-            
+
             case 3:
                 return new ImageIcon(getClass().getResource("/ImagenesUsuario/persona.png"));
-       
-            default: 
-               return new ImageIcon(getClass().getResource("/ImagenesUsuario/fond.png"));
+
+            case 5:
+                return new ImageIcon(getClass().getResource("/ImagenesUsuario/cajap.png"));
+            default:
+                return new ImageIcon(getClass().getResource("/ImagenesUsuario/fond.png"));
         }
-        
+
     }
-    
-    public void setimagenes(){
-    
-    for (int i=0; i<filas;i++){
-     
-        for (int x=0;x<col;x++){
-                
-            grafica[i][x]=new JLabel();
-            grafica[i][x].setOpaque(true);    //si no se coloca no se vé la imagen del label
-            grafica[i][x].setBounds((i*60)+80,(x*60)+80,60,60);
-            grafica[i][x].setVisible(true);
-            //grafica[i][x].setBackground(Color.BLUE);
-            grafica[i][x].setIcon(getImagen(mat[x][i]));    //las dos estan en orden diferente
-            panel.add(grafica[i][x]);   //se agrega el panel
-            
-        }   
+
+    public void setimagenes() {
+
+        for (int i = 0; i < filas; i++) {
+
+            for (int x = 0; x < col; x++) {
+
+                grafica[i][x] = new JLabel();
+                grafica[i][x].setOpaque(true);    //si no se coloca no se vé la imagen del label
+                grafica[i][x].setBounds((i * 60) + 80, (x * 60) + 80, 60, 60);
+                grafica[i][x].setVisible(true);
+                //grafica[i][x].setBackground(Color.BLUE);
+                grafica[i][x].setIcon(getImagen(mat[x][i]));    //las dos estan en orden diferente
+                panel.add(grafica[i][x]);   //se agrega el panel
+
+            }
+        }
     }
-    }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -419,6 +611,7 @@ public class game extends javax.swing.JFrame  {
     private javax.swing.JLabel bestmov;
     private javax.swing.JButton controlZ;
     private javax.swing.JButton exit;
+    private javax.swing.JLabel gane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -431,11 +624,4 @@ public class game extends javax.swing.JFrame  {
     private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables
 
-   
-
-    
-
-    
-
-    
 }

@@ -35,6 +35,7 @@ public class Juego {
     public Juego() {
         person = new Personaje(0,0); 
         ultimaCaja=new int [3];     //un arreglo de 3 , para guardar el numero de caja, y la posicion
+        ultimoPersonaje=new int[2];
     }
 
     // se obtiene un contador de movimientos
@@ -212,6 +213,9 @@ public class Juego {
     }
     //funcion que establece la ultima posicion del personaje en la matriz logica
     public void setUltimaPosicionPersonaje(int posX,int posY){
+        
+        person.setPosicionColumna(posX);
+        person.setPosicionFila(posY);
         
     }
     //funcion que retorna esa ultima posicion

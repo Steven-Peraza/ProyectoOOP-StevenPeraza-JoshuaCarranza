@@ -68,6 +68,8 @@ public class ProyectoOOP {
                         {0,0,0,0,0,0,0,0,0,0},
                          };
         nuevo.setMatrizLogica(matriz);// se asigna matriz logica
+        nuevo.setBestMoves(10);
+        nuevo.setCantCajas(2);
         primero.setNivelActual(1);
         nuevo.setNumNivel(1);
         
