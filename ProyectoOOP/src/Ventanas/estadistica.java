@@ -8,6 +8,7 @@ package Ventanas;
 import Clases.Jugador;
 import Clases.Usuario;
 import java.awt.Color;
+import java.awt.event.KeyListener;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
 

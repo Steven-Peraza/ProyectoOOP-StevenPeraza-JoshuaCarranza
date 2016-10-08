@@ -56,7 +56,11 @@ public class Nivel {
     }
 
     public void setMatrizLogica(int[][] matrizLogica) {
-        this.matrizLogica = matrizLogica;
+        //this.matrizLogica = matrizLogica;
+        
+                
+            this.matrizLogica=matrizLogica;       
+       
     }
 
     public int getColumnas() {
