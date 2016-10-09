@@ -21,6 +21,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import proyectooop.ProyectoOOP;
@@ -38,10 +40,15 @@ public class game extends javax.swing.JFrame {
     Juego games = new Juego();  //instancia de juego
     ArrayList<Nivel> level;    //inicializacion de variables
     ArrayList<Cajas> box = new ArrayList();
+    //ArrayList<Personaje> lisMov = new ArrayList();
     String rules;
-
+    
     Cronometro cron;
 
+    ArrayList<Personaje> listMovPer = new ArrayList();
+    ArrayList<Cajas> listMovCajas = new ArrayList();
+    int maxZ = 0;
+    
     Jugador uno;
     String[] reglas;
     Personaje perso = new Personaje(0, 0);
@@ -335,11 +342,33 @@ public class game extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        
+    
+        if (maxZ < 2){
+        mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4; //se borra el personaje de la posicion donde se encuentre, en las dos matrices
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+        Collections.reverse(listMovPer);
+        for (int i = 0; i < listMovPer.size(); i+=2){
+            perso.setPosicionFila(listMovPer.get(i+1).getPosicionFila());  //se vuelve a colocar el personaje en la posicion inicial
+            perso.setPosicionColumna(listMovPer.get(i).getPosicionColumna());
+            listMovPer.remove(i);
+            listMovPer.remove(i);
+            break;
+        }
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+        Collections.reverse(listMovPer);
+        movimientos -= 1;
+        moves.setText(String.valueOf(movimientos));
+        maxZ += 1;}
+        else
+            System.out.println("Ha alcanzado el maximo de controls Z");
     }//GEN-LAST:event_resetActionPerformed
 
     private void controlZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlZActionPerformed
-        // TODO add your handling code here:
+        mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4; //se borra el personaje de la posicion donde se encuentre, en las dos matrices
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+        perso.setPosicionFila(perso.getUltimaPosFila());  //se vuelve a colocar el personaje en la posicion inicial
+        perso.setPosicionColumna(perso.getUltimaPosColumna());
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
     }//GEN-LAST:event_controlZActionPerformed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
@@ -430,7 +459,14 @@ public class game extends javax.swing.JFrame {
     public void moverAbajo() {
         int a;
         a = mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()];
+        Personaje nuevo = new Personaje(perso.getPosicionFila(),perso.getPosicionColumna());
         if ((a != 1) && (a != 0) && (a != 2)) {
+            /*perso.setUltimaPosFila(perso.getPosicionFila());
+            perso.setUltimaPosColumna(perso.getPosicionColumna());*/
+            
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -439,6 +475,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionFila(perso.getPosicionFila() + 1);
             
         } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] = 5;
@@ -449,6 +488,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionFila(perso.getPosicionFila() + 1);
 
         } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] = 1;
@@ -468,8 +510,12 @@ public class game extends javax.swing.JFrame {
     public void moverArriba() {
         int a;
         a = mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()];
+        Personaje nuevo = new Personaje(perso.getPosicionFila(),perso.getPosicionColumna());
 
         if ((a != 1) && (a != 0) && (a != 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -478,6 +524,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
         } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] = 5;
@@ -488,6 +537,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
         } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] = 1;
@@ -507,7 +559,12 @@ public class game extends javax.swing.JFrame {
     public void moverDerecha() {
         int a;
         a = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1];
+        Personaje nuevo = new Personaje(perso.getPosicionFila(),perso.getPosicionColumna());
+        
         if ((a != 1) && (a != 0) && (a != 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -516,6 +573,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
         } //mover caja
         else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] = 5;       //caja llego al destino
@@ -526,6 +586,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
 
         } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] = 1;
@@ -546,8 +609,12 @@ public class game extends javax.swing.JFrame {
         int b = perso.getPosicionFila();
         int c = perso.getPosicionColumna();
         a = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1];
+        Personaje nuevo = new Personaje(perso.getPosicionFila(),perso.getPosicionColumna());
 
         if ((a != 1) && (a != 0) && (a != 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -556,6 +623,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
         } //mover caja
         else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 2)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] = 5;       //caja de otro color
@@ -566,6 +636,9 @@ public class game extends javax.swing.JFrame {
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
         } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1)) {
+            listMovPer.add(nuevo);
+            listMovPer.add(nuevo);
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] = 1;
