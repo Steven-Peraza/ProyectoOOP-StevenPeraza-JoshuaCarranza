@@ -298,7 +298,7 @@ public class historial extends javax.swing.JFrame {
                   estate.setText(arreglo.get(indice).getEstado());
                   movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
                   movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
-                  time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" minutos"));
+                  time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
                   veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
                   
                     
@@ -339,7 +339,7 @@ public class historial extends javax.swing.JFrame {
               estate.setText(arreglo.get(indice).getEstado());
               movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
               movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
-              time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" minutos"));
+              time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
               veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
                no.setVisible(false);
             }
@@ -359,7 +359,7 @@ public class historial extends javax.swing.JFrame {
              estate.setText(arreglo.get(indice).getEstado());
              movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
              movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
-             time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" minutos"));
+             time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
              veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
              no.setVisible(false);
         

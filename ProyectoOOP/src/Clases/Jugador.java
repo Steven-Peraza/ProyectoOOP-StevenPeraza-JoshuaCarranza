@@ -61,6 +61,21 @@ public class Jugador extends Usuario{
     
     // se va agregar un nivel al historial
     public void setArrayHistorial(Historial var) {
+        for (int i=0;i<arrayHistorial.size();i++){
+                if (arrayHistorial.get(i).getNumNivel()==var.getNumNivel()){
+                
+                if (arrayHistorial.get(i).getEstado().equals("Perdido")){
+                    int cont=0;
+                    while(cont <arrayHistorial.get(i).getVecesJugado()){
+                        var.setVecesJugado();
+                        cont++;
+                    }
+                    arrayHistorial.set(i, var);// se remplaza el historial
+                    return;
+                        }
+                }
+            }
+        
         this.arrayHistorial.add(var);
     }
     

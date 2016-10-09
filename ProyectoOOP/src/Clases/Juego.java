@@ -216,6 +216,8 @@ public class Juego {
         
         person.setPosicionColumna(posX);
         person.setPosicionFila(posY);
+        ultimoPersonaje[0]=posX;
+        ultimoPersonaje[1]=posY;
         
     }
     //funcion que retorna esa ultima posicion
@@ -227,6 +229,11 @@ public class Juego {
     public void buscarNivel(int level){
         //nivel va a ser una referencia a level...
     }
+
+    public ArrayList<Cajas> getCajas() {
+        return cajas;
+    }
+    
     
     //toString
     @Override
