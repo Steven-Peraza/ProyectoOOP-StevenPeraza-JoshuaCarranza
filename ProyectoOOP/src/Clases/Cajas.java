@@ -15,6 +15,8 @@ public class Cajas {
     private int numeroCaja;
     private int posicionFila;
     private int posicionColumna;
+    private int posicionIniFila;
+    private int posicionIniColumna;
 
     //posicion inicial de la caja y el numero de caja 
     public Cajas(int numeroCaja, int posicionFila, int posicionColumna) {
@@ -23,6 +25,15 @@ public class Cajas {
         this.posicionColumna = posicionColumna;
     }
 
+    public Cajas(int numeroCaja, int posicionFila, int posicionColumna, int posicionIniFila, int posicionIniColumna) {
+        this.numeroCaja = numeroCaja;
+        this.posicionFila = posicionFila;
+        this.posicionColumna = posicionColumna;
+        this.posicionIniFila = posicionIniFila;
+        this.posicionIniColumna = posicionIniColumna;
+    }
+
+    
     
     //funcion que retorna el numero de la caja dentro del juego
     public int getNumeroCaja() {
@@ -48,6 +59,25 @@ public class Cajas {
     public void setPosicionColumna(int posicionColumna) {
         this.posicionColumna = posicionColumna;
     }
+    
+    // se retorna la posicion en y del personaje dentro de la matriz logica
+    public int getIniPosicionFila() {
+        return posicionIniFila;
+    }
+
+    public void setIniPosicionFila(int posicionFila) {
+        this.posicionIniFila = posicionFila;
+    }
+    
+    // se asigna la posicion en x del personaje dentro de la matriz logica
+    public int getIniPosicionColumna() {
+        return posicionIniColumna;
+    }
+
+    public void setIniPosicionColumna(int posicionColumna) {
+        this.posicionIniColumna = posicionColumna;
+    }
+    
     //funcion que retorna el numero que representa a las cajas en la matriz logica
     public int getId() {
         return id;

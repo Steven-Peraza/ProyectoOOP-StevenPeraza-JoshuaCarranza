@@ -9,6 +9,15 @@ import Clases.Administrador;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import static proyectooop.ProyectoOOP.programa;
 import proyectooop.ProyectoOOP;
@@ -24,9 +33,9 @@ public class ventanaAdministrador extends javax.swing.JFrame {
      * Creates new form pantallaInicial
      */
     public Administrador admin;
+    private static Clip clip3;
     
-    
-    public ventanaAdministrador() {
+    public ventanaAdministrador() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         initComponents();
         admin=(Administrador)ProyectoOOP.usuario;
         bienvenida.setForeground(Color.black);
@@ -49,6 +58,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         ImageIcon icono= new ImageIcon(nueva);
          imagen.setIcon(icono);
          imagen.setSize(155, 175);
+         
+         if (clip3 == null)
+            Musica("Anville_Town.wav");
+         else
+             System.out.println("Sigue la mùsica");
     }
 
     /**
@@ -65,6 +79,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         exit = new javax.swing.JToggleButton();
         imagen = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         agregarnivel = new javax.swing.JMenu();
         hacernivel = new javax.swing.JMenuItem();
@@ -82,24 +97,42 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana Administrador");
         setResizable(false);
+        getContentPane().setLayout(null);
 
         bienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(bienvenida);
+        bienvenida.setBounds(36, 32, 314, 47);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel1.setText("En el menu de la parte superior de la ventana ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 130, 297, 32);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel2.setText("encontrará las acciones que puedes realizar");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 170, 297, 32);
 
+        exit.setFont(new java.awt.Font("Stencil Std", 0, 11)); // NOI18N
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
             }
         });
+        getContentPane().add(exit);
+        exit.setBounds(340, 220, 70, 34);
+        getContentPane().add(imagen);
+        imagen.setBounds(320, 10, 136, 155);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/fondomenusJyA.fw.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 460, 290);
 
         agregarnivel.setText("Niveles");
+        agregarnivel.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
+        hacernivel.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         hacernivel.setText("Hacer un Nivel");
         hacernivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +141,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
         agregarnivel.add(hacernivel);
 
+        agregados.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         agregados.setText("Ver informacion de niveles agregados");
         agregados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +153,9 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jMenuBar1.add(agregarnivel);
 
         verHistorial.setText("Usuarios");
+        verHistorial.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         jMenuItem1.setText("Eliminar Usuario");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +165,9 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         verHistorial.add(jMenuItem1);
 
         jMenu1.setText("Ver usuarios con");
+        jMenu1.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
+        optimos.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         optimos.setText("Más ganes  óptimos");
         optimos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +176,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
         jMenu1.add(optimos);
 
+        records.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         records.setText("Más record rotos");
         records.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +185,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
         jMenu1.add(records);
 
+        superado.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         superado.setText("Cierto nivel superado");
         superado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +194,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
         jMenu1.add(superado);
 
+        insistencia.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         insistencia.setText("Insistencia en un nivel");
         insistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +205,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
         verHistorial.add(jMenu1);
 
+        estadisticas.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         estadisticas.setText("Imprimir estadisticas de usuario");
         estadisticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +214,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
         verHistorial.add(estadisticas);
 
+        jMenuItem2.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         jMenuItem2.setText("Ver historial de un usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,47 +227,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        // TODO add your handling code here:
+         clip3.stop();
          this.dispose();
          ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
@@ -266,15 +273,14 @@ public class ventanaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_superadoActionPerformed
 
     private void agregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregadosActionPerformed
-        // TODO add your handling code here:
-       
+
         this.dispose();
         new agregados().setVisible(true);
         
     }//GEN-LAST:event_agregadosActionPerformed
 
     private void hacernivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacernivelActionPerformed
-        // TODO add your handling code here:
+        clip3.stop();
         this.dispose();
         new hacerNivel().setVisible(true);
         
@@ -293,6 +299,14 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         new insistentes().setVisible(true);
     }//GEN-LAST:event_insistenciaActionPerformed
 
+    public void Musica(String soundFile) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        File f = new File("./" + soundFile);
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+        clip3 = AudioSystem.getClip();
+        clip3.open(audioIn);
+        clip3.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -324,7 +338,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaAdministrador().setVisible(true);
+                try {
+                    new ventanaAdministrador().setVisible(true);
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                    Logger.getLogger(ventanaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -340,6 +358,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem insistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

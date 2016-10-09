@@ -3,16 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Ventanas;
 
+//import Clases.Cajas;
+//import Clases.Historial;
+import Clases.Cajas;
 import Clases.Cajas;
 import Clases.Historial;
 import Clases.Juego;
 import Clases.Jugador;
 import Clases.Nivel;
 import Clases.Personaje;
+import Ventanas.Cronometro;
+import Ventanas.ventanaJugador;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -100,7 +112,7 @@ public class game extends javax.swing.JFrame {
         int n = Integer.parseInt(nu);
         games.setReglaMovimientosCajas(Integer.parseInt(nu));
         games.setDeshacer(Integer.parseInt(reglas[1]));
-
+        
         mat = jugando.getMatrizLogica();
         int cont = 0;
         filas = jugando.getFilas();
@@ -112,11 +124,13 @@ public class game extends javax.swing.JFrame {
 
                 if (mat[i][x] == 1) {        //represenacion de la caja en matriz logica
                     cont++;
-                    Cajas c = new Cajas(cont, i, x);
+                    Cajas c = new Cajas(cont, i, x, i, x);
                     box.add(c);
                 } else if (mat[i][x] == 3) {
                     perso.setPosicionFila(i);
+                    perso.setIniPosicionFila(i);
                     perso.setPosicionColumna(x);
+                    perso.setIniPosicionColumna(x);
 
                 }
             }
@@ -224,8 +238,15 @@ public class game extends javax.swing.JFrame {
         jLabel3.setText("Nivel");
 
         reiniciar.setText("Reiniciar Juego");
+        reiniciar.setFocusable(false);
+        reiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reiniciarActionPerformed(evt);
+            }
+        });
 
         controlZ.setText("Deshacer Movimiento");
+        controlZ.setFocusable(false);
         controlZ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 controlZActionPerformed(evt);
@@ -240,6 +261,7 @@ public class game extends javax.swing.JFrame {
         });
 
         reset.setText("Repetir Nivel");
+        reset.setFocusable(false);
         reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetActionPerformed(evt);
@@ -348,22 +370,31 @@ public class game extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
       
-        //panel.revalidate();
-        //panel.repaint();    
+        try {
+            //panel.revalidate();
+            //panel.repaint();
+            
+            // this.remove(panel); // se elimina el panel
+            
+            moves.setText("");
+            bestmov.setText("");
+            tiempo.setText("");
+            nivel.setText("");
+            gane.setText("");
+            this.dispose();
+            new ventanaJugador().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-       // this.remove(panel); // se elimina el panel
-        
-        moves.setText("");
-        bestmov.setText("");
-        tiempo.setText("");
-        nivel.setText("");
-        gane.setText("");
-        this.dispose();
-        new ventanaJugador().setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_resetActionPerformed
 
     private void controlZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlZActionPerformed
@@ -430,8 +461,12 @@ public class game extends javax.swing.JFrame {
                      if ((a != 5)&&(b!=5)) {
                         moverArriba();
                     }
+
                 }
                 
+
+                    
+
                 break;
                     
                
@@ -459,6 +494,7 @@ public class game extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_panelKeyReleased
+
 
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
         // TODO add your handling code here:
@@ -749,6 +785,37 @@ public class game extends javax.swing.JFrame {
         determinarGane();
     }
     
+
+    private void reiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarActionPerformed
+        mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4; //se borra el personaje de la posicion donde se encuentre, en las dos matrices
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+        perso.setPosicionFila(perso.getIniPosicionFila());  //se vuelve a colocar el personaje en la posicion inicial
+        perso.setPosicionColumna(perso.getIniPosicionColumna());
+        grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(perso.getId()));
+        for (int i = 0; i < mat.length; i++) {      //se hace que el juego tenga una lista de cajas
+
+            for (int x = 0; x < mat[i].length; x++) { // forma de recorrer la matriz  
+
+                if (mat[i][x] == 1) {        //represenacion de la caja en matriz logica
+                    mat[i][x] = 4;
+                    grafica[x][i].setIcon(getImagen(4));
+                }
+                else if (mat[i][x] == 5){
+                    mat[i][x] = 2;
+                    grafica[x][i].setIcon(getImagen(2));
+                }
+                    
+            }
+        for (int u = 0; u < box.size();u++){
+            mat[box.get(u).getIniPosicionFila()][box.get(u).getIniPosicionColumna()] = 1;
+            grafica[box.get(u).getIniPosicionColumna()][box.get(u).getIniPosicionFila()].setIcon(getImagen(1));
+        }
+        movimientos = 0;    //los movimientos vuelven a cero
+        moves.setText(String.valueOf(movimientos));
+        }
+    }//GEN-LAST:event_reiniciarActionPerformed
+
+
     public void moverAbajo() {
         int a;
         a = mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()];
@@ -1028,7 +1095,7 @@ public class game extends javax.swing.JFrame {
     private javax.swing.JLabel nivel;
     private javax.swing.JPanel panel;
     private javax.swing.JButton reiniciar;
-    private javax.swing.JButton reset;
+    public javax.swing.JButton reset;
     private javax.swing.JButton siguiente;
     private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables

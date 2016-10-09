@@ -11,7 +11,14 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 import Clases.*;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import proyectooop.ProyectoOOP;
 import ventanas.*;
 import static proyectooop.ProyectoOOP.programa;
@@ -22,6 +29,8 @@ import static proyectooop.ProyectoOOP.programa;
  * @author Josua
  */
 public class inicioSesion extends javax.swing.JFrame {
+
+    private static Clip clip;
     
  
     
@@ -30,14 +39,15 @@ public class inicioSesion extends javax.swing.JFrame {
     /**
      * Creates new form inicioSesion
      */
-    public inicioSesion() {
+    public inicioSesion() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         initComponents();
         this.getContentPane().setBackground(new Color(200,200,255));    //color a la ventana
         this.setLocationRelativeTo(null);   //centrar pantalla
         ingresar.setForeground(Color.blue);             //color de la letra del boton
         registraAdmin.setForeground(Color.blue);
         registrarJugador.setForeground(Color.blue);
-        
+        Musica("Fortree_City.wav");
+
     }
 
     /**
@@ -120,9 +130,7 @@ public class inicioSesion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(480, 480, 480)
                 .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,13 +212,22 @@ public class inicioSesion extends javax.swing.JFrame {
             
             if ( ProyectoOOP.usuario instanceof Administrador){  // si es instancia de administrador
                         
-                    
+                    clip.stop();
+                try {
                     new ventanaAdministrador().setVisible(true);
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                    Logger.getLogger(inicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     this.dispose();
                 }
                 
             else{  
-                   new ventanaJugador().setVisible(true);
+                    clip.stop();
+                try {
+                    new ventanaJugador().setVisible(true);
+                } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
+                    Logger.getLogger(inicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
                    this.dispose();
             }
          
@@ -228,7 +245,7 @@ public class inicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void registrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJugadorActionPerformed
-        // TODO add your handling code here:
+
         this.dispose();
         new RegistrarJugador().setVisible(true);
         mensaje.setText("");
@@ -237,7 +254,13 @@ public class inicioSesion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registrarJugadorActionPerformed
     
-   
+   public static void Musica(String soundFile) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    File f = new File("./" + soundFile);
+    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+    clip = AudioSystem.getClip();
+    clip.open(audioIn);
+    clip.loop(Clip.LOOP_CONTINUOUSLY);
+}
     
     
     /**
@@ -249,6 +272,8 @@ public class inicioSesion extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -270,7 +295,15 @@ public class inicioSesion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new inicioSesion().setVisible(true);
+                try {
+                    new inicioSesion().setVisible(true);
+                } catch (LineUnavailableException ex) {
+                    Logger.getLogger(inicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(inicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(inicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

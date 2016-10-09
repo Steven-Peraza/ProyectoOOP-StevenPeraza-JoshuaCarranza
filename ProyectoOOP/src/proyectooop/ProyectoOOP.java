@@ -23,6 +23,9 @@ import Clases.Nivel;
 import Clases.Personaje;
 import Clases.Reglas;
 import Clases.Usuario;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Timer;
 //import Ventanas.*;
 
@@ -34,14 +37,22 @@ public class ProyectoOOP {
      */
     
 
-    public static inicioSesion ventana=new inicioSesion();
+
+    
+
+    public static Timer timer;
+    public static inicioSesion ventana;
+
     public static Programa programa=new Programa();
     public static int cajas;
     public static int z;
     
     public static Usuario usuario;
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         // TODO code application logic here
+        ventana= new inicioSesion();
+
         //String nombre, int cedula, String correo, String contraseña, String fechaRegistro
         Administrador h=new Administrador("alguien",23000000,"nada","sd","10/10/2010");
         
@@ -59,7 +70,12 @@ public class ProyectoOOP {
         Jugador prim=new Jugador("alguien4",300004000,"joshua@gmail.com","holass","30 de mayo");
         Jugador pri=new Jugador("alguien5",300000700,"joshua@gmail.com","holaa","30 de mayo");
         Jugador pr=new Jugador("alguien6",300000060,"joshua@gmail.com","holae","30 de mayo");
+
         primero.setNivelActual(1);
+
+
+        
+
         
         Nivel nuevo= new Nivel(10,10);
        int [][]matriz={ {0,0,0,0,0,0,0,0,0,0},
