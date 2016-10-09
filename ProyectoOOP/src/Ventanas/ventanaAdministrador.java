@@ -96,7 +96,6 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana Administrador");
-        setPreferredSize(new java.awt.Dimension(461, 307));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -128,7 +127,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/fondomenusJyA.fw.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, -30, 460, 310);
+        jLabel3.setBounds(0, 0, 460, 290);
 
         agregarnivel.setText("Niveles");
         agregarnivel.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N

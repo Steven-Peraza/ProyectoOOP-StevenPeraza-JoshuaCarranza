@@ -62,7 +62,9 @@ public class Cronometro extends Thread {
     
     public void detener(){
     
-        estado=false;
+        estado=false;       //para detener ciclo del reloj
+        
+        
     }
 
     public int getTotalSegundos() {

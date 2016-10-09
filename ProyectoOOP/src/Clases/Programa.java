@@ -513,6 +513,9 @@ public class Programa {
         texto+=",";
         return texto;
     }
+    
+    
+    
 
     // calcula la diferencia entre los movimientos hechos por el usuario
     // y los que eran necesarios para ganar;
