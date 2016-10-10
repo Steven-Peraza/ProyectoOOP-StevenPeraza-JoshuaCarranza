@@ -17,6 +17,7 @@ import Clases.Nivel;
 import Clases.Personaje;
 import Ventanas.Cronometro;
 import Ventanas.ventanaJugador;
+import static Ventanas.ventanaJugador.Musica;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -27,11 +28,17 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
 
@@ -72,25 +79,27 @@ public class game extends javax.swing.JFrame {
     int filas;
     int col;
     int movimientos = 0;
+    private static Clip clip3;
 
-    public game() {
+    public game() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         initComponents();
-       
-        
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        Musica("Hyrule_Field.wav");
         jugando=null;
         perso= new Personaje(0, 0);
         niv=0;
         filas=0;
         col=0;
         siguiente.setFocusable(pasar);  //inhabilita el focus del boton para no afectar el juego
-        tiempo.setForeground(Color.blue);
+        tiempo.setForeground(Color.red);
         cron = new Cronometro(tiempo);     //recibe el label por parametro
         cron.start();
         //se inicia
         gane.setVisible(false);
-        moves.setForeground(Color.blue);
-        bestmov.setForeground(Color.blue);
-        nivel.setForeground(Color.blue);
+        moves.setForeground(Color.red);
+        bestmov.setForeground(Color.red);
+        nivel.setForeground(Color.red);
 
         panel.setFocusable(true);
         moves.setText(String.valueOf(movimientos)); //mostrar mensajes
@@ -153,7 +162,7 @@ public class game extends javax.swing.JFrame {
         //games.setMatrizLogica(jugando.getMatrizLogica());  //se obtiene la matriz lógica
 
         setimagenes();
-
+        
     }
     
     
@@ -202,6 +211,8 @@ public class game extends javax.swing.JFrame {
             gane.setVisible(true);
             cron.detener();
             setHistorial();
+            controlZ.setEnabled(false);
+            reiniciar.setEnabled(false);
         }
     }
 
@@ -241,14 +252,27 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Stencilia-Bold", 0, 11)); // NOI18N
         jLabel1.setText("Movimientos");
 
+        jLabel4.setFont(new java.awt.Font("Stencilia-Bold", 0, 11)); // NOI18N
         jLabel4.setText("Best Moves");
 
+        moves.setFont(new java.awt.Font("Stencil Std", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Stencilia-Bold", 0, 11)); // NOI18N
         jLabel2.setText("Tiempo");
 
+        jLabel3.setFont(new java.awt.Font("Stencilia-Bold", 0, 11)); // NOI18N
         jLabel3.setText("Nivel");
 
+        nivel.setFont(new java.awt.Font("Stencil Std", 0, 14)); // NOI18N
+
+        bestmov.setFont(new java.awt.Font("Stencil Std", 0, 14)); // NOI18N
+
+        tiempo.setFont(new java.awt.Font("Stencil Std", 0, 14)); // NOI18N
+
+        reiniciar.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
         reiniciar.setText("Reiniciar Juego");
         reiniciar.setFocusable(false);
         reiniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -257,6 +281,7 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        controlZ.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
         controlZ.setText("Deshacer Movimiento");
         controlZ.setFocusable(false);
         controlZ.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +290,7 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        exit.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,6 +298,7 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        reset.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
         reset.setText("Repetir Nivel");
         reset.setFocusable(false);
         reset.addActionListener(new java.awt.event.ActionListener() {
@@ -280,10 +307,11 @@ public class game extends javax.swing.JFrame {
             }
         });
 
-        gane.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
-        gane.setForeground(new java.awt.Color(255, 255, 51));
-        gane.setText("Has superado este nivel");
+        gane.setFont(new java.awt.Font("Stencil Std", 2, 48)); // NOI18N
+        gane.setForeground(new java.awt.Color(255, 51, 51));
+        gane.setText("¡Nivel Superado!");
 
+        siguiente.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
         siguiente.setText("Siguiente Nivel");
         siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,13 +328,13 @@ public class game extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(reset)
-                        .addGap(28, 28, 28)
-                        .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(controlZ)
                         .addGap(18, 18, 18)
                         .addComponent(siguiente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(exit))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,9 +358,9 @@ public class game extends javax.swing.JFrame {
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
@@ -394,6 +422,7 @@ public class game extends javax.swing.JFrame {
             nivel.setText("");
             gane.setText("");
             this.dispose();
+            clip3.stop();
             new ventanaJugador().setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
@@ -584,7 +613,12 @@ public class game extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (pasar==true){
             this.dispose(); //cerrar ventana
-            new game().setVisible(true); //se abre una nueva ventana de juego
+            clip3.stop();
+            try {
+                new game().setVisible(true); //se abre una nueva ventana de juego
+            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
         
         panel.setFocusable(true);
@@ -1466,6 +1500,14 @@ public class game extends javax.swing.JFrame {
             }
         }
     }
+    
+    public static void Musica(String soundFile) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    File f = new File("./" + soundFile);
+    AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());  
+    clip3 = AudioSystem.getClip();
+    clip3.open(audioIn);
+    clip3.loop(Clip.LOOP_CONTINUOUSLY);
+    }
 
     /**
      * @param args the command line arguments
@@ -1498,7 +1540,11 @@ public class game extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new game().setVisible(true);
+                try {
+                    new game().setVisible(true);
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                    Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

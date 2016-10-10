@@ -279,7 +279,11 @@ public class ventanaJugador extends javax.swing.JFrame {
     private void juegoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNormalActionPerformed
         clip2.stop();
         this.dispose();
-        new game().setVisible(true);      
+        try {      
+            new game().setVisible(true);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_juegoNormalActionPerformed
 
     private void verEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEstadisticaActionPerformed
