@@ -75,8 +75,7 @@ public class game extends javax.swing.JFrame {
 
     public game() {
         initComponents();
-       
-        
+           
         jugando=null;
         perso= new Personaje(0, 0);
         niv=0;
@@ -241,6 +240,7 @@ public class game extends javax.swing.JFrame {
             gane.setVisible(true);
             cron.detener();
             setHistorial();
+            mat=respaldo;
         }
         
         
@@ -249,7 +249,7 @@ public class game extends javax.swing.JFrame {
             gane.setVisible(true);
             pasar=true;
             cron.detener();
-            
+            mat=respaldo;
             
         }
     }
