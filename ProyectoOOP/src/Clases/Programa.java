@@ -76,6 +76,7 @@ public class Programa {
 
     // se recibe un objeto nivel para agregar a la lista de niveles
     public void agregarNivel(Nivel nuevo) {
+        
         if (niveles.size() == 0) {   //si está vacio solo se agrega
             nuevo.setNumNivel(1); //se asigna como el nivel 1;
             niveles.add(nuevo);
@@ -89,13 +90,16 @@ public class Programa {
                 niveles.add(i, nuevo);        //se inserta en esa posicion
                 System.out.println("Se inserto"); 
                 System.out.println(niveles.size()); 
+                
                 for (int x = 0; x < niveles.size(); x++) {
-                    niveles.get(i).setNumNivel(x + 1); //se reasigna numero de niveles para ordenar
+                    niveles.get(x).setNumNivel(x+1); //se reasigna numero de niveles para ordenar
+                   
                 }
                 return;
 
             }
         }
+       
 
         niveles.add(nuevo); //se agrega el nivel si el numero no era igual a ningún otro      
         for (int i = 0; i < niveles.size(); i++) {

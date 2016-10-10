@@ -10,6 +10,7 @@ package Ventanas;
 //import Clases.Historial;
 import Clases.Cajas;
 import Clases.Cajas;
+import Clases.Grupo;
 import Clases.Historial;
 import Clases.Juego;
 import Clases.Jugador;
@@ -48,15 +49,25 @@ public class game extends javax.swing.JFrame {
     ArrayList<Nivel> level;    //inicializacion de variables
     ArrayList<Cajas> box = new ArrayList();
     String rules;
-
+    
+    ArrayList<Grupo> group; //array que guarda los grupos
+    
+    Grupo grupo;
+    ArrayList<Jugador> jug;
+    
+    
+    String []lev;
     Cronometro cron;
 
+    String joger;
     Jugador uno;
     String[] reglas;
     Personaje perso ;
     int[][] mat;
+    int [][]respaldo;
     Nivel jugando;
     int niv;
+    String[] jogador;
     JLabel[][] grafica;
     int filas;
     int col;
@@ -73,9 +84,10 @@ public class game extends javax.swing.JFrame {
         col=0;
         siguiente.setFocusable(pasar);  //inhabilita el focus del boton para no afectar el juego
         tiempo.setForeground(Color.blue);
+            // un hilo
         cron = new Cronometro(tiempo);     //recibe el label por parametro
         cron.start();
-        //se inicia
+        //se inicia el hilo cron
         gane.setVisible(false);
         moves.setForeground(Color.blue);
         bestmov.setForeground(Color.blue);
@@ -86,8 +98,30 @@ public class game extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         uno = (Jugador) ProyectoOOP.usuario;
-
-        niv = uno.getNivelActual();
+        if (ProyectoOOP.tipo.equals("normal")){
+            niv = uno.getNivelActual();}
+        
+        else{
+            group=programa.obtenerListaGrupo();
+            for (int i=0;i<group.size();i++){
+               
+                jogador=group.get(i).getJugadores().split(","); //lista de jugadores con split
+                for (int x=0;x<jogador.length;x++){
+                    
+                    if (uno.getNombre().equals(jogador[x])){
+                    
+                        grupo=group.get(i);
+                    }
+                }
+            }
+            joger=jogador[ProyectoOOP.j];   //asignado jugador en curso
+            lev=grupo.getNiveles().split(","); //array de niveles
+            
+            
+            niv=Integer.parseInt(lev[ProyectoOOP.pos]);
+                
+               }
+        
         level = ProyectoOOP.programa.getNiveles();
 
         for (int i = 0; i < level.size(); i++) {   //se busca el nivel en la lista general del programa
@@ -114,11 +148,26 @@ public class game extends javax.swing.JFrame {
         games.setDeshacer(Integer.parseInt(reglas[1]));
         
         mat = jugando.getMatrizLogica();
+       
+        
         int cont = 0;
         filas = jugando.getFilas();
         col = jugando.getColumnas();
+        
+        respaldo=new int [filas][col];
+        
+        for (int z=0;z<respaldo.length;z++){
+        
+        for (int c=0;c<respaldo[z].length;c++){
+            
+            respaldo[z][c]= mat[z][c];
+            
+            }
+        
+        }
+        
         grafica = new JLabel[filas][col];     //se inicializa la matriz grafica
-        for (int i = 0; i < mat.length; i++) {      //se hace que el juego tenga una lista de cajas
+        for (int i = 0; i < mat.length; i++) {      
 
             for (int x = 0; x < mat[i].length; x++) { // forma de recorrer la matriz  
 
@@ -186,11 +235,24 @@ public class game extends javax.swing.JFrame {
         }
 
         if (contador == jugando.getCantCajas()) {  //si hay tantas llegadas como cajas habian
+            
+            if (ProyectoOOP.tipo.equals("normal")){
             panel.setFocusable(false);  //se inhabilita lectura de
             gane.setVisible(true);
             cron.detener();
             setHistorial();
         }
+        
+        
+        else{
+            panel.setFocusable(false);  //se inhabilita lectura de
+            gane.setVisible(true);
+            pasar=true;
+            cron.detener();
+            
+            
+        }
+    }
     }
 
     @SuppressWarnings("unchecked")
@@ -498,10 +560,36 @@ public class game extends javax.swing.JFrame {
 
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
         // TODO add your handling code here:
-        if (pasar==true){
+        if ((pasar==true)&&(ProyectoOOP.tipo.equals("normal"))){
+            jugando.setMatrizLogica(respaldo);
             this.dispose(); //cerrar ventana
             new game().setVisible(true); //se abre una nueva ventana de juego
+            
             }
+        else if (pasar==true){
+            if((ProyectoOOP.pos==lev.length-1)&&(ProyectoOOP.j<jogador.length-1)){
+                ProyectoOOP.j++;
+                ProyectoOOP.pos=0;
+                jugando.setMatrizLogica(respaldo);
+                this.dispose(); //cerrar ventana
+                new game().setVisible(true); //se abre una nueva ventana de juego
+                 
+            }
+                
+            else if((ProyectoOOP.pos<lev.length-1)&&(ProyectoOOP.j<jogador.length-1)){
+                    ProyectoOOP.pos++;
+                    jugando.setMatrizLogica(respaldo);
+                    this.dispose(); //cerrar ventana
+                    new game().setVisible(true); //se abre una nueva ventana de juego
+                    
+            }
+            
+            else{
+                jugando.setMatrizLogica(respaldo);
+                this.dispose();
+            }
+        
+    }
         
         panel.setFocusable(true);
     }//GEN-LAST:event_siguienteActionPerformed

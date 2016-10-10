@@ -37,9 +37,10 @@ public class ProyectoOOP {
      */
     
 
-
-    
-
+    public static int pos=0;
+    public static int j=0;
+    public static Jugador grupal;
+    public static String tipo="normal";
     public static Timer timer;
     public static inicioSesion ventana;
 

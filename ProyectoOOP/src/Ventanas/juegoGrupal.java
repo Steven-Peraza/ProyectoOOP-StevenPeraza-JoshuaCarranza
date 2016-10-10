@@ -267,7 +267,13 @@ public class juegoGrupal extends javax.swing.JFrame {
            group.setGenerador(proyectooop.ProyectoOOP.usuario.getNombre()); //nombre del jugador que generó el grupo
            
            programa.agregaraGrupoLista(group);  //se agrega el grupo recien hecho a la lista de programa
+           
+           ProyectoOOP.tipo="grupal";
            System.out.print("A Juegar!!!");
+           new game().setVisible(true);
+           
+           
+           
        }
        else
            datos.setVisible(true);        
