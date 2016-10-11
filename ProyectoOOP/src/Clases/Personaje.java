@@ -15,6 +15,8 @@ public class Personaje {
     private int posicionColumna;
     private int posicionIniFila;
     private int posicionIniColumna;
+    private int ultimaPosFila;
+    private int ultimaPosColumna;
     private int id = 3;
 
     public Personaje(int posicionFila, int posicionColumna) {   //se asigna la posicion inical del personaje
@@ -66,6 +68,24 @@ public class Personaje {
 
     public void setIniPosicionColumna(int posicionColumna) {
         this.posicionIniColumna = posicionColumna;
+    }
+    
+    // se asigna la posicion en x del personaje dentro de la matriz logica
+    public int getUltimaPosColumna() {
+        return ultimaPosColumna;
+    }
+
+    public void setUltimaPosColumna(int posicionColumna) {
+        this.ultimaPosColumna = posicionColumna;
+    }
+    
+    // se asigna la posicion en x del personaje dentro de la matriz logica
+    public int getUltimaPosFila() {
+        return ultimaPosFila;
+    }
+
+    public void setUltimaPosFila(int posicionFila) {
+        this.ultimaPosFila = posicionFila;
     }
     
     public int getId() {

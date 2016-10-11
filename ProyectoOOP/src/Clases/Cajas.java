@@ -32,7 +32,10 @@ public class Cajas {
         this.posicionIniFila = posicionIniFila;
         this.posicionIniColumna = posicionIniColumna;
     }
-
+    public Cajas(int posicionFila, int posicionColumna) {
+        this.posicionFila = posicionFila;
+        this.posicionColumna = posicionColumna;
+    }
     
     
     //funcion que retorna el numero de la caja dentro del juego

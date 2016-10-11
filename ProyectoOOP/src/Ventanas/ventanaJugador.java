@@ -152,9 +152,12 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenu1.add(juegoNormal);
 
         jMenu3.setText("Reglas del juego");
+        jMenu3.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
         jMenu4.setText("Cantidad de cajas ");
+        jMenu4.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         jMenuItem1.setText("Mover una caja");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +166,7 @@ public class ventanaJugador extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
+        jMenuItem6.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
         jMenuItem6.setText("Mover dos cajas");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +178,7 @@ public class ventanaJugador extends javax.swing.JFrame {
         jMenu3.add(jMenu4);
 
         jMenu5.setText("Deshacer jugada");
+        jMenu5.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
 
         jMenuItem7.setText("Habilitar");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +280,11 @@ public class ventanaJugador extends javax.swing.JFrame {
         clip2.stop();
         ProyectoOOP.tipo="normal";
         this.dispose();
-        new game().setVisible(true);      
+        try {      
+            new game().setVisible(true);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_juegoNormalActionPerformed
 
     private void verEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEstadisticaActionPerformed
@@ -312,13 +321,13 @@ public class ventanaJugador extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        ProyectoOOP.z=2;
+        ProyectoOOP.z=0;
         programa.setReglas(ProyectoOOP.cajas, ProyectoOOP.z);   //se asigna reglas
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        ProyectoOOP.z=0;
+        ProyectoOOP.z=2;
         programa.setReglas(ProyectoOOP.cajas, ProyectoOOP.z);   //se asigna reglas
         
     }//GEN-LAST:event_jMenuItem8ActionPerformed

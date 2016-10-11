@@ -270,7 +270,11 @@ public class juegoGrupal extends javax.swing.JFrame {
            
            ProyectoOOP.tipo="grupal";
            System.out.print("A Juegar!!!");
-           new game().setVisible(true);
+           try {
+               new game().setVisible(true);
+           } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+               Logger.getLogger(juegoGrupal.class.getName()).log(Level.SEVERE, null, ex);
+           }
            
            
            

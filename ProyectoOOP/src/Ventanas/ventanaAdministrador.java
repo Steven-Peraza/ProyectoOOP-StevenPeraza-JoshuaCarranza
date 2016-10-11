@@ -6,6 +6,9 @@
 package Ventanas;
 
 import Clases.Administrador;
+import Ventanas.eliminarUsuarios;
+import Ventanas.estadistica;
+import Ventanas.ganesOpt;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
@@ -98,21 +101,14 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         setTitle("Ventana Administrador");
         setPreferredSize(new java.awt.Dimension(460, 331));
         setResizable(false);
-        getContentPane().setLayout(null);
 
         bienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(bienvenida);
-        bienvenida.setBounds(36, 32, 314, 47);
 
         jLabel1.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel1.setText("En el menu de la parte superior de la ventana ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 130, 297, 32);
 
         jLabel2.setFont(new java.awt.Font("Stencilia-Bold", 0, 13)); // NOI18N
         jLabel2.setText("encontrará las acciones que puedes realizar");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 170, 297, 32);
 
         exit.setFont(new java.awt.Font("Stencil Std", 0, 11)); // NOI18N
         exit.setText("Salir");
@@ -121,14 +117,13 @@ public class ventanaAdministrador extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        getContentPane().add(exit);
-        exit.setBounds(340, 220, 70, 34);
-        getContentPane().add(imagen);
-        imagen.setBounds(320, 10, 136, 155);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/fondomenusJyA.fw.png"))); // NOI18N
+
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 461, 290);
+
+
 
         agregarnivel.setText("Niveles");
         agregarnivel.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N
@@ -227,6 +222,49 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         jMenuBar1.add(verHistorial);
 
         setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(4, 4, 4))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
