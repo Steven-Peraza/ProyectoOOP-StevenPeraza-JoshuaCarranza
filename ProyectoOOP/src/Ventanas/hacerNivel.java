@@ -742,7 +742,7 @@ public class hacerNivel extends javax.swing.JFrame {
             level.setCantPuntos(puntos);    //para saber la cantidad de cajas y de puntos del nivel
             exi.setVisible(true);
             programa.agregarNivel(level);  //se agrega el nivel a la lista general de niveles
-            
+            adm.setNivelesAgregados(); //se añade uno a los niveles agregados
         
         }
         
@@ -757,10 +757,10 @@ public class hacerNivel extends javax.swing.JFrame {
     private void asActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asActionPerformed
         // TODO add your handling code here:
         
-        if (esnumero(moves.getText())==true){
+        if (esnumero(nume.getText())==true){
             
             men.setVisible(false);
-            level.setNumNivel(Integer.parseInt(moves.getText()));   //se agrega el numero de nivel
+            level.setNumNivel(Integer.parseInt(nume.getText()));   //se agrega el numero de nivel
             
             }
         else {men.setVisible(true); }

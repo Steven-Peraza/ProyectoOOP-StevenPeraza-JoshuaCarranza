@@ -278,6 +278,7 @@ public class ventanaJugador extends javax.swing.JFrame {
 
     private void juegoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNormalActionPerformed
         clip2.stop();
+        ProyectoOOP.tipo="normal";
         this.dispose();
         try {      
             new game().setVisible(true);

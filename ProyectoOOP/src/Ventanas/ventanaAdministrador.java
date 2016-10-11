@@ -6,6 +6,9 @@
 package Ventanas;
 
 import Clases.Administrador;
+import Ventanas.eliminarUsuarios;
+import Ventanas.estadistica;
+import Ventanas.ganesOpt;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
@@ -96,6 +99,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana Administrador");
+        setPreferredSize(new java.awt.Dimension(460, 331));
         setResizable(false);
 
         bienvenida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -115,6 +119,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesUsuario/fondomenusJyA.fw.png"))); // NOI18N
+
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 461, 290);
+
+
 
         agregarnivel.setText("Niveles");
         agregarnivel.setFont(new java.awt.Font("Stencilia-Bold", 0, 12)); // NOI18N

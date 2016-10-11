@@ -37,9 +37,10 @@ public class ProyectoOOP {
      */
     
 
-
-    
-
+    public static int pos=0;
+    public static int j=0;
+    public static Jugador grupal;
+    public static String tipo="normal";
     public static Timer timer;
     public static inicioSesion ventana;
 
@@ -90,7 +91,7 @@ public class ProyectoOOP {
                         {0,0,0,0,0,0,0,0,0,0},
                          };
         nuevo.setMatrizLogica(matriz);// se asigna matriz logica
-        nuevo.setBestMoves(20);
+        nuevo.setBestMoves(28);
         nuevo.setCantCajas(2);
         nuevo.setNumNivel(1);
         programa.agregarNivel(nuevo);
@@ -108,10 +109,30 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(matri);// se asigna matriz logica
-        nuevo.setBestMoves(20);
+        nuevo.setBestMoves(30);
         nuevo.setCantCajas(3);     
         nuevo.setNumNivel(2);
         programa.agregarNivel(nuevo);
+        
+         nuevo=new Nivel(10,10);
+        int [][]matr={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,0,4,4,4,4,4,0},
+                        {0,4,4,0,2,4,4,1,4,0},
+                        {0,4,1,4,4,4,4,1,4,0},
+                        {0,4,4,4,4,2,4,4,4,0},
+                        {0,4,4,4,4,4,4,1,4,0},
+                        {0,2,4,4,3,4,4,4,4,0},
+                        {0,4,4,4,4,4,4,0,0,0},
+                        {0,4,2,4,4,4,4,4,4,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(matr);// se asigna matriz logica
+        nuevo.setBestMoves(25);
+        nuevo.setCantCajas(4);     
+        nuevo.setNumNivel(3);
+        programa.agregarNivel(nuevo);
+        
         
         //int numNivel, Nivel nivel, String estado, int cantidadMovimientos, int tiempo, int bestMoves
         b=new Historial(1,nuevo,"Perdido",23,34,20);

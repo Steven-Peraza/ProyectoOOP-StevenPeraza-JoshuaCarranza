@@ -267,7 +267,17 @@ public class juegoGrupal extends javax.swing.JFrame {
            group.setGenerador(proyectooop.ProyectoOOP.usuario.getNombre()); //nombre del jugador que generó el grupo
            
            programa.agregaraGrupoLista(group);  //se agrega el grupo recien hecho a la lista de programa
+           
+           ProyectoOOP.tipo="grupal";
            System.out.print("A Juegar!!!");
+           try {
+               new game().setVisible(true);
+           } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+               Logger.getLogger(juegoGrupal.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           
+           
        }
        else
            datos.setVisible(true);        

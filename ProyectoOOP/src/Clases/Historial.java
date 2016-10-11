@@ -84,6 +84,18 @@ public class Historial {
         //comparar numNivel con el nivel deseado...
     }
 
+    public Nivel getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+
+   
+    
+    
+    
     @Override
     public String toString() {
         return "Historial{" + "numNivel=" + numNivel + ", estado=" + estado + ", cantidadMovimientos=" + cantidadMovimientos + ", tiempo=" + tiempo + ", vecesJugado=" + vecesJugado + ", bestMoves=" + bestMoves + '}';
