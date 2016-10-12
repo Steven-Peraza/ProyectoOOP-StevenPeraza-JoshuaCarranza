@@ -12,6 +12,7 @@ import clases.*;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
@@ -20,6 +21,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static proyectooop.ProyectoOOP.programa;
 import proyectooop.ProyectoOOP;
 /**
@@ -277,14 +279,38 @@ public class ventanaJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void juegoNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoNormalActionPerformed
-        clip2.stop();
+        ArrayList var;
+        Jugador jug;
+        int[] repet;
+        var = programa.getNiveles();
+        if (var.size() == jugador.getNivelActual()){
+            Object [] botones = {" Yes", " No"};
+            int otra = JOptionPane.showOptionDialog(null,"Ya ha jugado todos los niveles. ¿Desea volver a repetir sus peores niveles?","Pregunta", JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,botones,botones[0]);
+            if (otra == 0){
+                clip2.stop();
+                repet = programa.repetirNiveles(jugador.getCedula());
+                jugador.setNivelesPorRepetir(repet);
+                ProyectoOOP.tipo="normal";
+                this.dispose();
+                try {      
+                    new game().setVisible(true);
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                    Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else{
+                return;
+            }
+        }
+        else{
+            clip2.stop();
         ProyectoOOP.tipo="normal";
         this.dispose();
         try {      
             new game().setVisible(true);
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
             Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_juegoNormalActionPerformed
 
     private void verEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEstadisticaActionPerformed

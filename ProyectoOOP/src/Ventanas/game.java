@@ -148,7 +148,17 @@ public class game extends javax.swing.JFrame {
         }
 
         level = ProyectoOOP.programa.getNiveles();
-
+        if (uno.getNivelesPorRepetir() != null){
+            for (int w = 0; w < uno.getNivelesPorRepetir().length;w++){
+                if (uno.getNivelesPorRepetir()[w] != 0){
+                    Nivel levelrepe = programa.buscarNivel(uno.getNivelesPorRepetir()[w]);
+                    System.out.println(uno.getNivelesPorRepetir()[w]);
+                    jugando = levelrepe;
+                    break;
+                }
+            }
+        }
+        else{
         for (int i = 0; i < level.size(); i++) {   //se busca el nivel en la lista general del programa
 
             if (level.get(i).getNumNivel() == niv) {
@@ -156,7 +166,7 @@ public class game extends javax.swing.JFrame {
                 break;                  //se hace una referencia al nivel
 
             }
-
+        }
         }
 
         bestmov.setText(String.valueOf(jugando.getBestMoves()));    //mostrando datos
@@ -283,7 +293,6 @@ public class game extends javax.swing.JFrame {
         reiniciar = new javax.swing.JButton();
         controlZ = new javax.swing.JButton();
         exit = new javax.swing.JButton();
-        reset = new javax.swing.JButton();
         gane = new javax.swing.JLabel();
         siguiente = new javax.swing.JButton();
 
@@ -349,15 +358,6 @@ public class game extends javax.swing.JFrame {
             }
         });
 
-        reset.setFont(new java.awt.Font("Stencilia-A", 0, 11)); // NOI18N
-        reset.setText("Repetir Nivel");
-        reset.setFocusable(false);
-        reset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetActionPerformed(evt);
-            }
-        });
-
         gane.setFont(new java.awt.Font("Stencil Std", 2, 48)); // NOI18N
         gane.setForeground(new java.awt.Color(255, 51, 51));
         gane.setText("¡Nivel Superado!");
@@ -378,15 +378,20 @@ public class game extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(reset)
-                        .addGap(18, 18, 18)
-                        .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(controlZ)
-                        .addGap(18, 18, 18)
-                        .addComponent(siguiente)
-                        .addGap(18, 18, 18)
-                        .addComponent(exit))
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(reiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(controlZ)
+                                .addGap(33, 33, 33)
+                                .addComponent(siguiente)
+                                .addGap(40, 40, 40)
+                                .addComponent(exit)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(43, 43, 43))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,12 +413,8 @@ public class game extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(103, Short.MAX_VALUE))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,7 +441,6 @@ public class game extends javax.swing.JFrame {
                     .addComponent(reiniciar)
                     .addComponent(controlZ)
                     .addComponent(exit)
-                    .addComponent(reset)
                     .addComponent(siguiente))
                 .addContainerGap())
         );
@@ -524,23 +524,6 @@ public class game extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_exitActionPerformed
-
-    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        if (pasar == true){
-            //gane.setVisible(false);
-            //panel.setFocusable(true);
-            reset();
-            this.dispose();
-            try {
-                new game().setVisible(true);
-            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
-                Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //cron = new Cronometro(tiempo);     //recibe el label por parametro
-            //cron.start();
-            pasar = false;
-        }
-    }//GEN-LAST:event_resetActionPerformed
 
     private void controlZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlZActionPerformed
 
@@ -1785,7 +1768,6 @@ public class game extends javax.swing.JFrame {
     private javax.swing.JLabel nivel;
     private javax.swing.JPanel panel;
     private javax.swing.JButton reiniciar;
-    public javax.swing.JButton reset;
     private javax.swing.JButton siguiente;
     private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables

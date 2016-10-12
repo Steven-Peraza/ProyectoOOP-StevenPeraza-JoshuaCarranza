@@ -529,7 +529,8 @@ public class Programa {
         
         if (historial.getBestMoves()<historial.getCantidadMovimientos()){
             
-            return historial.getBestMoves()-historial.getCantidadMovimientos(); // se retorna la resta
+           // return historial.getBestMoves()-historial.getCantidadMovimientos(); // se retorna la resta
+            return historial.getCantidadMovimientos()- historial.getBestMoves();
                     }
         return 0;
     }
@@ -540,57 +541,41 @@ public class Programa {
     }
 
     // se recibe el numero de cedula del jugador y se retorna los 3 niveles que puede repetir
-    public String repetirNiveles(int cedula) {
+    public int[] repetirNiveles(int cedula) {
         
-        String nivelesPorRepetir="";
-        int diferencia=0;
-        ArrayList temporal=new ArrayList();
+        int diferencia=0, primero=0, segundo=0,tercer=0;
+        int[] numLev = {0,0,0};
         Jugador persona= (Jugador) buscarUsuario(cedula);   // se manda a buscar el usuario
         ArrayList <Historial> nuevo=persona.getArrayHistorial();    // se hace una referencia al historial del usuario
         for (int i=0;i<nuevo.size();i++){  // se recorre el historial del jugador
             
             // se llama al metodo de la clase que calcula la diferencia
             diferencia= calcularDiferenciaEnMovimientos(nuevo.get(i).getNumNivel(),nuevo.get(i));
-            // se forma el arraylis nuevo
-            // vacio la insercion es normal
-            if (temporal.size()==0){ temporal.add(nuevo.get(i).getNumNivel());
-                                     temporal.add(diferencia);
-                                        }
-            // llenno se pregunta si la diferencia de movimientos con el nivel respectivo es mayor al ultimo
-            else if (temporal.size()==6){
-                    
-                if (diferencia>Integer.parseInt(String.valueOf(temporal.get(5)))) {
-                    
-                    temporal.add(4, nuevo.get(i).getNumNivel());
-                    temporal.add(5, diferencia);
-                    
-                    } }
-                
-                else{
-                     for (int c = 1; c < nuevo.size(); c += 2) {
-
-                     if (diferencia>Integer.parseInt(String.valueOf(temporal.get(i)))) {
-                    
-                    temporal.add(i-1, nuevo.get(i).getNumNivel());
-                    temporal.add(i, diferencia);
-                    break;  //porque se ha insertado;
-                    
-                    } } 
-                    
-                    
-                } 
             
-            
+            if (diferencia > primero){
+                tercer = segundo;
+                numLev[2] = numLev[1];
+                segundo = primero;
+                numLev[1] = numLev[0];
+                primero = diferencia;
+                numLev[0] = nuevo.get(i).getNumNivel();}
+            else if ((diferencia < primero)&&(diferencia > segundo)){
+                tercer = segundo;
+                numLev[2] = numLev[1];
+                segundo = primero;
+                numLev[1] = nuevo.get(i).getNumNivel();}
+            else if ((diferencia < segundo)&&(diferencia > tercer))
+                tercer = segundo;
+                numLev[2] = nuevo.get(i).getNumNivel();
         }
         
         //para acceder a los elementos del arraylist hay que hacer esto sino genera un error
         // se concatena en el string los niveles
-        nivelesPorRepetir+=String.valueOf(Integer.parseInt((String) temporal.get(0)));  
-        nivelesPorRepetir+=",";
-        nivelesPorRepetir+=String.valueOf(Integer.parseInt((String) temporal.get(2)));
-        nivelesPorRepetir+=",";
-        nivelesPorRepetir+=String.valueOf(Integer.parseInt((String) temporal.get(4))); 
-        return nivelesPorRepetir;
+        System.out.println("Temporales");
+        for (int a = 0;a<numLev.length;a++){
+            System.out.print(numLev[a]+",");
+        }
+        return numLev;
     }
     
 
