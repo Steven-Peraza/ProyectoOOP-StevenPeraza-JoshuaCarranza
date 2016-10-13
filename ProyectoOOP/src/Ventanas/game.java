@@ -833,7 +833,7 @@ public class game extends javax.swing.JFrame {
                 }
         }
 
-        
+        }
         clip3.stop();
         panel.setFocusable(true);
     }//GEN-LAST:event_siguienteActionPerformed
