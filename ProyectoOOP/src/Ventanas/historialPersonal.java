@@ -3,6 +3,7 @@ package Ventanas;
 
 import Clases.Historial;
 import Clases.Jugador;
+import Clases.Nivel;
 import Clases.Usuario;
 import java.awt.Color;
 import java.io.IOException;
@@ -289,7 +290,7 @@ public class historialPersonal extends javax.swing.JFrame {
                 nombre.setText(jugador.getNombre());
                 numNivel.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
                 estado.setText(arreglo.get(indice).getEstado());
-                BM.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+                BM.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));  //llamada a funcion
                 movJug.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
                 tiempo.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
                 veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));     
@@ -304,7 +305,7 @@ public class historialPersonal extends javax.swing.JFrame {
               
               numNivel.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
               estado.setText(arreglo.get(indice).getEstado());
-              BM.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+              BM.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));  //llamada a funcio
               movJug.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
               tiempo.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
               veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
@@ -320,7 +321,7 @@ public class historialPersonal extends javax.swing.JFrame {
             indice++; //se aumenta el indice
              numNivel.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
              estado.setText(arreglo.get(indice).getEstado());
-             BM.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+             BM.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));  //llamada a funcion
              movJug.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
              tiempo.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
              veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
@@ -329,6 +330,26 @@ public class historialPersonal extends javax.swing.JFrame {
             nive.setVisible(true);
     }//GEN-LAST:event_sigActionPerformed
 
+    
+    public int bestMoves(int num){
+    
+        int ni=0;
+        ArrayList<Nivel> level= programa.getNiveles();
+        for (int i=0;i< level.size();i++){
+        
+            if (level.get(i).getNumNivel()==num){
+                ni= level.get(i).getBestMoves();
+                break;
+            
+            }
+            
+        }
+        
+        return ni; //retorna movimientos del nivel
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

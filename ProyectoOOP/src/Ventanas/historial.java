@@ -7,6 +7,7 @@ package Ventanas;
 
 import Clases.Historial;
 import Clases.Jugador;
+import Clases.Nivel;
 import Clases.Usuario;
 import java.awt.Color;
 import java.io.IOException;
@@ -354,7 +355,7 @@ public class historial extends javax.swing.JFrame {
                   nombre.setText(jugador.getNombre());
                   niv.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
                   estate.setText(arreglo.get(indice).getEstado());
-                  movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+                  movNi.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));
                   movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
                   time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
                   veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
@@ -395,7 +396,7 @@ public class historial extends javax.swing.JFrame {
               
               niv.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
               estate.setText(arreglo.get(indice).getEstado());
-              movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+              movNi.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));
               movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
               time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
               veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
@@ -415,7 +416,7 @@ public class historial extends javax.swing.JFrame {
             indice++; //se aumenta el indice
              niv.setText(String.valueOf(arreglo.get(indice).getNumNivel()));
              estate.setText(arreglo.get(indice).getEstado());
-             movNi.setText(String.valueOf(arreglo.get(indice).getBestMoves()));
+             movNi.setText(String.valueOf(bestMoves(arreglo.get(indice).getNumNivel())));
              movJu.setText(String.valueOf(arreglo.get(indice).getCantidadMovimientos()));
              time.setText(String.valueOf(arreglo.get(indice).getTiempo()+" Segundos"));
              veces.setText(String.valueOf(arreglo.get(indice).getVecesJugado()));
@@ -442,6 +443,25 @@ public class historial extends javax.swing.JFrame {
     }
     
     
+    public int bestMoves(int num){
+    
+        int ni=0;
+        ArrayList<Nivel> level= programa.getNiveles();
+        for (int i=0;i< level.size();i++){
+        
+            if (level.get(i).getNumNivel()==num){
+                ni= level.get(i).getBestMoves();
+                break;
+            
+            }
+            
+        }
+        
+        return ni; //retorna movimientos del nivel
+        
+    }    
+        
+        
     /**
      * @param args the command line arguments
      */

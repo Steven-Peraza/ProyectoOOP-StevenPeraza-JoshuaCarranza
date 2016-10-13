@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +10,7 @@ package Ventanas;
 //import Clases.Historial;
 import Clases.Cajas;
 import Clases.Cajas;
+import Clases.Estadistica;
 import Clases.Grupo;
 import Clases.Historial;
 import Clases.Juego;
@@ -52,12 +54,18 @@ public class game extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
+    
+    boolean fin=false;  //manejar niveles por jugar
     boolean pasar = false;  //para manejar el uso del boton siguiente nivel
     Juego games = new Juego();  //instancia de juego
     ArrayList<Nivel> level;    //inicializacion de variables
     ArrayList<Cajas> box = new ArrayList();
+
+   
+
     public ArrayList<Historial> arreglo;
     //ArrayList<Personaje> lisMov = new ArrayList();
+
     String rules;
 
     Historial nuevo = new Historial(0, null, "nada", 0, 0, 0); //inicializacion de una variable historial
@@ -125,10 +133,12 @@ public class game extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         uno = (Jugador) ProyectoOOP.usuario;
+        
         if (ProyectoOOP.tipo.equals("normal")) {
             niv = uno.getNivelActual();
         } else {
             group = programa.obtenerListaGrupo();
+            exit.setEnabled(false);
             for (int i = 0; i < group.size(); i++) {
 
                 jogador = group.get(i).getJugadores().split(","); //lista de jugadores con split
@@ -142,7 +152,7 @@ public class game extends javax.swing.JFrame {
             }
             joger = jogador[ProyectoOOP.j];   //asignado jugador en curso
             lev = grupo.getNiveles().split(","); //array de niveles
-
+            persona.setText("Turno de "+joger);  //nombre del jugador
             niv = Integer.parseInt(lev[ProyectoOOP.pos]);
 
         }
@@ -239,8 +249,10 @@ public class game extends javax.swing.JFrame {
     public void determinarGane() {
         int contador = 0;  // contar los puntos que hay para saber si gano el jugador
 
+     //   System.out.print("tamaño de matriz"+mat.length);
+        
         for (int i = 0; i < mat.length; i++) {      //se hace que el juego tenga una lista de cajas
-
+//System.out.print("tamaño de fila "+mat[i].length);
             for (int x = 0; x < mat[i].length; x++) { // forma de recorrer la matriz  
 
                 if (mat[i][x] == 5) {        //represenacion de la caja en matriz logica
@@ -257,6 +269,7 @@ public class game extends javax.swing.JFrame {
                 panel.setFocusable(false);  //se inhabilita lectura de
                 gane.setVisible(true);
                 cron.detener();
+                
                 pasar=true;     //habilitar gane
                 controlZ.setEnabled(false);
                 reiniciar.setEnabled(false);
@@ -273,6 +286,7 @@ public class game extends javax.swing.JFrame {
                
                 controlZ.setEnabled(false);
                 reiniciar.setEnabled(false);
+                return;
 
             }
         }
@@ -296,6 +310,7 @@ public class game extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         gane = new javax.swing.JLabel();
         siguiente = new javax.swing.JButton();
+        persona = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sokoban");
@@ -371,6 +386,8 @@ public class game extends javax.swing.JFrame {
             }
         });
 
+        persona.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -414,8 +431,16 @@ public class game extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(103, Short.MAX_VALUE))))
+
+                                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(persona, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
+
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,7 +462,9 @@ public class game extends javax.swing.JFrame {
                     .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(150, 150, 150)
                 .addComponent(gane, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(persona, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reiniciar)
                     .addComponent(controlZ)
@@ -466,6 +493,8 @@ public class game extends javax.swing.JFrame {
             //panel.revalidate();
             //panel.repaint();
              boolean ya;
+             
+             clip3.stop();
              Historial rec;
              ya=yaEstaHistorial();
              int time = cron.getTotalSegundos();
@@ -625,14 +654,16 @@ public class game extends javax.swing.JFrame {
         // TODO add your handling code here:
         int a;
         int b = 0;
+        int d;
         System.out.println(evt.getKeyCode());
         switch (evt.getKeyCode()) {   //se obtiene la tecla pulsada
 
             case KeyEvent.VK_LEFT:          //presiona tecla izquierda
-
+                persona.setVisible(false);
                 int c = perso.getPosicionColumna();
                 a = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1];
                 b = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2];
+                
                 if (ProyectoOOP.cajas == 2) {
                     if ((a != 5) && (b != 5)) {
                         moverIzquierda2();
@@ -643,6 +674,7 @@ public class game extends javax.swing.JFrame {
                 break;
 
             case KeyEvent.VK_RIGHT:         //presiona tecla dereha
+                persona.setVisible(false);
                 a = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1];
                 b = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2];
                 if (ProyectoOOP.cajas == 2) {
@@ -656,6 +688,7 @@ public class game extends javax.swing.JFrame {
                 break;
 
             case KeyEvent.VK_UP:     //presiona tecla arriba
+                persona.setVisible(false);
                 a = mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()];
                 b = mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()];
 
@@ -670,6 +703,7 @@ public class game extends javax.swing.JFrame {
                 break;
 
             case KeyEvent.VK_DOWN:      // presiona tecla abajo
+                persona.setVisible(false);
                 a = mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()];
                 b = mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()];
 
@@ -690,9 +724,15 @@ public class game extends javax.swing.JFrame {
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
         // TODO add your handling code here:
         jugando.setMatrizLogica(respaldo);
-        if ((pasar == true) && (ProyectoOOP.tipo.equals("normal"))&&(level.size() > uno.getNivelActual())) {    //si aun hay niveles
+        if ((pasar == true) && (ProyectoOOP.tipo.equals("normal"))&&(fin!=true)){    //si aun hay niveles
             
+            if(level.size()==uno.getNivelActual()){
+            
+                fin=true;
+            }
+                    
             jugando.setMatrizLogica(respaldo);
+            
             this.dispose(); //cerrar ventana
             ProyectoOOP.z = 0;
             clip3.stop();
@@ -702,6 +742,7 @@ public class game extends javax.swing.JFrame {
                 Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+
         } 
         else if (uno.getNivelesPorRepetir() != null){
                 this.dispose(); //cerrar ventana
@@ -710,11 +751,36 @@ public class game extends javax.swing.JFrame {
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
                     Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        else if (pasar == true) {
+            
+
+        } else if ((pasar == true)&&(!ProyectoOOP.tipo.equals("normal"))){
+            
+            ProyectoOOP.counter+=Integer.parseInt(moves.getText());     //suma de tiempos y de movimientos totales en los
+            ProyectoOOP.timer+=cron.getTotalSegundos();      //niveles
+            
+            
             if ((ProyectoOOP.pos == lev.length - 1) && (ProyectoOOP.j < jogador.length - 1)) {
+                
                 ProyectoOOP.j++;
+                
                 ProyectoOOP.pos = 0;
+                
+                
+                if ((ProyectoOOP.counter <ProyectoOOP.grp.getMenorMovimientos())){
+                    ProyectoOOP.grp.setMenorMovimientos(ProyectoOOP.counter);
+                    ProyectoOOP.grp.setMejorEnMovimientos(joger);   //cambia el nombre;
+                    
+                }
+            
+                if (ProyectoOOP.timer < ProyectoOOP.grp.getMenorTiempo()){
+                    ProyectoOOP.grp.setMenorTiempo(ProyectoOOP.timer);
+                    ProyectoOOP.grp.setMejorEnTiempo(joger);
+            
+                        }
+                
+               ProyectoOOP.counter=0;
+               ProyectoOOP.timer=0;
+                
                 jugando.setMatrizLogica(respaldo);
                 this.dispose(); //cerrar ventana
                 try {
@@ -723,9 +789,11 @@ public class game extends javax.swing.JFrame {
                     Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } else if ((ProyectoOOP.pos < lev.length - 1) && (ProyectoOOP.j < jogador.length - 1)) {
+            } else if ((ProyectoOOP.pos < lev.length - 1) && (ProyectoOOP.j <= jogador.length - 1)) {
+                
                 ProyectoOOP.pos++;
                 jugando.setMatrizLogica(respaldo);
+                
                 this.dispose(); //cerrar ventana
                 try {
                     new game().setVisible(true); //se abre una nueva ventana de juego
@@ -735,13 +803,35 @@ public class game extends javax.swing.JFrame {
              
             }
 
-            else {
-                jugando.setMatrizLogica(respaldo);
-                this.dispose();
+            } else {
                 
+                    
+                if ((ProyectoOOP.counter<ProyectoOOP.grp.getMenorMovimientos())){
+                    ProyectoOOP.grp.setMenorMovimientos(ProyectoOOP.counter);
+                    ProyectoOOP.grp.setMejorEnMovimientos(joger);   //cambia el nombre;
+                    
+                }
+            
+                if (ProyectoOOP.timer<ProyectoOOP.grp.getMenorTiempo()){
+                    ProyectoOOP.grp.setMenorTiempo(ProyectoOOP.timer);
+                    ProyectoOOP.grp.setMejorEnTiempo(joger);
+            
+                        }  
+                ProyectoOOP.counter=0;
+                ProyectoOOP.timer=0;
+               
+               
+                jugando.setMatrizLogica(respaldo);
+                ProyectoOOP.pos=0;
+                ProyectoOOP.j=0;
+              
+                ProyectoOOP.terminaron=true;
+                this.dispose();
+                new InformeGrupo().setVisible(true);
+                        
                 }
 
-        }
+        
         clip3.stop();
         panel.setFocusable(true);
     }//GEN-LAST:event_siguienteActionPerformed
@@ -758,6 +848,8 @@ public class game extends javax.swing.JFrame {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
+            movimientos++;
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -784,9 +876,14 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() - 3][perso.getPosicionFila()].setIcon(getImagen(5));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
+
+            movimientos++;
+            
+ 
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()-1);
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()-1);
             listMovCajas2.add(nueva2);
@@ -796,7 +893,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBox = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 3] != 0)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -805,6 +902,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] = 1;
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 3] = 1;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna() - 1][perso.getPosicionFila()].setIcon(getImagen(8));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(1));
@@ -837,6 +936,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(5));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()-1);
@@ -858,6 +959,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(1));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()-1);
@@ -867,7 +970,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBoxes = false;
         }
 
-        movimientos++;
+        
         moves.setText(String.valueOf(movimientos));
         determinarGane();
 
@@ -882,6 +985,8 @@ public class game extends javax.swing.JFrame {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
+            movimientos++;
+            
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
@@ -907,10 +1012,16 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna() + 3][perso.getPosicionFila()].setIcon(getImagen(5));
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
+
+
+            movimientos++;
+            
+
             
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
             listMovCajas2.add(nueva2);
@@ -920,7 +1031,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBox = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() + 3] != 0)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -934,10 +1045,16 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna() + 3][perso.getPosicionFila()].setIcon(getImagen(1));
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
+
+
+            movimientos++;
+            
+
             
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
             listMovCajas2.add(nueva2);
@@ -962,6 +1079,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(5)); //caja de otro color
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
@@ -983,6 +1102,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(1));
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna()+1);
@@ -992,7 +1113,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBoxes = false;
         }
 
-        movimientos++;
+        
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1009,6 +1130,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 1].setIcon(getImagen(6));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
@@ -1031,11 +1154,17 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 3].setIcon(getImagen(5));
+
+
+            movimientos++;
+            
+
             perso.setPosicionFila(perso.getPosicionFila() - 1); 
             
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
             listMovCajas2.add(nueva2);
@@ -1046,7 +1175,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
 
         } //  
-        else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 5)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() - 3][perso.getPosicionColumna()] != 0)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1059,11 +1188,17 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 3].setIcon(getImagen(1));
+
+
+            movimientos++;
+            
+ 
             perso.setPosicionFila(perso.getPosicionFila() - 1);  
             
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
             listMovCajas2.add(nueva2);
@@ -1088,6 +1223,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(5));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
@@ -1109,6 +1246,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(1));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()-1,perso.getPosicionColumna());
@@ -1119,7 +1258,7 @@ public class game extends javax.swing.JFrame {
 
         }
 
-        movimientos++;
+       
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1136,6 +1275,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
@@ -1159,10 +1300,16 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 3].setIcon(getImagen(5));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
+
+
+            movimientos++;
+            
+
             
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
             listMovCajas2.add(nueva2);
@@ -1171,10 +1318,11 @@ public class game extends javax.swing.JFrame {
             lastMoveBoxes = true;
             VC = true;
             lastMoveBox = false;
-            
-        }    
-        //  
-        else if ((a == 1) && (mat[perso.getPosicionFila()+2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila()+2][perso.getPosicionColumna()] ==1)&&(mat[perso.getPosicionFila()+2][perso.getPosicionColumna()]!=5)){
+
+
+        } //  
+        else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() + 3][perso.getPosicionColumna()] != 0)) {
+
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1185,6 +1333,11 @@ public class game extends javax.swing.JFrame {
 
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
+
+
+            movimientos++;
+            
+
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() +2].setIcon(getImagen(1));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() +3].setIcon(getImagen(1));
             perso.setPosicionFila(perso.getPosicionFila() + 1);  
@@ -1192,6 +1345,7 @@ public class game extends javax.swing.JFrame {
             Cajas nueva = new Cajas(perso.getPosicionFila(),perso.getPosicionColumna());
             listMovCajas2.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
+
             cajasSueltas2.add(suelta);
             Cajas nueva2 = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
             listMovCajas2.add(nueva2);
@@ -1215,6 +1369,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(5));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
@@ -1236,6 +1392,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(1));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila()+1,perso.getPosicionColumna());
@@ -1246,7 +1404,7 @@ public class game extends javax.swing.JFrame {
 
         }
 
-        movimientos++;
+       
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1318,6 +1476,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila() + 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 1].setIcon(getImagen(perso.getId()));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
@@ -1337,6 +1497,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(5));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila() + 1, perso.getPosicionColumna());
@@ -1357,6 +1519,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() + 2].setIcon(getImagen(1));
             perso.setPosicionFila(perso.getPosicionFila() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila() + 1, perso.getPosicionColumna());
@@ -1365,7 +1529,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
         }
 
-        movimientos++;
+        
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1382,6 +1546,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila() - 1][perso.getPosicionColumna()] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 1].setIcon(getImagen(6));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
@@ -1401,6 +1567,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(5));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila() - 1, perso.getPosicionColumna());
@@ -1421,6 +1589,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna()][perso.getPosicionFila() - 2].setIcon(getImagen(1));
             perso.setPosicionFila(perso.getPosicionFila() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila() - 1, perso.getPosicionColumna());
@@ -1429,7 +1599,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
         }
 
-        movimientos++;
+      
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1446,6 +1616,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna() + 1][perso.getPosicionFila()].setIcon(getImagen(7));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
@@ -1465,6 +1637,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(5)); //caja de otro color
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna() + 1);
@@ -1485,6 +1659,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() + 2][perso.getPosicionFila()].setIcon(getImagen(1));
             perso.setPosicionColumna(perso.getPosicionColumna() + 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna() + 1);
@@ -1493,7 +1669,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
         }
 
-        movimientos++;
+       
         moves.setText(String.valueOf(movimientos));
         determinarGane();
     }
@@ -1512,6 +1688,8 @@ public class game extends javax.swing.JFrame {
             mat[perso.getPosicionFila()][perso.getPosicionColumna() - 1] = perso.getId();
             mat[perso.getPosicionFila()][perso.getPosicionColumna()] = 4;
 
+            movimientos++;
+            
             grafica[perso.getPosicionColumna() - 1][perso.getPosicionFila()].setIcon(getImagen(8));
             grafica[perso.getPosicionColumna()][perso.getPosicionFila()].setIcon(getImagen(4));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
@@ -1531,6 +1709,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(5));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna() - 1);
@@ -1551,6 +1731,8 @@ public class game extends javax.swing.JFrame {
             grafica[perso.getPosicionColumna() - 2][perso.getPosicionFila()].setIcon(getImagen(1));
             perso.setPosicionColumna(perso.getPosicionColumna() - 1);
 
+            movimientos++;
+            
             Cajas nueva = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna());
             listMovCajas.add(nueva);
             Cajas suelta = new Cajas(perso.getPosicionFila(), perso.getPosicionColumna() - 1);
@@ -1559,7 +1741,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
         }
 
-        movimientos++;
+     
         moves.setText(String.valueOf(movimientos));
         determinarGane();
 
@@ -1635,12 +1817,13 @@ public class game extends javax.swing.JFrame {
     //datos para hacer el historial del jugador
     public void setHistorial() {
         
+        
         Historial rec;      //variable para cambiar los valores al historial
         int mov = Integer.parseInt(moves.getText());
         boolean ya=false;       //para saber si esta en el historial
         
         int time = cron.getTotalSegundos();
-        String condicion;
+        String condicion = null;
         
         ya=yaEstaHistorial();   //true si el historial ya esta
         
@@ -1649,8 +1832,24 @@ public class game extends javax.swing.JFrame {
         if (mov > jugando.getBestMoves()) {
             condicion = "Ganado";
 
-        } else {
+        } 
+        
+        else if(mov<jugando.getBestMoves()){    //si rompió un record           
+            uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
+            programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
+            Estadistica e=uno.getEstadistica();
+            e.setCanGanesOptimizados();
+            e.setRecordRotos();     //se aumenta contador de record rotos
+            programa.nuevoRecord(mov, niv);
+            condicion="Optimizado";
+        
+        }
+        
+        else {
             condicion = "Optimizado";
+            Estadistica e=uno.getEstadistica();
+            e.setCanGanesOptimizados();
+            
         }
         
         rec=traerHistorial();       //se manda a traer el historial
@@ -1663,18 +1862,33 @@ public class game extends javax.swing.JFrame {
         rec.setTiempo(time);
         rec.setBestMoves(jugando.getBestMoves());
         rec.setVecesJugado();
+        
         //uno.setArrayHistorial(nuevo);   //se agrega el historial al jugador
         }
         
         else{
-               
+              Estadistica e;
+              e=uno.getEstadistica();
+              
         if (mov > jugando.getBestMoves()) {
             condicion = "Ganado";
-
-        } else {
-            condicion = "Optimizado";
+            e.setCantNivelesJugados();
+        } 
+        else if(mov<jugando.getBestMoves()){    //si rompió un record           
             uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
             programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
+            e.setCantNivelesJugados();
+            e.setCanGanesOptimizados();
+            e.setRecordRotos();     //se aumenta contador de record rotos
+            condicion="Optimizado";
+            programa.nuevoRecord(mov, niv); //se hace el cambio a los bestmoves de nivel si se rompe
+                                            //un record
+        }
+        
+        else {
+            condicion = "Optimizado";
+            e.setCantNivelesJugados();
+            e.setCanGanesOptimizados();
         }
 
         // se hace el historial
@@ -1697,6 +1911,10 @@ public class game extends javax.swing.JFrame {
             pasar = true;     //habilitar boton de siguiente nivel
             siguiente.setFocusable(pasar);
             
+        }
+        
+        else{
+            fin=true;   //no permite cargar otro nivel
         }
 
     }
@@ -1779,6 +1997,7 @@ public class game extends javax.swing.JFrame {
     private javax.swing.JLabel moves;
     private javax.swing.JLabel nivel;
     private javax.swing.JPanel panel;
+    private javax.swing.JLabel persona;
     private javax.swing.JButton reiniciar;
     private javax.swing.JButton siguiente;
     private javax.swing.JLabel tiempo;
