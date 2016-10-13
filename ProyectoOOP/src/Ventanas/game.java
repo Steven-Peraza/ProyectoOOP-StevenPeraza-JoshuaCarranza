@@ -154,6 +154,7 @@ public class game extends javax.swing.JFrame {
                     Nivel levelrepe = programa.buscarNivel(uno.getNivelesPorRepetir()[w]);
                     System.out.println(uno.getNivelesPorRepetir()[w]);
                     jugando = levelrepe;
+                    uno.nivelesPorRepetir[w] = 0;
                     break;
                 }
             }
@@ -701,7 +702,16 @@ public class game extends javax.swing.JFrame {
                 Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (pasar == true) {
+        } 
+        else if (uno.getNivelesPorRepetir() != null){
+                this.dispose(); //cerrar ventana
+                try {
+                    new game().setVisible(true); //se abre una nueva ventana de juego
+                } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+                    Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        else if (pasar == true) {
             if ((ProyectoOOP.pos == lev.length - 1) && (ProyectoOOP.j < jogador.length - 1)) {
                 ProyectoOOP.j++;
                 ProyectoOOP.pos = 0;
@@ -722,8 +732,10 @@ public class game extends javax.swing.JFrame {
                 } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
                     Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
                 }
+             
+            }
 
-            } else {
+            else {
                 jugando.setMatrizLogica(respaldo);
                 this.dispose();
                 
