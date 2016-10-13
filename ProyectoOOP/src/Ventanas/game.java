@@ -746,17 +746,7 @@ public class game extends javax.swing.JFrame {
             ProyectoOOP.counter+=Integer.parseInt(moves.getText());     //suma de tiempos y de movimientos totales en los
             ProyectoOOP.timer+=cron.getTotalSegundos();      //niveles
             
-            /*if ((contm<ProyectoOOP.grp.getMenorMovimientos())){
-                    ProyectoOOP.grp.setMenorMovimientos(contm);
-                    ProyectoOOP.grp.setMejorEnMovimientos(joger);   //cambia el nombre;
-                    
-                }
             
-            if (tim<ProyectoOOP.grp.getMenorTiempo()){
-                    ProyectoOOP.grp.setMenorTiempo(tim);
-                    ProyectoOOP.grp.setMejorEnTiempo(joger);
-            
-                        }  */
             
             if ((ProyectoOOP.pos == lev.length - 1) && (ProyectoOOP.j < jogador.length - 1)) {
                 
