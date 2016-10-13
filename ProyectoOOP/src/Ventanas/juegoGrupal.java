@@ -44,7 +44,7 @@ public class juegoGrupal extends javax.swing.JFrame {
         datos.setVisible(false);
         maxJuga.setVisible(false);
         maxlevels.setVisible(false);
-        jugador=(Jugador)ProyectoOOP.usuario;
+        jugador=(Jugador)ProyectoOOP.usuario;   //se agrega el jugador
         jugadores.add (jugador);
     }
 
@@ -265,11 +265,16 @@ public class juegoGrupal extends javax.swing.JFrame {
            group.setJugadores(jugadores);   //se agregan los jugadores al objeto grupo
            group.setNiveles(nivelesGrupo);  //se agregan niveles
            group.setGenerador(proyectooop.ProyectoOOP.usuario.getNombre()); //nombre del jugador que generó el grupo
+           group.setMenorMovimientos(1000);
+           group.setMenorTiempo(100000);
+           ProyectoOOP.grp=group;       //variable global grupo
            
            programa.agregaraGrupoLista(group);  //se agrega el grupo recien hecho a la lista de programa
            
            ProyectoOOP.tipo="grupal";
            System.out.print("A Juegar!!!");
+           
+           this.dispose();
            try {
                new game().setVisible(true);
            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {

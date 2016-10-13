@@ -463,7 +463,7 @@ public class Programa {
             
             Jugador player = (Jugador) users.get(i);
             ArrayList <Historial> history=player.getArrayHistorial();   //se accede al historial del jugador
-            for (int x=0;x<history.size();i++){
+            for (int x=0;x<history.size();x++){
                 
                 // si ya jugo el nivel y lo ganó de manera optimizada
                 if ((history.get(x).getNumNivel()==numeroNivel)&&(history.get(x).getEstado().equals("Optimizado"))){
@@ -694,7 +694,19 @@ public class Programa {
         return niveles;
     }
     
+    public void nuevoRecord(int cantMovimientos,int numNivel){
     
+        for (int i=0; i<niveles.size();i++){
+        
+                if (niveles.get(i).getNumNivel()==numNivel){
+                
+                    niveles.get(i).setBestMoves(cantMovimientos); // se hace el cambio de movimientos
+                    break;
+                }
+            
+            }
+        
+        }
     
 
     @Override

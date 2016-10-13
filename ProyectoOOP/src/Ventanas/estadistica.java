@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Historial;
 import Clases.Jugador;
 import Clases.Usuario;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import proyectooop.ProyectoOOP;
 import static proyectooop.ProyectoOOP.programa;
 
@@ -242,6 +244,8 @@ public class estadistica extends javax.swing.JFrame {
             int roto;   //variables para almacenar datos
             int ganes;
             jugador=(Jugador) use;
+            
+            masRepetido();
             cant= programa.cantidadNivelesJugados(jugador);
             reps=programa.obtenerNivelMasRepetido(jugador);
             roto=programa.cantidadRecordRotos(jugador);
@@ -300,6 +304,28 @@ public class estadistica extends javax.swing.JFrame {
    
     }//GEN-LAST:event_exitActionPerformed
 
+     public void masRepetido(){
+    
+        ArrayList<Historial> history=jugador.getArrayHistorial();
+        int nivel = 0;
+        int vecesJugado=0;
+        
+        for (int i=0;i<history.size();i++){
+        
+            if (history.get(i).getVecesJugado()>vecesJugado){
+            
+                vecesJugado= history.get(i).getVecesJugado();
+                nivel=history.get(i).getNumNivel();
+            }
+            
+        }
+        
+        jugador.getEstadistica().setNivelMasRepetido(nivel);
+       
+    
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

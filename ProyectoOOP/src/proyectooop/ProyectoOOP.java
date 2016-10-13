@@ -41,9 +41,15 @@ public class ProyectoOOP {
     public static int j=0;
     public static Jugador grupal;
     public static String tipo="normal";
-    public static Timer timer;
+    
     public static inicioSesion ventana;
-
+    public static Grupo grp;           // variable para partidas grupales
+    
+    public static boolean terminaron=true;  //manejar final del juego grupo
+    
+    public static int counter=0;    //funciones para manejar el funcionamiento del grupo
+    public static int timer =0;
+    
     public static Programa programa=new Programa();
     public static int cajas;
     public static int z;
@@ -131,6 +137,142 @@ public class ProyectoOOP {
         nuevo.setBestMoves(25);
         nuevo.setCantCajas(4);     
         nuevo.setNumNivel(3);
+        programa.agregarNivel(nuevo);
+        
+        
+        nuevo=new Nivel(10,10);
+        int [][]ma={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,0,3,4,4,4,4,0},
+                        {0,4,4,0,2,4,4,1,4,0},
+                        {0,4,1,4,0,4,4,1,4,0},
+                        {0,4,4,4,4,2,4,4,4,0},
+                        {0,4,4,4,4,4,4,1,0,0},
+                        {0,2,4,0,4,4,4,4,4,0},
+                        {0,4,4,0,4,4,4,0,0,0},
+                        {0,4,2,0,4,4,4,4,0,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(ma);// se asigna matriz logica
+        nuevo.setBestMoves(41);
+        nuevo.setCantCajas(4);     
+        nuevo.setNumNivel(4);
+        programa.agregarNivel(nuevo);
+        
+        
+        nuevo=new Nivel(10,10);
+        int [][]m={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,0,4,4,4,4,4,0},
+                        {0,3,4,0,2,4,4,1,4,0},
+                        {0,4,1,4,0,1,4,4,4,0},
+                        {0,4,4,4,4,2,4,4,4,0},
+                        {0,0,4,0,4,4,0,1,0,0},
+                        {0,0,4,4,4,4,4,4,4,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,4,2,0,4,4,2,4,0,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(m);// se asigna matriz logica
+        nuevo.setBestMoves(35);
+        nuevo.setCantCajas(4);     
+        nuevo.setNumNivel(5);
+        programa.agregarNivel(nuevo);
+        
+        nuevo=new Nivel(10,10);
+        int [][]mar={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,0,0,4,4,4,2,0},
+                        {0,4,4,0,0,4,4,1,4,0},
+                        {0,4,1,4,0,1,4,4,4,0},
+                        {0,4,4,4,0,2,4,4,4,0},
+                        {0,0,4,4,3,4,4,1,4,0},
+                        {0,0,4,4,0,4,4,4,4,0},
+                        {0,4,4,4,0,4,4,4,4,0},
+                        {0,4,2,0,0,4,2,4,0,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(mar);// se asigna matriz logica
+        nuevo.setBestMoves(39);
+        nuevo.setCantCajas(4);     
+        nuevo.setNumNivel(6);
+        programa.agregarNivel(nuevo);
+        
+        nuevo=new Nivel(10,10);
+        int [][]mart={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,4,3,4,4,4,4,0},
+                        {0,4,4,1,4,4,4,1,4,0},
+                        {0,4,1,4,4,4,4,1,4,0},
+                        {0,4,4,4,4,4,4,1,4,0},
+                        {0,0,0,0,0,4,0,0,0,0},
+                        {0,4,4,4,4,4,4,4,2,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,2,2,4,2,2,4,4,4,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(mart);// se asigna matriz logica
+        nuevo.setBestMoves(45);
+        nuevo.setCantCajas(5);     
+        nuevo.setNumNivel(7);
+        programa.agregarNivel(nuevo);
+        
+        nuevo=new Nivel(10,10);
+        int [][]mt={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,4,4,1,4,4,4,1,4,0},
+                        {0,4,1,4,4,4,4,1,4,0},
+                        {0,3,4,4,4,4,4,1,2,0},
+                        {0,0,4,0,0,4,0,4,0,0},
+                        {0,2,4,2,4,4,4,4,2,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,4,4,4,4,4,4,4,2,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(mt);// se asigna matriz logica
+        nuevo.setBestMoves(40);
+        nuevo.setCantCajas(5);     
+        nuevo.setNumNivel(8);
+        programa.agregarNivel(nuevo);
+        
+        
+        nuevo=new Nivel(10,10);
+        int [][]mtz={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,4,1,4,4,1,4,4,4,0},
+                        {0,4,1,4,4,4,4,2,4,0},
+                        {0,3,4,1,4,1,4,4,4,0},
+                        {0,0,4,4,0,4,4,4,0,0},
+                        {0,2,4,2,0,2,4,2,0,0},
+                        {0,4,4,4,4,4,4,4,0,0},
+                        {0,4,4,4,4,4,4,4,4,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(mtz);// se asigna matriz logica
+        nuevo.setBestMoves(35);
+        nuevo.setCantCajas(5);     
+        nuevo.setNumNivel(9);
+        programa.agregarNivel(nuevo);
+        
+        nuevo=new Nivel(10,10);
+        int [][]mz={ {0,0,0,0,0,0,0,0,0,0},
+                        {0,4,4,4,4,4,4,4,3,0},
+                        {0,4,1,4,4,1,4,4,4,0},
+                        {0,4,4,4,1,4,4,2,4,0},
+                        {0,4,4,1,4,1,4,4,4,0},
+                        {0,4,4,4,0,4,4,4,4,0},
+                        {0,2,0,2,0,4,4,2,4,0},
+                        {0,4,4,4,4,4,4,0,4,0},
+                        {0,4,4,2,4,4,4,0,2,0},
+                        {0,0,0,0,0,0,0,0,0,0},
+                         };
+        
+        nuevo.setMatrizLogica(mz);// se asigna matriz logica
+        nuevo.setBestMoves(45);
+        nuevo.setCantCajas(5);     
+        nuevo.setNumNivel(10);
         programa.agregarNivel(nuevo);
         
         

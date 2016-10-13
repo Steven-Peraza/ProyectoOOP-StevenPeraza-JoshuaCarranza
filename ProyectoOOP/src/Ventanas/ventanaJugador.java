@@ -302,6 +302,7 @@ public class ventanaJugador extends javax.swing.JFrame {
     private void juegoGrupalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoGrupalActionPerformed
 
         this.dispose();
+        clip2.stop();
        new juegoGrupal().setVisible(true);
     }//GEN-LAST:event_juegoGrupalActionPerformed
 
