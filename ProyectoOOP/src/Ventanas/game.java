@@ -655,7 +655,6 @@ public class game extends javax.swing.JFrame {
         int a;
         int b = 0;
         int d;
-        System.out.println(evt.getKeyCode());
         switch (evt.getKeyCode()) {   //se obtiene la tecla pulsada
 
             case KeyEvent.VK_LEFT:          //presiona tecla izquierda
@@ -665,10 +664,10 @@ public class game extends javax.swing.JFrame {
                 b = mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2];
                 
                 if (ProyectoOOP.cajas == 2) {
-                    if ((a != 5) && (b != 5)) {
+                    if (a != 5) {
                         moverIzquierda2();
                     }
-                } else if ((a != 5) && (b != 5)) {
+                } else if (a != 5) {
                     moverIzquierda();
                 }
                 break;
@@ -678,10 +677,10 @@ public class game extends javax.swing.JFrame {
                 a = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 1];
                 b = mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2];
                 if (ProyectoOOP.cajas == 2) {
-                    if ((a != 5) && (b != 5)) {
+                    if (a != 5) {
                         moverDerecha2();
                     }
-                } else if ((a != 5) && (b != 5)) {
+                } else if (a != 5) {
                     moverDerecha();
                 }
 
@@ -693,10 +692,10 @@ public class game extends javax.swing.JFrame {
                 b = mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()];
 
                 if (ProyectoOOP.cajas == 2) {
-                    if ((a != 5) && (b != 5)) {
+                    if (a != 5) {
                         moverArriba2();
                     }
-                } else if ((a != 5) && (b != 5)) {
+                } else if (a != 5) {
                     moverArriba();
                 }
 
@@ -708,10 +707,10 @@ public class game extends javax.swing.JFrame {
                 b = mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()];
 
                 if (ProyectoOOP.cajas == 2) {
-                    if ((a != 5) && (b != 5)) {
+                    if (a != 5) {
                         moverAbajo2();
                     }
-                } else if ((a != 5) && (b != 5)) {
+                } else if (a != 5) {
                     moverAbajo();
                 }
 
@@ -895,7 +894,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBox = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 3] != 0)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 3] != 0)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()-3] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()-3] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -948,7 +947,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBoxes = false;
          }
-        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()-2] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1033,7 +1032,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBox = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() + 3] != 0)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() + 3] != 0)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()+3] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()+3] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1091,7 +1090,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBoxes = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna()+2] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1177,7 +1176,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
 
         } //  
-        else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() - 3][perso.getPosicionColumna()] != 0)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() - 3][perso.getPosicionColumna()] != 0)&&(mat[perso.getPosicionFila() - 3][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila() - 3][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1235,7 +1234,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBoxes = false;
             
-        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila()-2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1323,7 +1322,7 @@ public class game extends javax.swing.JFrame {
 
 
         } //  
-        else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() + 3][perso.getPosicionColumna()] != 0)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 5)&&(mat[perso.getPosicionFila() + 3][perso.getPosicionColumna()] != 0)&&(mat[perso.getPosicionFila() + 3][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila() + 3][perso.getPosicionColumna()] != 5)) {
 
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
@@ -1381,7 +1380,7 @@ public class game extends javax.swing.JFrame {
             VC = true;
             lastMoveBoxes = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila()+2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1486,7 +1485,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
             VC = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 2)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] == 2)&&(mat[perso.getPosicionFila()+2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1508,7 +1507,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = true;
             VC = true;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() + 2][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila()+2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1556,7 +1555,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
             VC = false;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 2)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] == 2)&&(mat[perso.getPosicionFila()-2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1578,7 +1577,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = true;
             VC = true;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 0) && (mat[perso.getPosicionFila() - 2][perso.getPosicionColumna()] != 1)&&(mat[perso.getPosicionFila()-2][perso.getPosicionColumna()] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1626,7 +1625,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
             VC = false;
         } //mover caja
-        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 2)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] == 2)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1648,7 +1647,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = true;
             VC = true;
 
-        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)) {
+        } else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 1)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() + 2] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
@@ -1698,7 +1697,7 @@ public class game extends javax.swing.JFrame {
             lastMoveBox = false;
             VC = false;
         } //mover caja
-        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 2)) {
+        else if ((a == 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 0) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 1) && (mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] == 2)&&(mat[perso.getPosicionFila()][perso.getPosicionColumna() - 2] != 5)) {
             listMovPer.add(nuevo);
             listMovPer.add(nuevo);
 
