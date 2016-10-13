@@ -17,7 +17,7 @@ public class Jugador extends Usuario{
     private int bestMoves;
     private int nivelActual=1;
     private int masRepetido;
-    private int[] nivelesPorRepetir = null;
+    public int[] nivelesPorRepetir = null;
     private Estadistica estadistica=new Estadistica(0,0,0);
     private ArrayList<Historial> arrayHistorial=new ArrayList(); //historial por nivel
 

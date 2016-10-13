@@ -43,8 +43,10 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         admin=(Administrador)ProyectoOOP.usuario;
         bienvenida.setForeground(Color.black);
         jLabel1.setForeground(Color.black);
+        jLabel1.setVisible(true);
         this.setLocationRelativeTo(null);   //centrar pantalla
         jLabel2.setForeground(Color.black);
+        jLabel2.setVisible(true);
         this.getContentPane().setBackground(new Color(200,250,200));    //color a la ventana
         exit.setForeground(Color.blue);
         bienvenida.setText("Bienvenido  "+admin.getNombre());

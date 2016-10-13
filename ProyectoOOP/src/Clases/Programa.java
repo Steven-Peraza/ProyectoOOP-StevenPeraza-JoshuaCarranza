@@ -568,13 +568,6 @@ public class Programa {
                 tercer = segundo;
                 numLev[2] = nuevo.get(i).getNumNivel();
         }
-        
-        //para acceder a los elementos del arraylist hay que hacer esto sino genera un error
-        // se concatena en el string los niveles
-        System.out.println("Temporales");
-        for (int a = 0;a<numLev.length;a++){
-            System.out.print(numLev[a]+",");
-        }
         return numLev;
     }
     
