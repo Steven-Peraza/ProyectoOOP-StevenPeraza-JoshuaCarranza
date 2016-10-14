@@ -1813,6 +1813,21 @@ public class game extends javax.swing.JFrame {
     
     return recuento;
     }
+    //funcion que retorna el historial
+    public Historial traerHistorial2(){
+    ArrayList<Historial> lista;
+    lista=uno.getArrayHistorial();  //recorrer el historial del jugador
+    Historial recuento = null;
+    for (int i=0;i<lista.size();i++){       //ciclo para ver si ya existe un historial de este nivel
+            recuento=lista.get(i);
+            if (recuento.getNumNivel()==jugando.getNumNivel()){
+                break;              //se marca como que ya lo jugo
+                
+            }
+        }
+    
+    return recuento;
+    }
     
     
     //datos para hacer el historial del jugador
@@ -1828,82 +1843,118 @@ public class game extends javax.swing.JFrame {
         
         ya=yaEstaHistorial();   //true si el historial ya esta
         
-        if (ya==true){
-       
-        if (mov > jugando.getBestMoves()) {
-            condicion = "Ganado";
+        if ((ya==true)&&(uno.getNivelesPorRepetir() == null)){
 
-        } 
-        
-        else if(mov<jugando.getBestMoves()){    //si rompió un record           
-            uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
-            programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
-            Estadistica e=uno.getEstadistica();
-            e.setCanGanesOptimizados();
-            e.setRecordRotos();     //se aumenta contador de record rotos
-            programa.nuevoRecord(mov, niv);
-            condicion="Optimizado";
-        
+            if (mov > jugando.getBestMoves()) {
+                condicion = "Ganado";
+
+            } 
+
+            else if(mov<jugando.getBestMoves()){    //si rompió un record           
+                uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
+                programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
+                Estadistica e=uno.getEstadistica();
+                e.setCanGanesOptimizados();
+                e.setRecordRotos();     //se aumenta contador de record rotos
+                programa.nuevoRecord(mov, niv);
+                condicion="Optimizado";
+
+            }
+
+            else {
+                condicion = "Optimizado";
+                Estadistica e=uno.getEstadistica();
+                e.setCanGanesOptimizados();
+
+            }
+
+            rec=traerHistorial();       //se manda a traer el historial
+            // se hace el historial
+            //Historial nuevo=new Historial(jugando.getNumNivel(),jugando,condicion,mov,time,jugando.getBestMoves());
+            rec.setNumNivel(jugando.getNumNivel());
+            rec.setNivel(jugando);    //referencia al nivel jugado
+            rec.setEstado(condicion);
+            rec.setCantidadMovimientos(mov);
+            rec.setTiempo(time);
+            rec.setBestMoves(jugando.getBestMoves());
+            rec.setVecesJugado();
+
+            //uno.setArrayHistorial(nuevo);   //se agrega el historial al jugador
+            }
+        else if (uno.getNivelesPorRepetir() != null){
+            Estadistica e;
+              e=uno.getEstadistica();
+              
+            if (mov > jugando.getBestMoves()) {
+                condicion = "Ganado";
+                e.setCantNivelesJugados();
+            } 
+            else if(mov<jugando.getBestMoves()){    //si rompió un record           
+                uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
+                programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
+                e.setCantNivelesJugados();
+                e.setCanGanesOptimizados();
+                e.setRecordRotos();     //se aumenta contador de record rotos
+                condicion="Optimizado";
+                programa.nuevoRecord(mov, niv); //se hace el cambio a los bestmoves de nivel si se rompe
+                                                //un record
+            }
+
+            else {
+                condicion = "Optimizado";
+                e.setCantNivelesJugados();
+                e.setCanGanesOptimizados();
+            }
+            rec=traerHistorial2();       //se manda a traer el historial
+            if (rec.getCantidadMovimientos() > mov){
+                rec.setNumNivel(jugando.getNumNivel());
+                rec.setNivel(jugando);    //referencia al nivel jugado
+                rec.setEstado(condicion);
+                rec.setCantidadMovimientos(mov);
+                rec.setTiempo(time);
+                rec.setBestMoves(jugando.getBestMoves());
+                rec.setVecesJugado();
+            }
+            else
+                return;
         }
-        
-        else {
-            condicion = "Optimizado";
-            Estadistica e=uno.getEstadistica();
-            e.setCanGanesOptimizados();
-            
-        }
-        
-        rec=traerHistorial();       //se manda a traer el historial
-        // se hace el historial
-        //Historial nuevo=new Historial(jugando.getNumNivel(),jugando,condicion,mov,time,jugando.getBestMoves());
-        rec.setNumNivel(jugando.getNumNivel());
-        rec.setNivel(jugando);    //referencia al nivel jugado
-        rec.setEstado(condicion);
-        rec.setCantidadMovimientos(mov);
-        rec.setTiempo(time);
-        rec.setBestMoves(jugando.getBestMoves());
-        rec.setVecesJugado();
-        
-        //uno.setArrayHistorial(nuevo);   //se agrega el historial al jugador
-        }
-        
         else{
               Estadistica e;
               e=uno.getEstadistica();
               
-        if (mov > jugando.getBestMoves()) {
-            condicion = "Ganado";
-            e.setCantNivelesJugados();
-        } 
-        else if(mov<jugando.getBestMoves()){    //si rompió un record           
-            uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
-            programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
-            e.setCantNivelesJugados();
-            e.setCanGanesOptimizados();
-            e.setRecordRotos();     //se aumenta contador de record rotos
-            condicion="Optimizado";
-            programa.nuevoRecord(mov, niv); //se hace el cambio a los bestmoves de nivel si se rompe
-                                            //un record
-        }
-        
-        else {
-            condicion = "Optimizado";
-            e.setCantNivelesJugados();
-            e.setCanGanesOptimizados();
-        }
+            if (mov > jugando.getBestMoves()) {
+                condicion = "Ganado";
+                e.setCantNivelesJugados();
+            } 
+            else if(mov<jugando.getBestMoves()){    //si rompió un record           
+                uno.setBestMoves(uno.getBestMoves()+1); //aumentarle los record rotos por el usuario
+                programa.cambiarNivelesOptimizados(niv);  //los jugadores que lo ganaron optimizado ahora lo ganaron normal
+                e.setCantNivelesJugados();
+                e.setCanGanesOptimizados();
+                e.setRecordRotos();     //se aumenta contador de record rotos
+                condicion="Optimizado";
+                programa.nuevoRecord(mov, niv); //se hace el cambio a los bestmoves de nivel si se rompe
+                                                //un record
+            }
 
-        // se hace el historial
-        //Historial nuevo=new Historial(jugando.getNumNivel(),jugando,condicion,mov,time,jugando.getBestMoves());
-        nuevo.setNumNivel(jugando.getNumNivel());
-        nuevo.setNivel(jugando);    //referencia al nivel jugado
-        nuevo.setEstado(condicion);
-        nuevo.setCantidadMovimientos(mov);
-        nuevo.setTiempo(time);
-        nuevo.setBestMoves(jugando.getBestMoves());
-        nuevo.setVecesJugado();
-        uno.setArrayHistorial(nuevo);   //se agrega el historial al jugador
-            
-            
+            else {
+                condicion = "Optimizado";
+                e.setCantNivelesJugados();
+                e.setCanGanesOptimizados();
+            }
+
+            // se hace el historial
+            //Historial nuevo=new Historial(jugando.getNumNivel(),jugando,condicion,mov,time,jugando.getBestMoves());
+            nuevo.setNumNivel(jugando.getNumNivel());
+            nuevo.setNivel(jugando);    //referencia al nivel jugado
+            nuevo.setEstado(condicion);
+            nuevo.setCantidadMovimientos(mov);
+            nuevo.setTiempo(time);
+            nuevo.setBestMoves(jugando.getBestMoves());
+            nuevo.setVecesJugado();
+            uno.setArrayHistorial(nuevo);   //se agrega el historial al jugador
+
+
             }
         
         if (level.size() > uno.getNivelActual()) {
