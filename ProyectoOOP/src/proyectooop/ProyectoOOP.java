@@ -97,7 +97,7 @@ public class ProyectoOOP {
                         {0,0,0,0,0,0,0,0,0,0},
                          };
         nuevo.setMatrizLogica(matriz);// se asigna matriz logica
-        nuevo.setBestMoves(28);
+        nuevo.setBestMoves(24);
         nuevo.setCantCajas(2);
         nuevo.setNumNivel(1);
         programa.agregarNivel(nuevo);
@@ -115,7 +115,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(matri);// se asigna matriz logica
-        nuevo.setBestMoves(30);
+        nuevo.setBestMoves(28);
         nuevo.setCantCajas(3);     
         nuevo.setNumNivel(2);
         programa.agregarNivel(nuevo);
@@ -134,7 +134,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(matr);// se asigna matriz logica
-        nuevo.setBestMoves(25);
+        nuevo.setBestMoves(40);
         nuevo.setCantCajas(4);     
         nuevo.setNumNivel(3);
         programa.agregarNivel(nuevo);
@@ -154,7 +154,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(ma);// se asigna matriz logica
-        nuevo.setBestMoves(41);
+        nuevo.setBestMoves(50);
         nuevo.setCantCajas(4);     
         nuevo.setNumNivel(4);
         programa.agregarNivel(nuevo);
@@ -174,7 +174,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(m);// se asigna matriz logica
-        nuevo.setBestMoves(35);
+        nuevo.setBestMoves(34);
         nuevo.setCantCajas(4);     
         nuevo.setNumNivel(5);
         programa.agregarNivel(nuevo);
@@ -193,7 +193,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(mar);// se asigna matriz logica
-        nuevo.setBestMoves(39);
+        nuevo.setBestMoves(40);
         nuevo.setCantCajas(4);     
         nuevo.setNumNivel(6);
         programa.agregarNivel(nuevo);
@@ -212,7 +212,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(mart);// se asigna matriz logica
-        nuevo.setBestMoves(45);
+        nuevo.setBestMoves(132);
         nuevo.setCantCajas(5);     
         nuevo.setNumNivel(7);
         programa.agregarNivel(nuevo);
@@ -231,7 +231,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(mt);// se asigna matriz logica
-        nuevo.setBestMoves(40);
+        nuevo.setBestMoves(94);
         nuevo.setCantCajas(5);     
         nuevo.setNumNivel(8);
         programa.agregarNivel(nuevo);
@@ -251,7 +251,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(mtz);// se asigna matriz logica
-        nuevo.setBestMoves(35);
+        nuevo.setBestMoves(74);
         nuevo.setCantCajas(5);     
         nuevo.setNumNivel(9);
         programa.agregarNivel(nuevo);
@@ -270,7 +270,7 @@ public class ProyectoOOP {
                          };
         
         nuevo.setMatrizLogica(mz);// se asigna matriz logica
-        nuevo.setBestMoves(45);
+        nuevo.setBestMoves(32);
         nuevo.setCantCajas(5);     
         nuevo.setNumNivel(10);
         programa.agregarNivel(nuevo);
