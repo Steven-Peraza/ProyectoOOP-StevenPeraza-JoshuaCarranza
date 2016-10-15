@@ -44,6 +44,9 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         bienvenida.setForeground(Color.black);
         jLabel1.setForeground(Color.black);
         jLabel1.setVisible(true);
+        
+        jLabel3.setIcon(new ImageIcon(getClass().getResource("")));
+        
         this.setLocationRelativeTo(null);   //centrar pantalla
         jLabel2.setForeground(Color.black);
         jLabel2.setVisible(true);
@@ -51,8 +54,17 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         exit.setForeground(Color.blue);
         bienvenida.setText("Bienvenido  "+admin.getNombre());
         String ima=admin.getFotografia();
-        ImageIcon imag = new ImageIcon(getClass().getResource(ima));
-               
+       
+        ImageIcon imag;
+        try{
+          imag = new ImageIcon(getClass().getResource(ima));
+        }
+        
+        catch(NullPointerException e){
+          imag = new ImageIcon(ima);
+        }
+        
+          
         Image photo = imag.getImage();
                
                //cambiar tamaño a la imagen

@@ -54,7 +54,17 @@ public class ventanaJugador extends javax.swing.JFrame {
         exit.setForeground(Color.blue);
         bienvenida.setText("Bienvenido  "+jugador.getNombre());
         String ima=jugador.getFotografia();
-        ImageIcon imag = new ImageIcon(getClass().getResource(ima));
+        
+        ImageIcon imag;
+        
+         try{
+          imag = new ImageIcon(getClass().getResource(ima));
+        }
+        
+        catch(NullPointerException e){
+          imag = new ImageIcon(ima);
+        }
+        
         Image photo = imag.getImage();
                
                //cambiar tamaño a la imagen

@@ -38,6 +38,7 @@ public class ProyectoOOP {
     public static Jugador grupal;
     public static String tipo = "normal";
 
+    
     public static inicioSesion ventana;
     public static Grupo grp;           // variable para partidas grupales
 
@@ -73,7 +74,7 @@ public class ProyectoOOP {
         Jugador prim = new Jugador("Fabricio", 300004000, "joshua@gmail.com", "holass", "30 de mayo");
         Jugador pri = new Jugador("Ian", 300000700, "joshua@gmail.com", "holaa", "30 de mayo");
         Jugador pr = new Jugador("Randall", 300000060, "joshua@gmail.com", "holae", "30 de mayo");
-        pr.setFotografia("/ImagenesUsuario/avatar1.png");
+        pr.setFotografia("/joImagenesUsuario/avatar1.png");
         pri.setFotografia("/ImagenesUsuario/icono-de-usuario-masculino.png");
         prim.setFotografia("/ImagenesUsuario/icono-hombre.png");
         prime.setFotografia("/ImagenesUsuario/images44.png");
