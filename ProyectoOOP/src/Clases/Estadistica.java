@@ -48,6 +48,7 @@ public class Estadistica {
     }
     //funcion que retorna el nivel mas repetido por el usuario
     public int getNivelMasRepetido() {
+        
         return nivelMasRepetido;
     }
     //funcion que establece el nivel mas repetido por el usuario

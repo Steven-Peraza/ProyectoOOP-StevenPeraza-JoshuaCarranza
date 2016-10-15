@@ -51,7 +51,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         exit.setForeground(Color.blue);
         bienvenida.setText("Bienvenido  "+admin.getNombre());
         String ima=admin.getFotografia();
-        ImageIcon imag = new ImageIcon(ima);
+        ImageIcon imag = new ImageIcon(getClass().getResource(ima));
                
         Image photo = imag.getImage();
                
