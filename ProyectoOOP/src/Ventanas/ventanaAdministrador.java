@@ -9,6 +9,7 @@ import Clases.Administrador;
 import Ventanas.eliminarUsuarios;
 import Ventanas.estadistica;
 import Ventanas.ganesOpt;
+import static Ventanas.inicioSesion.Musica;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
@@ -36,7 +37,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
      * Creates new form pantallaInicial
      */
     public Administrador admin;
-    private static Clip clip3;
+    public static Clip clip3;
     
     public ventanaAdministrador() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         initComponents();
@@ -61,13 +62,10 @@ public class ventanaAdministrador extends javax.swing.JFrame {
         //generando imageicon con la nueva imagen
                
         ImageIcon icono= new ImageIcon(nueva);
-         imagen.setIcon(icono);
-         imagen.setSize(155, 175);
+        imagen.setIcon(icono);
+        imagen.setSize(155, 175);
          
-         if (clip3 == null)
-            Musica("Anville_Town.wav");
-         else
-             System.out.println("Sigue la mùsica");
+        Musica("Anville_Town.wav");
     }
 
     /**
@@ -273,6 +271,11 @@ public class ventanaAdministrador extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
          clip3.stop();
+        try {
+            inicioSesion.Musica("Fortree_City.wav");
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            Logger.getLogger(ventanaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
          this.dispose();
          ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
@@ -321,7 +324,7 @@ public class ventanaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_agregadosActionPerformed
 
     private void hacernivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacernivelActionPerformed
-        clip3.stop();
+
         this.dispose();
         new hacerNivel().setVisible(true);
         

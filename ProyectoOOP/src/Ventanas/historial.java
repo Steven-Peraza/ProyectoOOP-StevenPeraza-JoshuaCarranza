@@ -316,6 +316,7 @@ public class historial extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
+        ventanaAdministrador.clip3.stop();
         this.dispose();
         try { 
             new ventanaAdministrador().setVisible(true);

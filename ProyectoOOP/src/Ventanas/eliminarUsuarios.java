@@ -194,13 +194,10 @@ public class eliminarUsuarios extends javax.swing.JFrame {
         no.setVisible(false);
         ced.setText("");
         this.dispose();
+        ventanaAdministrador.clip3.stop();
         try {
             new ventanaAdministrador().setVisible(true);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(eliminarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(eliminarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
             Logger.getLogger(eliminarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_backActionPerformed

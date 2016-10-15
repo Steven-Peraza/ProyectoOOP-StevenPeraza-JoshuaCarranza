@@ -423,13 +423,10 @@ public class superado extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.dispose();
+        ventanaAdministrador.clip3.stop();
         try {
             new ventanaAdministrador().setVisible(true);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(superado.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(superado.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
             Logger.getLogger(superado.class.getName()).log(Level.SEVERE, null, ex);
         }
          

@@ -30,7 +30,7 @@ import static proyectooop.ProyectoOOP.programa;
  */
 public class inicioSesion extends javax.swing.JFrame {
 
-    private static Clip clip;
+    public static Clip clip;
     
  
     

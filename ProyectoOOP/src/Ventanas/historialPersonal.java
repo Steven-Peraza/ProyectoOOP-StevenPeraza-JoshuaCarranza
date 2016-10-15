@@ -264,13 +264,10 @@ public class historialPersonal extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();
+        ventanaJugador.clip2.stop();
         try {
             new ventanaJugador().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(historialPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(historialPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
             Logger.getLogger(historialPersonal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_salirActionPerformed

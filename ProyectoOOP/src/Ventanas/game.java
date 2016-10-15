@@ -545,13 +545,8 @@ public class game extends javax.swing.JFrame {
             clip3.stop();
             new ventanaJugador().setVisible(true);
             
-        } catch (IOException ex) {
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
             Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
-        
         }
     }//GEN-LAST:event_exitActionPerformed
 
@@ -744,6 +739,7 @@ public class game extends javax.swing.JFrame {
 
         } 
         else if (uno.getNivelesPorRepetir() != null){
+                clip3.stop();
                 this.dispose(); //cerrar ventana
                 try {
                     new game().setVisible(true); //se abre una nueva ventana de juego
@@ -781,6 +777,7 @@ public class game extends javax.swing.JFrame {
                ProyectoOOP.timer=0;
                 
                 jugando.setMatrizLogica(respaldo);
+                clip3.stop();
                 this.dispose(); //cerrar ventana
                 try {
                     new game().setVisible(true); //se abre una nueva ventana de juego
@@ -792,7 +789,7 @@ public class game extends javax.swing.JFrame {
                 
                 ProyectoOOP.pos++;
                 jugando.setMatrizLogica(respaldo);
-                
+                clip3.stop();
                 this.dispose(); //cerrar ventana
                 try {
                     new game().setVisible(true); //se abre una nueva ventana de juego
@@ -831,7 +828,6 @@ public class game extends javax.swing.JFrame {
                 }
 
         }
-        clip3.stop();
         panel.setFocusable(true);
     }//GEN-LAST:event_siguienteActionPerformed
 
