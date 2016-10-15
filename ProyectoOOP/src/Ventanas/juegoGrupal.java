@@ -245,13 +245,10 @@ public class juegoGrupal extends javax.swing.JFrame {
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispose();
+        ventanaJugador.clip2.stop();
         try {
             new ventanaJugador().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(juegoGrupal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(juegoGrupal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
             Logger.getLogger(juegoGrupal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SalirActionPerformed

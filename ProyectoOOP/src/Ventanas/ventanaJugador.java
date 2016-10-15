@@ -7,6 +7,7 @@ package Ventanas;
 
 import Clases.Jugador;
 import Ventanas.game;
+import static Ventanas.inicioSesion.Musica;
 import java.awt.Color;
 import clases.*;
 import java.awt.Image;
@@ -35,7 +36,7 @@ public class ventanaJugador extends javax.swing.JFrame {
      * Creates new form ventanaJugador
      */
     
-    private static Clip clip2;
+    public static Clip clip2;
     public Jugador jugador;
     String ima;
      
@@ -75,10 +76,10 @@ public class ventanaJugador extends javax.swing.JFrame {
         ImageIcon icono= new ImageIcon(nueva);
          imagen.setIcon(icono);
          imagen.setSize(155, 175);
-         if (clip2 == null)
+         //if (clip2 == null)
             Musica("Anville_Town.wav");
-         else
-             System.out.println("Sigue la mùsica");
+         /*else
+             System.out.println("Sigue la mùsica");*/
     }
 
     /**
@@ -284,6 +285,11 @@ public class ventanaJugador extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         clip2.stop();
+        try {
+            inicioSesion.Musica("Fortree_City.wav");
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            Logger.getLogger(ventanaJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         ProyectoOOP.ventana.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
@@ -338,7 +344,6 @@ public class ventanaJugador extends javax.swing.JFrame {
     private void juegoGrupalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juegoGrupalActionPerformed
 
         this.dispose();
-        clip2.stop();
        new juegoGrupal().setVisible(true);
     }//GEN-LAST:event_juegoGrupalActionPerformed
 

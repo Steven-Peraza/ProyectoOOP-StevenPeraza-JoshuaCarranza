@@ -290,13 +290,10 @@ public class estadistica extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        ventanaAdministrador.clip3.stop();
         try {
             new ventanaAdministrador().setVisible(true);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(estadistica.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(estadistica.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
             Logger.getLogger(estadistica.class.getName()).log(Level.SEVERE, null, ex);
         }
     

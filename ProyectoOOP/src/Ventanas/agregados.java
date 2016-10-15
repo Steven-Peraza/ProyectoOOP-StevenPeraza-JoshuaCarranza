@@ -115,13 +115,10 @@ public class agregados extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.dispose();
+        ventanaAdministrador.clip3.stop();
         try {
             new ventanaAdministrador().setVisible(true);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(agregados.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(agregados.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
             Logger.getLogger(agregados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_exitActionPerformed
